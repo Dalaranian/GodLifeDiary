@@ -19,8 +19,17 @@ public class MyBoardController {
 	@GetMapping("/login")
 	public String login() {
 		return "loginmain";
+<<<<<<< Updated upstream
+=======
+	}
+	
+	@GetMapping("/join")
+	public String join() {
+		return "joinform";
+>>>>>>> Stashed changes
 	}
 
+	
 	@GetMapping("/main")
 	public String main() {
 		return "main";
