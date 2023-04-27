@@ -119,11 +119,8 @@
           </div>
           <button id="submitButton" type="submit">Sign in</button>
           <ul>
-<<<<<<< Updated upstream
-            <li><a href="signup">회원가입</a></li><!-- &nbsp;| -->
-=======
-            <li><a href="join">회원가입</a></li><!-- &nbsp;| -->
->>>>>>> Stashed changes
+            <!-- -<li><a href="signup">회원가입</a></li><!-- &nbsp;| -->
+			<li><a href="join">회원가입</a></li><!-- &nbsp;| -->
             <!-- <li><a>아이디 찾기</a></li>&nbsp; -->
             <!-- <li><a>비밀번호 찾기</a></li> -->
           </ul>
