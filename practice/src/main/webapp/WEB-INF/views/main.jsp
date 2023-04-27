@@ -27,7 +27,7 @@
         	</ul>
         	
         	<ul class="hnavbar_right">
-        		<li><a class="">mypage</a></li>
+        		<li><a class="mypage">mypage</a></li>
         	</ul>
         	
         </nav>
@@ -41,7 +41,7 @@
                     <div class="m-4 m-lg-5">
                         <h1 class="display-5 fw-bold">운동,공부,습관,취미 등<br> 다양한 목표를 세우고 공유하세요</h1>
                         <p class="fs-4">마음에 드는 챌린지가 없다면? </p>
-                        <a class="btn btn-primary btn-lg" href="#!" style="background-color: #4374d9;">챌린지 등록</a>
+                        <a class="btn btn-primary btn-lg" href="insertchallenge" style="background-color: #4374d9;">챌린지 등록</a>
                     </div>
                 </div>
             </div>

@@ -32,8 +32,16 @@ public class MyBoardController {
 	public String main() {
 		return "main";
 	}
-
 	
+	@GetMapping("/mypage")
+	public String mypage() {
+		return "mypage";
+	}
+
+	@GetMapping("/insertchallenge")
+	public String insertChallenge() {
+		return "insertchallenge";
+	}
 	@GetMapping("/list")
 	public String selectList(Model model) {
 		model.addAttribute("list", myBiz.selectList());
