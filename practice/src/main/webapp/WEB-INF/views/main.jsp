@@ -9,7 +9,6 @@
         <meta name="author" content="" />
 <title>작은 도전이 큰 변화로, 갓생일지 </title>
     <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
@@ -18,29 +17,31 @@
 <body>
 
 	 <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg" style="background-color: orangered;">
-            <div class="container px-lg-5">
-                <img src="/work/챌린지.PNG" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-                <a class="navbar-brand" href="#!">갓생일지</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">마이페이지</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">logout</a></li>
-                    </ul>
-                </div>
-            </div>
+       <nav class="hnavbar">
+        	<div class="hnavbar_logo">
+        		<a href="">작은 도전이 큰 변화로, </a> 
+        	</div>
+        	
+        	<ul class="hnavbar_menu">
+        		<li><a href="">갓생일지</a></li>
+        	</ul>
+        	
+        	<ul class="hnavbar_right">
+        		<li><a class="">mypage</a></li>
+        	</ul>
+        	
         </nav>
         
 	  <!--  Header -->
-      <header class="py-5">
+
+	  
+      <header class="introduce_form">
             <div class="container px-lg-5">
                 <div class="p-4 p-lg-5 bg-light rounded-3 text-center" style="">
                     <div class="m-4 m-lg-5">
-                        <h1 class="display-5 fw-bold">갓생일지!</h1>
-                        <p class="fs-4">작은 도전이 큰 변화로, </p>
-                        <a class="btn btn-primary btn-lg" href="#!" style="background-color: orangered; border-color: orangered;">챌린지 등록</a>
+                        <h1 class="display-5 fw-bold">운동,공부,습관,취미 등<br> 다양한 목표를 세우고 공유하세요</h1>
+                        <p class="fs-4">마음에 드는 챌린지가 없다면? </p>
+                        <a class="btn btn-primary btn-lg" href="#!" style="background-color: #4374d9;">챌린지 등록</a>
                     </div>
                 </div>
             </div>
@@ -132,11 +133,10 @@
                 </div>
             </div>
         </section>
-	<h1><a href="myboard/login">로그인 고</a></h1>
 	<h2><a href="myboard/list">list</a></h2>
 
-	<footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+	<footer>
+       <div class="container px-5"><p class="m-0 text-center text-white">Copyright &copy; Team 4 in SemiProject 2023</p></div>
     </footer>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

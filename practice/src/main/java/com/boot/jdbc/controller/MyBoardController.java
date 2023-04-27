@@ -18,7 +18,7 @@ public class MyBoardController {
 	
 	@GetMapping("/login")
 	public String login() {
-		return "loginmaint";
+		return "loginmain";
 	}
 
 	@GetMapping("/main")

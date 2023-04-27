@@ -1,15 +1,126 @@
 @charset "UTF-8";
-/*!
-* Start Bootstrap - Heroic Features v5.0.6 (https://startbootstrap.com/template/heroic-features)
-* Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-heroic-features/blob/master/LICENSE)
-*/
-/*!
- * Bootstrap  v5.2.3 (https://getbootstrap.com/)
- * Copyright 2011-2022 The Bootstrap Authors
- * Copyright 2011-2022 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
+/* ------------------------ navbar -------------------*/
+
+.hnavbar{
+	display:flex; /*수평 나열*/
+	justify-content:space-between; /* 요소들끼리 띄우기*/
+	align-items:center;
+	background-color:#989898;
+	padding: 8px 12px;
+	position:fixed;
+	top:0;
+	left:0;
+	right:0;
+}
+
+.hnavbar_logo{
+	 color: var(--accent-color);
+ 	 padding-left: 0;
+}
+
+
+.hnavbar_menu {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding-left: 0;
+  font-size:30px;
+}
+
+.hnavbar_right {
+  list-style:none;
+  display: flex;
+  margin: 0;
+  padding-left: 0;
+  padding: 8px 20px;
+}
+
+a {
+	color:var(--text-color);
+ 	text-decoration: none;
+}
+
+
+/*main.jsp*/
+.introduce_form{
+	padding-top: 3rem !important;
+  	padding-bottom: 3rem !important;
+	background-color:#BDCBDA;
+}
+
+
+/*footer_bar*/
+footer{
+	 padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
+  background-color: #626262;
+}
+
+/* ------------------------ body -------------------*/
+.hbtn{
+	background-color:#626262;
+	  margin-right: 1rem !important;
+	    padding-right: 1.5rem !important;
+  padding-left: 1.5rem !important;
+    --bs-btn-padding-y: 0.5rem;
+
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #0b5ed7;
+  --bs-btn-hover-border-color: #0a58ca;
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #0a58ca;
+  --bs-btn-active-border-color: #0a53be;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #0d6efd;
+  --bs-btn-disabled-border-color: #0d6efd;
+  
+}
+
+.bg-sora{
+	background-color: #BDCBDA !important;
+	 padding-top: 3rem !important;
+  	padding-bottom: 3rem !important;
+}
+
+a.button {
+  padding-top: 1em;
+  margin-top: 1em;
+  border-top: 
+    solid
+    1px
+    #CCC;
+	
+  display: block;
+  position: relative;
+  float: left;
+  width: 160px;
+  padding: 0;
+  margin: 10px 20px 10px 0;
+  font-weight: 600;
+  text-align: center;
+  line-height: 50px;
+  color: #FFF;
+  border-radius: 5px;
+  transition: all 0.2s ;
+}
+
+.btnFloat {
+  background: none;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.5);
+
+  
+}
+.colorgrey{
+	background:#626262;
+}
+.colorblue{	
+	border:1;
+	background:#4374d9;
+}
+
+/* -----------------------------------*/
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -244,10 +355,7 @@ sup {
   top: -0.5em;
 }
 
-a {
-  color: var(--bs-link-color);
-  text-decoration: underline;
-}
+
 a:hover {
   color: var(--bs-link-hover-color);
 }
@@ -2845,7 +2953,7 @@ textarea.form-control-lg {
 
 .btn-primary {
   --bs-btn-color: #fff;
-  --bs-btn-bg: #0d6efd;
+  --bs-btn-bg: #626262;
   --bs-btn-border-color: #0d6efd;
   --bs-btn-hover-color: #fff;
   --bs-btn-hover-bg: #0b5ed7;
@@ -7932,8 +8040,7 @@ textarea.form-control-lg {
 }
 
 .py-5 {
-  padding-top: 3rem !important;
-  padding-bottom: 3rem !important;
+
 }
 
 .pt-0 {
