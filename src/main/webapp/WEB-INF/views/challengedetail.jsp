@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Detail</title>
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="css/styles.css" rel="stylesheet" />
+<link href="../resources/css/styles.css" rel="stylesheet" />
 <style type="text/css">
     @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@200&display=swap');
     @font-face {
