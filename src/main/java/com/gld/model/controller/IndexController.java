@@ -33,9 +33,9 @@ public class IndexController {
 	@PostMapping("/kakaoAuth")
 	public String kakaoAuth(@RequestBody UserDto dto, Model model) {
 		System.out.println(dto);
-		if(loginBiz.selectOne(dto)!=null) {
+		/*if(loginBiz.selectOne(dto)!=null) {
 			
-		}
+		}*/
 		return "";
 	}
 }

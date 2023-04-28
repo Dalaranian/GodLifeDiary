@@ -9,5 +9,6 @@
 <body>
 	<button onclick="location.href='index/main'">hello</button>
 	<button onclick="location.href='login/login'">login</button>
+	<button onclick="location.href='challenge/detail'">login</button>
 </body>
 </html>
