@@ -31,8 +31,12 @@
 						<li><a class="dropdown-item" href="#">공부</a></li>
 						<li><a class="dropdown-item" href="#">습관</a></li>
 					</ul></li>
+<<<<<<< Updated upstream:practice/src/main/webapp/WEB-INF/views/index.jsp
 				<li class="nav-item"><a class="nav-link" href="#">마이페이지</a></li>
 				<li class="nav-item"><a class="nav-link disabled">관리자모드</a></li>
+=======
+				<li class="nav-item"><a class="nav-link" href="mypage/mypage">마이페이지</a></li>
+>>>>>>> Stashed changes:src/main/webapp/WEB-INF/views/index.jsp
 
 			</ul>
 			<form role="search">
