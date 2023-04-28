@@ -12,4 +12,9 @@ public class ChallengeController {
 	public String moveToDetail() {
 		return "challengedetail";
 	}
+	
+	@RequestMapping("/insert")
+	public String moveToChallendgeInsert() {
+		return "challengeinsert";
+	}
 }

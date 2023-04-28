@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>챌린지 등록</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="../resources/css/styles.css" rel="stylesheet" />
 </head>
 <style>
     .section {
