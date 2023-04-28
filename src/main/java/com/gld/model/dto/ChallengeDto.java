@@ -1,21 +1,54 @@
 package com.gld.model.dto;
 
-public class ChellangeDto {
-	private int seq;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.PostLoad;
+import javax.persistence.PrePersist;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.hibernate.annotations.DynamicInsert;
+import org.springframework.data.domain.Persistable;
+
+@Entity
+@Table(name="G_CHALLENGE")
+@DynamicInsert
+public class ChallengeDto implements Persistable<Long> {
+	
+	@Id
+    @Column(name = "SEQ",nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long seq;
+    
+	@Column(name = "CHALLENGE_NAME", nullable = false)
 	private String challengeName;
+    
+	@Column(name = "CHALLENGE_INFO", nullable = false)
 	private String challengeInfo;
+    
+	@Column(name = "CHALLENGE_MAXMEMBER", nullable = false)
 	private int challengeMaxMember;
+    
+	@Column(name = "CHALLENGE_DURATION", nullable = false)
 	private int challengeDuration;
+
+    @Column(name = "CHALLENGE_ENABLED")
 	private String challengeEnabled;
+    
+    @Column(name = "CHALLENGE_CATEGORY", nullable = false)
 	private String challengeCategory;
+    
+    @Column(name = "CHALLENGE_HASHTAG")
 	private String challengeHashtag;
 
-	public ChellangeDto() {
+	public ChallengeDto() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public ChellangeDto(int seq, String challengeName, String challengeInfo, int challengeMaxMember,
+	public ChallengeDto(Long seq, String challengeName, String challengeInfo, int challengeMaxMember,
 			int challengeDuration, String challengeEnabled, String challengeCategory, String challengeHashtag) {
 		super();
 		this.seq = seq;
@@ -28,11 +61,11 @@ public class ChellangeDto {
 		this.challengeHashtag = challengeHashtag;
 	}
 
-	public int getSeq() {
+	public Long getSeq() {
 		return seq;
 	}
 
-	public void setSeq(int seq) {
+	public void setSeq(Long seq) {
 		this.seq = seq;
 	}
 
@@ -99,5 +132,26 @@ public class ChellangeDto {
 				+ ", challengeEnabled=" + challengeEnabled + ", challengeCategory=" + challengeCategory
 				+ ", challengeHashtag=" + challengeHashtag + "]";
 	}
+
+	@Override
+	public Long getId() {
+		return this.seq;
+	}
+
+	@Transient
+	private boolean isNew = true;
+	
+	@Override
+	public boolean isNew() {
+		return isNew;
+	}
+	
+	@PrePersist
+	@PostLoad
+	void markNotNew() {
+		this.isNew = false;
+	}
+	
+	
 
 }
