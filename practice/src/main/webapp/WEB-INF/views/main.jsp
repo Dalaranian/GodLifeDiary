@@ -1,146 +1,235 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-<title>작은 도전이 큰 변화로, 갓생일지 </title>
-    <!-- Favicon-->
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="../resources/css/styles.css" rel="stylesheet" />
- </head>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<title>작은 도전이 큰 변화로, 갓생일지</title>
+<link href="../resources/css/styles.css" rel="stylesheet" />
+</head>
 <body>
+<nav class="navbar navbar-expand-sm navbar-dark cOrange">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="#">갓생일지</a>
+		<button class="navbar-toggler" type="button"
+			data-bs-toggle="collapse" data-bs-target="#navbarsExample03"
+			aria-controls="navbarsExample03" aria-expanded="false">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
-	 <!-- Responsive navbar-->
-       <nav class="hnavbar">
-        	<div class="hnavbar_logo">
-        		<a href="">작은 도전이 큰 변화로, </a> 
-        	</div>
-        	
-        	<ul class="hnavbar_menu">
-        		<li><a href="">갓생일지</a></li>
-        	</ul>
-        	
-        	<ul class="hnavbar_right">
-        		<li><a class="mypage">mypage</a></li>
-        	</ul>
-        	
-        </nav>
-        
-	  <!--  Header -->
+		<div class="collapse navbar-collapse" id="navbarsExample03">
+			<ul class="navbar-nav me-auto mb-2 mb-sm-0">
+				<li class="nav-item"><a class="nav-link active"
+					aria-current="page" href="#">Home</a></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#"
+					data-bs-toggle="dropdown" aria-expanded="false">Category</a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="#">All</a></li>
+						<li><a class="dropdown-item" href="#">운동</a></li>
+						<li><a class="dropdown-item" href="#">공부</a></li>
+						<li><a class="dropdown-item" href="#">습관</a></li>
+					</ul></li>
+				<li class="nav-item"><a class="nav-link" href="#">마이페이지</a></li>
+				<li class="nav-item"><a class="nav-link disabled">관리자모드</a></li>
 
-	  
-      <header class="introduce_form">
-            <div class="container px-lg-5">
-                <div class="p-4 p-lg-5 bg-light rounded-3 text-center" style="">
-                    <div class="m-4 m-lg-5">
-                        <h1 class="display-5 fw-bold">운동,공부,습관,취미 등<br> 다양한 목표를 세우고 공유하세요</h1>
-                        <p class="fs-4">마음에 드는 챌린지가 없다면? </p>
-                        <a class="btn btn-primary btn-lg" href="insertchallenge" style="background-color: #4374d9;">챌린지 등록</a>
-                    </div>
-                </div>
-            </div>
-        </header>
-        
-         <!-- Page Content-->
-        <div style="margin-left: 340px;">
-            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                <label class="btn btn-outline-primary" for="btnradio1">전체</label>
-              
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                <label class="btn btn-outline-primary" for="btnradio2">운동</label>
-              
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                <label class="btn btn-outline-primary" for="btnradio3">공부</label>
+			</ul>
+			<form role="search">
+				<input class="form-control" type="search" placeholder="Search">
+			</form>
+		</div>
+	</div>
+</nav>
 
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
-                <label class="btn btn-outline-primary" for="btnradio4">습관</label>
+<br>
+<br>
+<header class="introduce_form">
+	<div class="container px-lg-5">
+		<div class="p-4 p-lg-5 bg-light rounded-3 text-center" style="">
+			<div class="m-4 m-lg-5">
+				<h1 class="display-5 fw-bold">
+					운동,공부,습관,취미 등<br> 다양한 목표를 세우고 공유하세요
+				</h1>
+				<p class="fs-4">마음에 드는 챌린지가 없다면?</p>
+				<br> <a class="startBtn" href="insertchallenge">챌린지 등록</a>
+			</div>
+		</div>
+	</div>
+</header>
 
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off">
-                <label class="btn btn-outline-primary" for="btnradio5">취미</label>
+<!--챌린지 목록 -->
+<div class="container px-4 py-5" id="custom-cards">
+	<h2 class="pb-2 border-bottom">시작전인 챌린지</h2>
+	<div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+		<div class="col">
+			<div class="chCard">
+				<div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+					<h3>물 2L씩 마시기</h3><br>
+					<h6>하루에 물을 2L씩 마시면 어쩌고에 좋아요 n번째 연장중인 챌린지입니다!</h6><br><br><br>
+					<ul class="chCardli">
+						<h6>(달력 아이콘) 1 Year</h6>
+						<h6>(사람 아이콘) 2/5</h6>
+					</ul>
+				</div>
+			</div>
+		</div>
 
-                <form class="d-flex" role="search" style="padding-left: 41rem;">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                  </form>
-            </div>
-        </div>
-        <!--챌린지 목록 -->
-        <section class="pt-4" style="margin-top: 50px;">
-            <div class="container px-lg-5">
-                <!-- Page Features-->
-                <div class="row gx-lg-5">
-                    <div class="col-lg-6 col-xxl-4 mb-5">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-collection"></i></div>
-                                <h2 class="fs-4 fw-bold">운동 챌린지명</h2>
-                                <p class="mb-0">뭔가 있어보이는 설명1</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-xxl-4 mb-5">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-cloud-download"></i></div>
-                                <h2 class="fs-4 fw-bold">공부 챌린지명</h2>
-                                <p class="mb-0">뭔가 있어보이는 설명2</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-xxl-4 mb-5">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-card-heading"></i></div>
-                                <h2 class="fs-4 fw-bold">습관 챌린지명</h2>
-                                <p class="mb-0">뭔가 있어보이는 설명3</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-xxl-4 mb-5">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-bootstrap"></i></div>
-                                <h2 class="fs-4 fw-bold">취미 챌린지명</h2>
-                                <p class="mb-0">뭔가 있어보이는 설명4</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-xxl-4 mb-5">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-code"></i></div>
-                                <h2 class="fs-4 fw-bold">마감 임박 챌린지명</h2>
-                                <p class="mb-0">뭔가 있어보이는 설명5</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-xxl-4 mb-5">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-patch-check"></i></div>
-                                <h2 class="fs-4 fw-bold">마감된 챌린지명</h2>
-                                <p class="mb-0">뭔가 있어보이는 설명을 넣을거에6</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-	<h2><a href="myboard/list">list</a></h2>
+		<div class="col">
+			<div class="chCard">
+				<div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+					<h3>프로그래머스 코딩테스트 Level.1 하루에 한개씩 풀기!</h3><br>
+					<h6>하루에 하나씩 문제를 풀고 어떤 문제를 풀었는지, 또 어느 부분이 어려웠는지 같이 나눠요 !!</h6><br><br><br>
+					<ul class="chCardli">
+						<h6>(달력 아이콘) 4 Weeks</h6>
+						<h6>(사람 아이콘) 4/10</h6>
+					</ul>
+				</div>
+			</div>
+		</div>
 
-	<footer>
-       <div class="container px-5"><p class="m-0 text-center text-white">Copyright &copy; Team 4 in SemiProject 2023</p></div>
-    </footer>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
+		<div class="col">
+			<div class="chCard">
+				<div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+					<h3>ㅇㄹㄴㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㅁㄴㅇ</h3><br>
+					<h6>ㄹㄴㅇㄹㄴㅇ런아러짇러ㅣㅓㅇㄴ</h6><br><br><br>
+					<ul class="chCardli">
+						<h6>(달력 아이콘) 1 Year</h6>
+						<h6>(사람 아이콘) 2/5</h6>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br><br>
+	<h2 class="pb-2 border-bottom">진행중인 챌린지</h2>
+
+	<div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+		<div class="col">
+			<div class="chCard cblue">
+				<div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+					<h3>물 2L씩 마시기</h3><br>
+					<h6>하루에 물을 2L씩 마시면 어쩌고에 좋아요 n번째 연장중인 챌린지입니다!</h6><br><br><br>
+					<ul class="chCardli">
+						<h6>(달력 아이콘) 1 Year</h6>
+						<h6>(사람 아이콘) 2/5</h6>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="col">
+			<div class="chCard cblue">
+				<div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+					<h3>프로그래머스 코딩테스트 Level.1 하루에 한개씩 풀기!</h3><br>
+					<h6>하루에 하나씩 문제를 풀고 어떤 문제를 풀었는지, 또 어느 부분이 어려웠는지 같이 나눠요 !!</h6><br><br><br>
+					<ul class="chCardli">
+						<h6>(달력 아이콘) 4 Weeks</h6>
+						<h6>(사람 아이콘) 4/10</h6>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="col">
+			<div class="chCard cblue">
+				<div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+					<h3>ㅇㄹㄴㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㅁㄴㅇ</h3><br>
+					<h6>ㄹㄴㅇㄹㄴㅇ런아러짇러ㅣㅓㅇㄴ</h6><br><br><br>
+					<ul class="chCardli">
+						<h6>(달력 아이콘) 1 Year</h6>
+						<h6>(사람 아이콘) 2/5</h6>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+	<br><br>
+	
+	<h2 class="pb-2 border-bottom">완료된 챌린지</h2>
+
+	<div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5 ">
+		<div class="col">
+			<div class="chCard cRed">
+				<div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+					<h3>물 2L씩 마시기</h3><br>
+					<h6>하루에 물을 2L씩 마시면 어쩌고에 좋아요 n번째 연장중인 챌린지입니다!</h6><br><br><br>
+					<ul class="chCardli">
+						<h6>(달력 아이콘) 1 Year</h6>
+						<h6>(사람 아이콘) 2/5</h6>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="col c">
+			<div class="chCard cRed">
+				<div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+					<h3>프로그래머스 코딩테스트 Level.1 하루에 한개씩 풀기!</h3><br>
+					<h6>하루에 하나씩 문제를 풀고 어떤 문제를 풀었는지, 또 어느 부분이 어려웠는지 같이 나눠요 !!</h6><br><br><br>
+					<ul class="chCardli">
+						<h6>(달력 아이콘) 4 Weeks</h6>
+						<h6>(사람 아이콘) 4/10</h6>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="col">
+			<div class="chCard cRed">
+				<div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+					<h3>ㅇㄹㄴㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㅁㄴㅇ</h3><br>
+					<h6>ㄹㄴㅇㄹㄴㅇ런아러짇러ㅣㅓㅇㄴ</h6><br><br><br>
+					<ul class="chCardli">
+						<h6>(달력 아이콘) 1 Year</h6>
+						<h6>(사람 아이콘) 2/5</h6>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col">
+		<div
+			class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+			style="background-image: url('unsplash-photo-3.jpg');">
+				<div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+					<h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Another
+						longer title belongs here</h3>
+					<ul class="d-flex list-unstyled mt-auto">
+						<li class="me-auto"><img src="https://github.com/twbs.png"
+							alt="Bootstrap" width="32" height="32"
+							class="rounded-circle border border-white"></li>
+						<li class="d-flex align-items-center me-3"><svg
+								class="bi me-2" width="1em" height="1em">
+								<use xlink:href="#geo-fill" /></svg> <small>California</small></li>
+						<li class="d-flex align-items-center"><svg class="bi me-2"
+								width="1em" height="1em">
+								<use xlink:href="#calendar3" /></svg> <small>5d</small></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<h2>
+	<a href="myboard/list">list</a>
+</h2>
+
+<footer>
+	<div class="container px-5">
+		<p class="m-0 text-center text-white">Copyright &copy; Team 4 in
+			SemiProject 2023</p>
+	</div>
+</footer>
+<!-- Bootstrap core JS-->
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
 </body>
 </html>

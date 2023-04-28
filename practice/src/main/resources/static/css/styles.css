@@ -1,23 +1,46 @@
 @charset "UTF-8";
-/* ------------------------ navbar -------------------*/
+/* --------------------------------------- navbar ----------------------------------------*/
+
+.chCard {
+  color: #fff !important;
+  border-radius: 15px;
+  height: 100% !important;
+  background-color: #626262;
+  width: 100%;
+  overflow:hidden;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+
+}
+.cRed{
+	background-color:#FF5E00;
+}
+
+.cblue{
+	background-color:#368AFF;
+}
+
+.chCardLi{
+	align-items:center;
+	display: flex !important;
+	margin-top: 3rem !important;
+	
+	
+}
+
 
 .hnavbar{
 	display:flex; /*수평 나열*/
 	justify-content:space-between; /* 요소들끼리 띄우기*/
 	align-items:center;
-	background-color:#989898;
+	background-color:#626262;
 	padding: 8px 12px;
 	position:fixed;
 	top:0;
 	left:0;
 	right:0;
+	color:#ffffff;
+	
 }
-
-.hnavbar_logo{
-	 color: var(--accent-color);
- 	 padding-left: 0;
-}
-
 
 .hnavbar_menu {
   list-style: none;
@@ -25,6 +48,7 @@
   margin: 0;
   padding-left: 0;
   font-size:30px;
+  line-height: 1.2;
 }
 
 .hnavbar_right {
@@ -40,26 +64,20 @@ a {
  	text-decoration: none;
 }
 
+.cOrange{
+	background-color:#ff6600;
+}
 
-/*main.jsp*/
+/* --------------------------------------- body ----------------------------------------*/
+
 .introduce_form{
-	padding-top: 3rem !important;
   	padding-bottom: 3rem !important;
-	background-color:#BDCBDA;
+	background-color:#ffffff;
+	 
 }
-
-
-/*footer_bar*/
-footer{
-	 padding-top: 3rem !important;
-  padding-bottom: 3rem !important;
-  background-color: #626262;
-}
-
-/* ------------------------ body -------------------*/
 .hbtn{
-	background-color:#626262;
-	  margin-right: 1rem !important;
+   background-color:#626262;
+   margin-right: 1rem !important;
 	    padding-right: 1.5rem !important;
   padding-left: 1.5rem !important;
     --bs-btn-padding-y: 0.5rem;
@@ -79,48 +97,98 @@ footer{
 }
 
 .bg-sora{
-	background-color: #BDCBDA !important;
-	 padding-top: 3rem !important;
+	background-color: #ffffff !important;
+	padding-top: 3rem !important;
   	padding-bottom: 3rem !important;
 }
 
-a.button {
-  padding-top: 1em;
-  margin-top: 1em;
-  border-top: 
-    solid
-    1px
-    #CCC;
-	
-  display: block;
-  position: relative;
-  float: left;
-  width: 160px;
-  padding: 0;
-  margin: 10px 20px 10px 0;
-  font-weight: 600;
-  text-align: center;
-  line-height: 50px;
-  color: #FFF;
-  border-radius: 5px;
-  transition: all 0.2s ;
+.main_container{ /* container , px-5*/
+	padding-top: 3rem !important;
+  	padding-bottom: 3rem !important;
+  	  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 3rem !important;
+  padding-left: 3rem !important;
+  justify-content: center !important;
+  margin-top: 3rem !important;
+  margin-bottom: 3rem !important;
+  text-align: center !important;
+  
+  
+  	
 }
 
-.btnFloat {
-  background: none;
-  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.5);
 
+.main_slogan{
+  --bs-text-opacity: 1;
+  color: #626262 !important;
+  margin-bottom: 0.5rem !important;
+  font-weight: bolder !important;
+  font-size: calc(1.425rem + 2.1vw);
+  line-height: 1.2;
   
 }
-.colorgrey{
-	background:#626262;
-}
-.colorblue{	
-	border:1;
-	background:#4374d9;
+.startBtnForm{
+  display: grid !important;
+  gap: 1rem !important;
+  display: flex !important;
+  justify-content: center !important;
 }
 
-/* -----------------------------------*/
+.startdfBtn{
+	position: relative;
+    border: none;
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 15px;
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    background-color:#F7570B;
+    color:#ffffff;
+    
+    
+}
+.startBtn{
+	  position: relative;
+    padding: 15px 30px;
+    border-radius: 15px;
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+}
+.startBtn:hover {
+    letter-spacing: 2px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.startBtn:active {
+    transform: scale(1.5);
+}
+
+.cSora{
+	backgroud-color: #BDCBDA !important;
+}
+
+/* --------------------------------------- footer ----------------------------------------*/
+footer{
+  padding-top: 2rem !important;
+  padding-bottom: 2rem !important;
+  background-color: #626262;
+  text-align: center !important;
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-white-rgb), var(--bs-text-opacity)) !important;
+  
+}
+/* --------------------------------------- 부트스트랩 코드는 안쓰는걸 ----------------------------------------*/
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -793,7 +861,7 @@ progress {
 }
 
 .col {
-  flex: 1 0 0%;
+  flex: 100%;
 }
 
 .row-cols-auto > * {

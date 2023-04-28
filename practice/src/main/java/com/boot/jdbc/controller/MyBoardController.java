@@ -27,7 +27,6 @@ public class MyBoardController {
 
 	}
 
-	
 	@GetMapping("/main")
 	public String main() {
 		return "main";
