@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -152,13 +152,12 @@ li {
 	    window.Kakao.Auth.login({
 	        scope   : 'profile_nickname, account_email',
 	        success : function(authObj){
-	            console.log(authObj);
+/* 	            console.log(authObj); */
 	            window.Kakao.API.request({
 	                url     : '/v2/user/me', 
 	                success : res => {
 	                    const kakao_account = res.kakao_account;
-	                    console.log(kakao_account);
-	                    console.log(kakao_account.profile.nickname);
+/* 	                    console.log(kakao_account); */
  	                    let obj = {
 	                    		userId : kakao_account.email,
 	                    		userName : kakao_account.profile.nickname
@@ -166,19 +165,37 @@ li {
 	                    
  	                   const json_kakao_account = JSON.stringify(obj);
 	                   /* 불러온 계정 정보 컨트롤러로 보내기 */
-	                     $.ajax({
-	                        url: '/index/kakaoAuth',
+	                   $.ajax({
+	                        url: '/login/kakaoAuth',
 	                        type: 'POST',
 	                        data: json_kakao_account,
 	                        contentType: 'application/json; charset=utf-8',
 	                        dataType: 'json',
-	                        success: function(response) {
-	                            console.log(response);
+	                        success: function(msg) {
+	                            console.log(msg);
+	                            location.href="/login/join";
 	                        },
 	                        error: function(error) {
+	                        	alert("error");
 	                            console.log(error);
 	                        }
 	                    });
+/*  	                  fetch('/login/kakaoAuth', {
+ 	                	  method: 'POST',
+ 	                	  headers: {
+ 	                	    'Content-Type': 'application/json'
+ 	                	  },
+ 	                	  body: JSON.stringify(obj)
+ 	                	})
+ 	                	.then(response => {
+ 	                	  if (!response.ok) {
+ 	                	    throw new Error('Network response was not ok');
+ 	                	  }
+ 	                	  return response.json();
+ 	                	})
+ 	                	.then(data => {
+ 	                	  console.log('Response:', data);
+ 	                	}) */
 	                }
 	            });
 	        }
