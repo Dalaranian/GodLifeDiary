@@ -14,7 +14,6 @@ public class LoginBiz {
 	@Autowired
     private UserRepository userRepository;
 	
-	
 	public UserDto findByUserId(String userId) {
 		
 		UserDto user = userRepository.findByUserId(userId);
