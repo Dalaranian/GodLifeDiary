@@ -24,11 +24,6 @@ public class IndexController {
 		return "main";
 	}
 	
-	@GetMapping("/login")
-	public String login() {
-		System.out.println("go to loginform");
-		return "loginform";
-	}
 	
 	@GetMapping("/kakao_login")
 	public String kakaloLoging() {

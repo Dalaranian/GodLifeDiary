@@ -2,14 +2,39 @@ package com.gld.model.dto;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "G_USER")
 public class UserDto {
-	private String userId;
-	private String userPw;
+	@Id
+    private Long Id;
+
+    @Column(name = "USER_ID",nullable = false, unique = true)
+    private String userId;
+
+    @Column(name = "USER_PW",nullable = false)
+    private String userPw;
+    
+    @Column(name = "USER_NAME",nullable = false)
 	private String userName;
+    
+    @Column(name = "COMPLETED_CHALLENGE",nullable = false)
 	private int completedChallenge;
+    
+    @Column(name = "ONOFF_NOTY",nullable = false)
 	private String onOffNoty;
+    
+    @Column(name = "USER_LOGINTYPE",nullable = false)
 	private String userLoginType;
+    
+    @Column(name = "USER_PHONE",nullable = false)
 	private String userPhone;
+    
+    @Column(name = "USER_BIRTH",nullable = false)
 	private Date userBirth;
 
 	public UserDto() {
