@@ -10,7 +10,7 @@
 <link href="../resources/css/styles.css" rel="stylesheet" />
 </head>
 <body>
-	<button onclick="location.href='index/main'">hello</button>
+	<button onclick="location.href='main/main_all'">hello</button>
 	<button onclick="location.href='challenge/detail'">main</button>
 	<button onclick="location.href='mypage/mypage'">mypage</button>
 <!-- Responsive navbar-->
@@ -54,7 +54,7 @@
 	<!-- <p class="lead fw-border text-white-50 mb-4">다른 사람들과 목표를 공유하고 서로의 코멘트를 보고 ~~하세요 !</p> -->
 	<div class="startBtnForm">
 		<!-- 버튼 가운데정렬 -->
-		<a class="startBtn" href="index/main">지금 시작하기</a>
+		<a class="startBtn" href="main/main_all">지금 시작하기</a>
 		<a class="startBtn" href="login/login">로그인</a>
 		<!--  로그인 안되어있으면 로그인(loginmain) 로그인 되어있으면 메인(detail)으로  -->
 		<!--  <a class="button btnFloat colorblue" href="login">진행되고 있는 챌린지</a> -->

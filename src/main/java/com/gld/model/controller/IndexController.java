@@ -18,10 +18,10 @@ public class IndexController {
 	@Autowired
 	LoginBiz loginBiz;
 
-	@GetMapping("/main")
+	@GetMapping("/main_all")
 	public String moveToMain() {
 		System.out.println("go to main");
-		return "main";
+		return "main_all";
 	}
 	
 	

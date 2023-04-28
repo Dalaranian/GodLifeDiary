@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -136,12 +137,12 @@ a{
 					class="nav-link dropdown-toggle" href="#"
 					data-bs-toggle="dropdown" aria-expanded="false">Category</a>
 					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="#">All</a></li>
-						<li><a class="dropdown-item" href="#">공부 </a></li>
-						<li><a class="dropdown-item" href="#">습관 </a></li>
-						<li><a class="dropdown-item" href="#">운동 </a></li>
-						<li><a class="dropdown-item" href="#">취미 </a></li>
-					</ul></li>
+						<li><a class="dropdown-item" href="main_all">All</a></li>
+						<li><a class="dropdown-item" href="main_study">공부 </a></li>
+						<li><a class="dropdown-item" href="main_habit">습관 </a></li>
+						<li><a class="dropdown-item" href="main_workout">운동 </a></li>
+						<li><a class="dropdown-item" href="main_hobby">취미 </a></li>
+					</ul>
 				<li class="nav-item"><a class="nav-link" href="">마이페이지</a></li>
 				<li class="nav-item"><a class="nav-link active" href="">챌린지 등록</a></li>
 
@@ -153,6 +154,23 @@ a{
 	</div>
 </nav>
 <br><br><br>
+<h1 class="display-5 p-4">취미 챌린지</h1> <!-- 나중에 꾸미는걸로  -->
+<!-- 
+<header class="introduce_form">
+	<div class="container px-lg-5">
+		<div class="p-4 p-lg-5 bg-light rounded-3 text-center" style="">
+			<div class="m-4 m-lg-5">
+				<h1 class="display-5 fw-bold">
+					운동,공부,습관,취미 등<br> 다양한 목표를 세우고 공유하세요
+				</h1>
+				<p class="fs-4">마음에 드는 챌린지가 없다면?</p>
+				<br> <a class="startBtn" href="insertchallenge">챌린지 등록</a>
+			</div>
+		</div>
+	</div>
+</header>
+-->
+
 <div class="list_wrap">
 	<ul class="secNoStart">
 		<div class="secContainer">
@@ -363,5 +381,10 @@ a{
 <footer>
 	Copyright &copy; Team 4 in SemiProject 2023
 </footer>
+<!-- Bootstrap core JS-->
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
 </body>
 </html>
