@@ -8,6 +8,76 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <title>작은 도전이 큰 변화로, 갓생일지</title>
 <link href="../resources/css/styles.css" rel="stylesheet" />
+<style>
+ul,li{
+	list-style:none !important; 
+}
+
+a{
+	text-decoration:none;
+	color:inherit;
+}
+.list_wrap {
+	width:1000px;
+	margin : 0 auto;
+	padding:100px;
+}
+.list_wrap ul{
+	font-size:0;
+}
+.list_wrap .item{
+	display:inline-block;
+	width:30%;
+	margin-top:40px;
+	margin-left:5%;
+	box-shadow : 0px 0px 5px rgba(0,0,0,0.2);
+}
+.list_wrap .item:nth-child(-n+3){
+	margin-top:0;
+}
+
+.list_wrap .item:nth-child(3n-2){
+	margin-left:0;
+}
+
+.list_wrap .item .imagee{
+	width:100%;
+	height:200px;
+	background:#BDCBDA;
+	background-position: 50% 50%;
+}
+.list_wrap .item .cont{
+	padding:20px;
+}
+
+.list_wrap .item strong{
+
+	display:block;
+	margin:15px 0 10px 0;
+	font-size:16px;
+	letter-spacing:-1px;
+}
+
+.list_wrap .item p{
+	font-size:13px;
+	letter-spacing: -1px;
+}
+
+.list_wrap .item a{
+	display:inline-block;
+	margin-top:10px;
+	padding:5px 10px;
+	background: #eee;
+	font-size:13px;
+	letter-spacing: 
+}
+
+.list_wrap .item a:hover{
+	background: 
+}
+
+
+</style>
 </head>
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark cOrange">
@@ -43,188 +113,103 @@
 	</div>
 </nav>
 
-<br>
-<br>
-<header class="introduce_form">
-	<div class="container px-lg-5">
-		<div class="p-4 p-lg-5 bg-light rounded-3 text-center" style="">
-			<div class="m-4 m-lg-5">
-				<h1 class="display-5 fw-bold">
-					운동,공부,습관,취미 등<br> 다양한 목표를 세우고 공유하세요
-				</h1>
-				<p class="fs-4">마음에 드는 챌린지가 없다면?</p>
-				<br> <a class="startBtn" href="insertchallenge">챌린지 등록</a>
+<div class="list_wrap">
+	<ul>
+		<li class="item item1">
+			<div class="imagee">ㅇ</div>
+			<div class="cont">
+				<strong>물2리터 마시기 챌린</strong>
+				<p>물을 2리터씩 마시면 어쩌고</p>
+				<a href="#">참여하기</a>
 			</div>
-		</div>
-	</div>
-</header>
-
-<!--챌린지 목록 -->
-<div class="container px-4 py-5" id="custom-cards">
-	<h2 class="pb-2 border-bottom">시작전인 챌린지</h2>
-	<div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
-		<div class="col">
-			<div class="chCard">
-				<div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-					<h3>물 2L씩 마시기</h3><br>
-					<h6>하루에 물을 2L씩 마시면 어쩌고에 좋아요 n번째 연장중인 챌린지입니다!</h6><br><br><br>
-					<ul class="chCardli">
-						<h6>(달력 아이콘) 1 Year</h6>
-						<h6>(사람 아이콘) 2/5</h6>
-					</ul>
-				</div>
+		</li>
+		<li class="item item2">
+			<div class="imagee">ㅇ</div>
+			<div class="cont">
+				<strong>물3리터 마시기 챌린</strong>
+				<p>물을 2리터씩 마시면 어쩌고</p>
+				<a href="#">참여하기</a>
 			</div>
-		</div>
-
-		<div class="col">
-			<div class="chCard">
-				<div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-					<h3>프로그래머스 코딩테스트 Level.1 하루에 한개씩 풀기!</h3><br>
-					<h6>하루에 하나씩 문제를 풀고 어떤 문제를 풀었는지, 또 어느 부분이 어려웠는지 같이 나눠요 !!</h6><br><br><br>
-					<ul class="chCardli">
-						<h6>(달력 아이콘) 4 Weeks</h6>
-						<h6>(사람 아이콘) 4/10</h6>
-					</ul>
-				</div>
+		</li>
+		<li class="item item3">
+			<div class="imagee">ㅇ</div>
+			<div class="cont">
+				<strong>물2리터 마시기 챌린</strong>
+				<p>물을 2리터씩 마시면 어쩌고</p>
+				<a href="#">참여하기</a>
 			</div>
-		</div>
-
-		<div class="col">
-			<div class="chCard">
-				<div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-					<h3>ㅇㄹㄴㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㅁㄴㅇ</h3><br>
-					<h6>ㄹㄴㅇㄹㄴㅇ런아러짇러ㅣㅓㅇㄴ</h6><br><br><br>
-					<ul class="chCardli">
-						<h6>(달력 아이콘) 1 Year</h6>
-						<h6>(사람 아이콘) 2/5</h6>
-					</ul>
-				</div>
+		</li>
+		<li class="item item4">
+			<div class="imagee">ㅇ</div>
+			<div class="cont">
+				<strong>물2리터 마시기 챌린</strong>
+				<p>물을 2리터씩 마시면 어쩌고</p>
+				<a href="#">참여하기</a>
 			</div>
-		</div>
-	</div>
-	<br><br>
-	<h2 class="pb-2 border-bottom">진행중인 챌린지</h2>
-
-	<div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
-		<div class="col">
-			<div class="chCard cblue">
-				<div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-					<h3>물 2L씩 마시기</h3><br>
-					<h6>하루에 물을 2L씩 마시면 어쩌고에 좋아요 n번째 연장중인 챌린지입니다!</h6><br><br><br>
-					<ul class="chCardli">
-						<h6>(달력 아이콘) 1 Year</h6>
-						<h6>(사람 아이콘) 2/5</h6>
-					</ul>
-				</div>
+		</li>
+		<li class="item item5">
+			<div class="imagee">ㅇ</div>
+			<div class="cont">
+				<strong>물2리터 마시기 챌린</strong>
+				<p>물을 2리터씩 마시면 어쩌고</p>
+				<a href="#">참여하기</a>
 			</div>
-		</div>
-
-		<div class="col">
-			<div class="chCard cblue">
-				<div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-					<h3>프로그래머스 코딩테스트 Level.1 하루에 한개씩 풀기!</h3><br>
-					<h6>하루에 하나씩 문제를 풀고 어떤 문제를 풀었는지, 또 어느 부분이 어려웠는지 같이 나눠요 !!</h6><br><br><br>
-					<ul class="chCardli">
-						<h6>(달력 아이콘) 4 Weeks</h6>
-						<h6>(사람 아이콘) 4/10</h6>
-					</ul>
-				</div>
+		</li>
+		<li class="item item6">
+			<div class="imagee">ㅇ</div>
+			<div class="cont">
+				<strong>물2리터 마시기 챌린</strong>
+				<p>물을 2리터씩 마시면 어쩌고</p>
+				<a href="#">참여하기</a>
 			</div>
-		</div>
-
-		<div class="col">
-			<div class="chCard cblue">
-				<div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-					<h3>ㅇㄹㄴㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㅁㄴㅇ</h3><br>
-					<h6>ㄹㄴㅇㄹㄴㅇ런아러짇러ㅣㅓㅇㄴ</h6><br><br><br>
-					<ul class="chCardli">
-						<h6>(달력 아이콘) 1 Year</h6>
-						<h6>(사람 아이콘) 2/5</h6>
-					</ul>
-				</div>
+		</li>
+		<li class="item item7">
+			<div class="imagee">ㅇ</div>
+			<div class="cont">
+				<strong>물2리터 마시기 챌린</strong>
+				<p>물을 2리터씩 마시면 어쩌고</p>
+				<a href="#">참여하기</a>
 			</div>
-		</div>
-	</div>
-
-	
-	<br><br>
-	
-	<h2 class="pb-2 border-bottom">완료된 챌린지</h2>
-
-	<div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5 ">
-		<div class="col">
-			<div class="chCard cRed">
-				<div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-					<h3>물 2L씩 마시기</h3><br>
-					<h6>하루에 물을 2L씩 마시면 어쩌고에 좋아요 n번째 연장중인 챌린지입니다!</h6><br><br><br>
-					<ul class="chCardli">
-						<h6>(달력 아이콘) 1 Year</h6>
-						<h6>(사람 아이콘) 2/5</h6>
-					</ul>
-				</div>
+		</li>
+		<li class="item item8">
+			<div class="imagee">ㅇ</div>
+			<div class="cont">
+				<strong>물2리터 마시기 챌린</strong>
+				<p>물을 2리터씩 마시면 어쩌고</p>
+				<a href="#">참여하기</a>
 			</div>
-		</div>
-
-		<div class="col c">
-			<div class="chCard cRed">
-				<div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-					<h3>프로그래머스 코딩테스트 Level.1 하루에 한개씩 풀기!</h3><br>
-					<h6>하루에 하나씩 문제를 풀고 어떤 문제를 풀었는지, 또 어느 부분이 어려웠는지 같이 나눠요 !!</h6><br><br><br>
-					<ul class="chCardli">
-						<h6>(달력 아이콘) 4 Weeks</h6>
-						<h6>(사람 아이콘) 4/10</h6>
-					</ul>
-				</div>
+		</li>
+		<li class="item item9">
+			<div class="imagee">ㅇ</div>
+			<div class="cont">
+				<strong>물2리터 마시기 챌린</strong>
+				<p>물을 2리터씩 마시면 어쩌고</p>
+				<a href="#">참여하기</a>
 			</div>
-		</div>
-
-		<div class="col">
-			<div class="chCard cRed">
-				<div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-					<h3>ㅇㄹㄴㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㅁㄴㅇ</h3><br>
-					<h6>ㄹㄴㅇㄹㄴㅇ런아러짇러ㅣㅓㅇㄴ</h6><br><br><br>
-					<ul class="chCardli">
-						<h6>(달력 아이콘) 1 Year</h6>
-						<h6>(사람 아이콘) 2/5</h6>
-					</ul>
-				</div>
+		</li>
+		<li class="item item10">
+			<div class="imagee">ㅇ</div>
+			<div class="cont">
+				<strong>물2리터 마시기 챌린</strong>
+				<p>물을 2리터씩 마시면 어쩌고</p>
+				<a href="#">참여하기</a>
 			</div>
-		</div>
-	</div>
-
-	<div class="col">
-		<div
-			class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-			style="background-image: url('unsplash-photo-3.jpg');">
-				<div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-					<h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Another
-						longer title belongs here</h3>
-					<ul class="d-flex list-unstyled mt-auto">
-						<li class="me-auto"><img src="https://github.com/twbs.png"
-							alt="Bootstrap" width="32" height="32"
-							class="rounded-circle border border-white"></li>
-						<li class="d-flex align-items-center me-3"><svg
-								class="bi me-2" width="1em" height="1em">
-								<use xlink:href="#geo-fill" /></svg> <small>California</small></li>
-						<li class="d-flex align-items-center"><svg class="bi me-2"
-								width="1em" height="1em">
-								<use xlink:href="#calendar3" /></svg> <small>5d</small></li>
-					</ul>
-				</div>
+		</li>
+		<li class="item item11">
+			<div class="imagee">ㅇ</div>
+			<div class="cont">
+				<strong>물2리터 마시기 챌린</strong>
+				<p>물을 2리터씩 마시면 어쩌고</p>
+				<a href="#">참여하기</a>
 			</div>
-		</div>
-	</div>
+		</li>
+	</ul>
 </div>
 
-<h2>
-	<a href="myboard/list">list</a>
-</h2>
 
-<footer>
-	<div class="container px-5">
-		<p class="m-0 text-center text-white">Copyright &copy; Team 4 in
-			SemiProject 2023</p>
-	</div>
+<br><br><br>
+<footer>Copyright &copy; Team 4 in SemiProject 2023
+	
 </footer>
 <!-- Bootstrap core JS-->
 <script
