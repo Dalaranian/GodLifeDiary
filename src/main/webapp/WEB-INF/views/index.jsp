@@ -8,6 +8,7 @@
 </head>
 <body>
 	<button onclick="location.href='index/main'">hello</button>
-	<button onclick="location.href='index/login'">login</button>
+	<button onclick="location.href='login/login'">login</button>
+	<button onclick="location.href='challenge/detail'">main</button>
 </body>
 </html>

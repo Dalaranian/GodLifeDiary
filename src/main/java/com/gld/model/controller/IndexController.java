@@ -24,11 +24,6 @@ public class IndexController {
 		return "main";
 	}
 	
-	@GetMapping("/login")
-	public String login() {
-		System.out.println("go to loginform");
-		return "loginform";
-	}
 	
 	@GetMapping("/kakao_login")
 	public String kakaloLoging() {
@@ -38,9 +33,9 @@ public class IndexController {
 	@PostMapping("/kakaoAuth")
 	public String kakaoAuth(@RequestBody UserDto dto, Model model) {
 		System.out.println(dto);
-		if(loginBiz.selectOne(dto)!=null) {
+		/*if(loginBiz.selectOne(dto)!=null) {
 			
-		}
+		}*/
 		return "";
 	}
 }

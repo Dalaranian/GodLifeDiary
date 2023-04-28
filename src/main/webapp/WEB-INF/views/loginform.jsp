@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -120,20 +120,20 @@ li {
 					onclick="history.back()">X</button>
 			</div>
 			<div class="signup_body">
-				<form>
+				<form method="post" action="/login/logincheck">
 					<div class="loginForm">
 						<label for="floatingId">ID</label> <input type="text"
-							id="floatingId" name="myid">
+							id="floatingId" name="userId">
 					</div>
 					<div class="loginForm">
 						<label for="floatingPw">Password</label> <input type="password"
-							id="floatingPw" name="mypw">
+							id="floatingPw" name="userPw">
 					</div>
 					<button id="submitButton" type="submit">Sign in</button>
 					<ul>
-						<li><a>회원가입</a></li>&nbsp;
-						<li><a>아이디 찾기</a></li>&nbsp;
-						<li><a>비밀번호 찾기</a></li>
+						<li><a href="/login/join">회원가입</a></li>&nbsp;
+						<li><a href="/login/find">아이디 찾기</a></li>&nbsp;
+						<li><a href="/login/find">비밀번호 찾기</a></li>
 					</ul>
 					<hr>
 					<h2>use a third party</h2>
@@ -186,4 +186,6 @@ li {
 	}
 	</script>
 </body>
+</html>
+
 </html>
