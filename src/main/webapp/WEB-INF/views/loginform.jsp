@@ -130,6 +130,11 @@ li {
 							id="floatingPw" name="userPw">
 					</div>
 					<button id="submitButton" type="submit">Sign in</button>
+					<% if(request.getAttribute("error")!=null){ %>
+						<script>
+							alert('<%= request.getAttribute("error") %>');
+						</script>
+						<%} %>
 					<ul>
 						<li><a href="/login/join">회원가입</a></li>&nbsp;
 						<li><a href="/login/find">아이디 찾기</a></li>&nbsp;

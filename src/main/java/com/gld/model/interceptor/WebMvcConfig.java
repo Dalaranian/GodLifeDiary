@@ -9,8 +9,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginInterceptor())
-                .addPathPatterns("/**")  // 로그인 체크를 할 URL 패턴
-                .excludePathPatterns("/login/**","/css/**", "/js/**", "/images/**","/","/resources/**","/index/main"); // 로그인 체크를 제외할 URL 패턴
+                .addPathPatterns("/**")  
+                .excludePathPatterns("/challenge/main","/login/**","/css/**", "/js/**", "/images/**","/","/resources/**","/index/**"); 
     }
 }
 

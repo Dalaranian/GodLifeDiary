@@ -13,6 +13,7 @@
 	<button onclick="location.href='index/main'">hello</button>
 	<button onclick="location.href='challenge/detail'">main</button>
 	<button onclick="location.href='mypage/mypage'">mypage</button>
+	<button onclick="location.href='challenge/detail'">challengedetail</button>
 	<button onclick="location.href='challenge/insert'">challengeinsert</button>
 <!-- Responsive navbar-->
 <nav class="navbar navbar-expand-sm navbar-dark cOrange">
@@ -31,13 +32,12 @@
 					data-bs-toggle="dropdown" aria-expanded="false">Category</a>
 					<ul class="dropdown-menu">
 						<li><a class="dropdown-item" href="#">All</a></li>
+						<li><a class="dropdown-item" href="#">운동</a></li>
 						<li><a class="dropdown-item" href="#">공부</a></li>
 						<li><a class="dropdown-item" href="#">습관</a></li>
-						<li><a class="dropdown-item" href="#">운동</a></li>
-						<li><a class="dropdown-item" href="#">취미</a></li>
 					</ul></li>
 				<li class="nav-item"><a class="nav-link" href="mypage/mypage">마이페이지</a></li>
-				<li class="nav-item"><a class="nav-link" href="challenge/insert">챌린지 생성하기</a></li>
+				<li class="nav-item"><a class="nav-link disabled">관리자모드</a></li>
 
 			</ul>
 			<form role="search">
@@ -56,7 +56,7 @@
 	<!-- <p class="lead fw-border text-white-50 mb-4">다른 사람들과 목표를 공유하고 서로의 코멘트를 보고 ~~하세요 !</p> -->
 	<div class="startBtnForm">
 		<!-- 버튼 가운데정렬 -->
-		<a class="startBtn" href="index/main">지금 시작하기</a>
+		<a class="startBtn" href="challenge/main">지금 시작하기</a>
 		<a class="startBtn" href="login/login">로그인</a>
 		<!--  로그인 안되어있으면 로그인(loginmain) 로그인 되어있으면 메인(detail)으로  -->
 		<!--  <a class="button btnFloat colorblue" href="login">진행되고 있는 챌린지</a> -->
