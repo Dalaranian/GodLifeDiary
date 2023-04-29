@@ -1,9 +1,9 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style>
     td, th {
         text-align: center;
     }
 </style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
 ![header](https://capsule-render.vercel.app/api?type=waving&color=random&height=150&section=header&text=갓생%20일기&fontSize=70)<br>
 ## Using Stack
