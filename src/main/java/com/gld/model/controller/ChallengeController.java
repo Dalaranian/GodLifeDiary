@@ -33,6 +33,4 @@ public class ChallengeController {
 		return "challengeinsert_res";
 	}
 	
-	
-	
 }

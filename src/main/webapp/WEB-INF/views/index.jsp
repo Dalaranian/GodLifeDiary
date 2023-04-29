@@ -31,12 +31,13 @@
 					data-bs-toggle="dropdown" aria-expanded="false">Category</a>
 					<ul class="dropdown-menu">
 						<li><a class="dropdown-item" href="#">All</a></li>
-						<li><a class="dropdown-item" href="#">운동</a></li>
 						<li><a class="dropdown-item" href="#">공부</a></li>
 						<li><a class="dropdown-item" href="#">습관</a></li>
+						<li><a class="dropdown-item" href="#">운동</a></li>
+						<li><a class="dropdown-item" href="#">취미</a></li>
 					</ul></li>
 				<li class="nav-item"><a class="nav-link" href="mypage/mypage">마이페이지</a></li>
-				<li class="nav-item"><a class="nav-link disabled">관리자모드</a></li>
+				<li class="nav-item"><a class="nav-link" href="challenge/insert">챌린지 생성하기</a></li>
 
 			</ul>
 			<form role="search">
