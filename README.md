@@ -8,7 +8,7 @@
 ![JS](https://img.shields.io/badge/JS-F7DF1E.svg?&style=for-the-badge&logo=JS&logoColor=white)
 ![MySql](https://img.shields.io/badge/MySql-4479A1.svg?&style=for-the-badge&logo=MySql&logoColor=white)
 ![Swagger](https://img.shields.io/badge/Swagger-85EA2D.svg?&style=for-the-badge&logo=Swagger&logoColor=white)
-## Contributer<br>
+## Contributors<br>
 <table border="1" class="table">
     <thead>
     <tr>
