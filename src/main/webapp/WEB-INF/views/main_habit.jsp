@@ -1,16 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <title>작은 도전이 큰 변화로, 갓생일지</title>
 <link href="../resources/css/styles.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
 <style>
 ul,li{
 	list-style:none !important; 
@@ -77,7 +75,7 @@ a{
 	padding:5px 10px;
 	background: #eee;
 	font-size:13px;
-	letter-spacing:-1px;
+	letter-spacing:-px;
 }
 
 .list_wrap .item a:hover{
@@ -92,30 +90,8 @@ a{
 	margin-top:0px;
 }
 
-.container{
+.joinChBtn{
 	text-align:center;
-	margin:0 auto;
-}
-
-.container p{
-	display:inline-block;
-}
-.floatLeft{
-	text-align:center;
-	 float:Left;
-	}
-/* 아이콘들 */
-.iconPerson {
-  font-variation-settings:
-  'FILL' 1,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48
-}
-.icon{
-	width:15%;
-	height:15%;
-	margin-left:19px;
 }
 </style>
 </head>
@@ -137,14 +113,14 @@ a{
 					class="nav-link dropdown-toggle" href="#"
 					data-bs-toggle="dropdown" aria-expanded="false">Category</a>
 					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="main_all">All</a></li>
-						<li><a class="dropdown-item" href="main_study">공부 </a></li>
-						<li><a class="dropdown-item" href="main_habit">습관 </a></li>
-						<li><a class="dropdown-item" href="main_workout">운동 </a></li>
-						<li><a class="dropdown-item" href="main_hobby">취미 </a></li>
-					</ul>
-				<li class="nav-item"><a class="nav-link" href="">마이페이지</a></li>
-				<li class="nav-item"><a class="nav-link active" href="">챌린지 등록</a></li>
+						<li><a class="dropdown-item" href="#">All</a></li>
+						<li><a class="dropdown-item" href="#">공부 </a></li>
+						<li><a class="dropdown-item" href="#">습관 </a></li>
+						<li><a class="dropdown-item" href="#">운동 </a></li>
+						<li><a class="dropdown-item" href="#">취미 </a></li>
+					</ul></li>
+				<li class="nav-item"><a class="nav-link" href="../mypage/mypage">마이페이지</a></li>
+				<li class="nav-item"><a class="nav-link disabled">관리자모드</a></li>
 
 			</ul>
 			<form role="search">
@@ -154,43 +130,40 @@ a{
 	</div>
 </nav>
 <br><br><br>
-<h1 class="display-5 p-4">습관 챌린지</h1>
-<!-- 
-<header class="introduce_form">
-	<div class="container px-lg-5">
-		<div class="p-4 p-lg-5 bg-light rounded-3 text-center" style="">
-			<div class="m-4 m-lg-5">
-				<h1 class="display-5 fw-bold">
-					운동,공부,습관,취미 등<br> 다양한 목표를 세우고 공유하세요
-				</h1>
-				<p class="fs-4">마음에 드는 챌린지가 없다면?</p>
-				<br> <a class="startBtn" href="insertchallenge">챌린지 등록</a>
-			</div>
-		</div>
-	</div>
-</header>
--->
-
 <div class="list_wrap">
-	<ul class="secNoStart">
+	<ul>
 		<div class="secContainer">
-			<h2 class="pb-2 border-bottom">시작전인 챌린지</h2>
+			<h2 class="pb-2 border-bottom">전체 챌린지</h2>
 		</div>
+			<c:choose>
+				<c:when test="${empty challenges }">
+					<h1>----작성된 글이 존재하지 않습니다--------</h1>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${challenges}" var="challenge">
+						<li class="item item1">
+							<div class="imagee"></div>
+								<div class="cont">
+									<strong>${challenge.challengeName }</strong>
+									<p>${challenge.challengeInfo }</p>
+									<p>${challenge.challengeInfo }</p>
+									<div class="joinChBtn">
+										<a href="../mypage/insert?$	} ">참여하기</a>
+									</div>
+								</div>
+							</li>
+						</c:forEach>
+				</c:otherwise>
+			</c:choose>
 		
 		<li class="item item1">
 			<div class="imagee">ㅇ</div>
 			<div class="cont">
 				<strong>물2리터 마시기 챌린지</strong>
 				<p>물을 2리터씩 마시면 어쩌고에 좋으니 물을 마셔봐요 !!! </p>
-				
-				<div class="container">
-					<img src="../resources/images/event.png" class="icon">
-					<p> 1 Year</p>
-					<img src="../resources/images/person.png" class="icon">
-					<p> 7/20 </p>
-				</div>
-				<div class="container">
-					<a href="#">참여하기</a>
+				<p> 1 Yeas&nbsp;&nbsp; &nbsp;   7/20</p>
+				<div class="joinChBtn">
+					<a href="../mypage/insert?$	} ">참여하기</a>
 				</div>
 				
 			</div>
@@ -200,142 +173,13 @@ a{
 			<div class="cont">
 				<strong>물2리터 마시기 챌린지</strong>
 				<p>물을 2리터씩 마시면 어쩌고에 좋으니 물을 마셔봐요 !!! </p>
-				<div class="container">
-					<img src="../resources/images/event.png" class="icon">
-					<p> 1 Year</p>
-					<img src="../resources/images/person.png" class="icon">
-					<p> 7/20 </p>
-				</div>
-				<div class="container">
+				<p> 1 Yeas&nbsp;&nbsp; &nbsp;   7/20</p>
+				<div class="joinChBtn">
 					<a href="#">참여하기</a>
-				</div>
+				</div>	
 			</div>
 		</li>
-		<li class="item item3">
-			<div class="imagee">ㅇ</div>
-			<div class="cont">
-				<strong>물2리터 마시기 챌린지</strong>
-				<p>물을 2리터씩 마시면 어쩌고에 좋으니 물을 마셔봐요 !!! </p>
-				<div class="container">
-					<img src="../resources/images/event.png" class="icon">
-					<p> 1 Year</p>
-					<img src="../resources/images/person.png" class="icon">
-					<p> 7/20 </p>
-				</div>
-				<div class="container">
-					<a href="#">참여하기</a>
-				</div>
-			</div>
-		</li>
-		<li class="item item4">
-			<div class="imagee">ㅇ</div>
-			<div class="cont">
-				<strong>물2리터 마시기 챌린지</strong>
-				<p>물을 2리터씩 마시면 어쩌고에 좋으니 물을 마셔봐요 !!! </p>
-				<div class="container">
-					<img src="../resources/images/event.png" class="icon">
-					<p> 1 Year</p>
-					<img src="../resources/images/person.png" class="icon">
-					<p> 7/20 </p>
-				</div>
-				<div class="container">
-					<a href="#">참여하기</a>
-				</div>
-				
-			</div>
-		</li>
-		<li class="item item5">
-			<div class="imagee">ㅇ</div>
-			<div class="cont">
-				<strong>물2리터 마시기 챌린지</strong>
-				<p>물을 2리터씩 마시면 어쩌고에 좋으니 물을 마셔봐요 !!! </p>
-				
-				<div class="container">
-					<img src="../resources/images/event.png" class="icon">
-					<p> 1 Year</p>
-					<img src="../resources/images/person.png" class="icon">
-					<p> 7/20 </p>
-				</div>
-				<div class="container">
-					<a href="#">참여하기</a>
-				</div>
-				
-			</div>
-		</li>
-	</ul>
-	<ul class="secStarted">
-		<div class="secContainer">
-			<h2 class="pb-2 border-bottom">진행중인 챌린지</h2>
-		</div>
-		<li class="item item6">
-			<div class="imagee">ㅇ</div>
-			<div class="cont">
-				<strong>물2리터 마시기 챌린지</strong>
-				<p>물을 2리터씩 마시면 어쩌고에 좋으니 물을 마셔봐요 !!! </p>
-				<div class="container">
-					<img src="../resources/images/event.png" class="icon">
-					<p> 1 Year</p>
-					<img src="../resources/images/person.png" class="icon">
-					<p> 7/20 </p>
-				</div>
-				<div class="container">
-					<a href="#">참여하기</a>
-				</div>
-				
-			</div>
-		</li>
-		<li class="item item7">
-			<div class="imagee">ㅇ</div>
-			<div class="cont">
-				<strong>물2리터 마시기 챌린지</strong>
-				<p>물을 2리터씩 마시면 어쩌고에 좋으니 물을 마셔봐요 !!! </p>
-				<div class="container">
-					<img src="../resources/images/event.png" class="icon">
-					<p> 1 Year</p>
-					<img src="../resources/images/person.png" class="icon">
-					<p> 7/20 </p>
-				</div>
-				<div class="container">
-					<a href="#">참여하기</a>
-				</div>
-				
-			</div>
-		</li>
-		<li class="item item8">
-			
-			<div class="imagee">ㅇ</div>
-			<div class="cont">
-				<strong>물2리터 마시기 챌린지</strong>
-				<p>물을 2리터씩 마시면 어쩌고에 좋으니 물을 마셔봐요 !!! </p>
-				<div class="container">
-					<img src="../resources/images/event.png" class="icon">
-					<p> 1 Year</p>
-					<img src="../resources/images/person.png" class="icon">
-					<p> 7/20 </p>
-				</div>
-				<div class="container">
-					<a href="#">참여하기</a>
-				</div>
-			</div>
-		</li>
-		<li class="item item9">
-			<div class="imagee">ㅇ</div>
-			<div class="cont">
-				<strong>물2리터 마시기 챌린지</strong>
-				<p>물을 2리터씩 마시면 어쩌고에 좋으니 물을 마셔봐요 !!! </p>
-				<div class="container">
-					<img src="../resources/images/event.png" class="icon">
-					<p> 1 Year</p>
-					<img src="../resources/images/person.png" class="icon">
-					<p> 7/20 </p>
-				</div>
-				<div class="container">
-					<a href="#">참여하기</a>
-				</div>
-			</div>
-		</li>
-	</ul>
-	<ul class="secDone">
+	
 		<div class="secContainer">
 			<h2 class="pb-2 border-bottom">완료된 챌린지</h2>
 		</div>
@@ -345,15 +189,11 @@ a{
 			<div class="cont">
 				<strong>물2리터 마시기 챌린지</strong>
 				<p>물을 2리터씩 마시면 어쩌고에 좋으니 물을 마셔봐요 !!! </p>
-				<div class="container">
-					<img src="../resources/images/event.png" class="icon">
-					<p> 1 Year</p>
-					<img src="../resources/images/person.png" class="icon">
-					<p> 7/20 </p>
-				</div>
-				<div class="container">
+				<p> 1 Yeas&nbsp;&nbsp; &nbsp;   7/20</p>
+				<div class="joinChBtn">
 					<a href="#">참여하기</a>
 				</div>
+				
 			</div>
 		</li>
 		<li class="item item11">
@@ -362,15 +202,11 @@ a{
 			<div class="cont">
 				<strong>물2리터 마시기 챌린지</strong>
 				<p>물을 2리터씩 마시면 어쩌고에 좋으니 물을 마셔봐요 !!! </p>
-				<div class="container">
-					<img src="../resources/images/event.png" class="icon">
-					<p> 1 Year</p>
-					<img src="../resources/images/person.png" class="icon">
-					<p> 7/20 </p>
-				</div>
-				<div class="container">
+				<p> 1 Yeas&nbsp;&nbsp; &nbsp;   7/20</p>
+				<div class="joinChBtn">
 					<a href="#">참여하기</a>
 				</div>
+				
 			</div>
 		</li>
 	</ul>
@@ -378,13 +214,13 @@ a{
 
 
 <br><br><br>
-<footer>
-	Copyright &copy; Team 4 in SemiProject 2023
+<footer>Copyright &copy; Team 4 in SemiProject 2023
+	
 </footer>
 <!-- Bootstrap core JS-->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
-<script src="js/scripts.js"></script>
+<!-- <script src="js/scripts.js"></script> -->
 </body>
 </html>

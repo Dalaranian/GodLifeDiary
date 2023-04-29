@@ -17,25 +17,16 @@ public class IndexController {
 	
 	@Autowired
 	LoginBiz loginBiz;
-
-	@GetMapping("/main_all")
+/*
+	@GetMapping("/main")
 	public String moveToMain() {
 		System.out.println("go to main");
-		return "main_all";
-	}
+		return "main";
+	}*/
 	
 	
 	@GetMapping("/kakao_login")
 	public String kakaloLoging() {
 		return "kakao_login";
-	}
-	
-	@PostMapping("/kakaoAuth")
-	public String kakaoAuth(@RequestBody UserDto dto, Model model) {
-		System.out.println(dto);
-		/*if(loginBiz.selectOne(dto)!=null) {
-			
-		}*/
-		return "";
 	}
 }

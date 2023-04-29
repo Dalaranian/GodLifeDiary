@@ -11,4 +11,10 @@ public class MypageController {
 	public String moveToMypage() {
 		return "mypage";
 	}
+	
+	@RequestMapping("/insert")
+	public String mypageInsert() {
+		
+		return "mypage";
+	}
 }

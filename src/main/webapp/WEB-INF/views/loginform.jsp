@@ -130,6 +130,11 @@ li {
 							id="floatingPw" name="userPw">
 					</div>
 					<button id="submitButton" type="submit">Sign in</button>
+					<% if(request.getAttribute("error")!=null){ %>
+						<script>
+							alert('<%= request.getAttribute("error") %>');
+						</script>
+						<%} %>
 					<ul>
 						<li><a href="/login/join">회원가입</a></li>&nbsp;
 						<li><a href="/login/find">아이디 찾기</a></li>&nbsp;
@@ -167,13 +172,18 @@ li {
  	                   const json_kakao_account = JSON.stringify(obj);
 	                   /* 불러온 계정 정보 컨트롤러로 보내기 */
 	                     $.ajax({
-	                        url: '/index/kakaoAuth',
+	                        url: '/kakaoAuth/authSender',
 	                        type: 'POST',
 	                        data: json_kakao_account,
 	                        contentType: 'application/json; charset=utf-8',
 	                        dataType: 'json',
-	                        success: function(response) {
-	                            console.log(response);
+	                        success: function(res) {
+	                        	console.log(res.result)
+	                   			if(res.result === "true"){
+	                   				location.href="/challenge/main";
+	                   			}else{
+	                   				location.href="/login/join"
+	                   			}
 	                        },
 	                        error: function(error) {
 	                            console.log(error);
