@@ -132,7 +132,7 @@ li {
 					<button id="submitButton" type="submit">Sign in</button>
 					<% if(request.getAttribute("error")!=null){ %>
 						<script>
-							alert(${error});
+							alert('<%= request.getAttribute("error") %>');
 						</script>
 						<%} %>
 					<ul>

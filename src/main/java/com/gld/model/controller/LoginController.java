@@ -51,7 +51,6 @@ public class LoginController {
              return "redirect:/index/main";
          } else {
              model.addAttribute("error", "아이디 또는 비밀번호가 일치하지 않습니다.");
-             System.out.println(userId+" "+userPw);
              return "loginform";
          }
     }
