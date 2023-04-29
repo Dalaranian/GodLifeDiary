@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-![header](https://capsule-render.vercel.app/api?type=waving&color=random&height=150&section=header&text=갓생%20일기&fontSize=70)<br>
+![header](https://capsule-render.vercel.app/api?type=waving&color=random&height=150&section=header&text=갓생%20일지&fontSize=70)<br>
 ## Using Stack
 ![Spring Boot](https://img.shields.io/badge/SpringBoot-6DB33F.svg?&style=for-the-badge&logo=SpringBoot&logoColor=white)
 ![Maven](https://img.shields.io/badge/Maven-C71A36.svg?&style=for-the-badge&logo=Maven&logoColor=white)
