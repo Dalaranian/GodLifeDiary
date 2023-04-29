@@ -17,12 +17,12 @@ public class IndexController {
 	
 	@Autowired
 	LoginBiz loginBiz;
-
+/*
 	@GetMapping("/main")
 	public String moveToMain() {
 		System.out.println("go to main");
 		return "main";
-	}
+	}*/
 	
 	
 	@GetMapping("/kakao_login")

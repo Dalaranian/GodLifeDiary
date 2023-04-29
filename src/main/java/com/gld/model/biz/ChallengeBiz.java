@@ -1,5 +1,7 @@
 package com.gld.model.biz;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,11 @@ public class ChallengeBiz {
    public void insert(ChallengeDto dto) {
       
       challengeRepository.save(dto);
+   }
+   
+   public List<ChallengeDto> selectAll() {
+       
+       return challengeRepository.findAll();
    }
    
 }

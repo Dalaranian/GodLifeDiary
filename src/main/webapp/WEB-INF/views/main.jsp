@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -132,8 +133,29 @@ a{
 <div class="list_wrap">
 	<ul>
 		<div class="secContainer">
-			<h2 class="pb-2 border-bottom">시작전인 챌린지</h2>
+			<h2 class="pb-2 border-bottom">전체 챌린지</h2>
 		</div>
+			<c:choose>
+				<c:when test="${empty challenges }">
+					<h1>----작성된 글이 존재하지 않습니다--------</h1>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${challenges}" var="challenge">
+						<li class="item item1">
+							<div class="imagee"></div>
+								<div class="cont">
+									<strong>${challenge.challengeName }</strong>
+									<p>${challenge.challengeInfo }</p>
+									<p>${challenge.challengeInfo }</p>
+									<div class="joinChBtn">
+										<a href="../mypage/insert?$	} ">참여하기</a>
+									</div>
+								</div>
+							</li>
+						</c:forEach>
+				</c:otherwise>
+			</c:choose>
+		
 		<li class="item item1">
 			<div class="imagee">ㅇ</div>
 			<div class="cont">
@@ -157,95 +179,7 @@ a{
 				</div>	
 			</div>
 		</li>
-		<li class="item item3">
-			<div class="imagee">ㅇ</div>
-			<div class="cont">
-				<strong>물2리터 마시기 챌린지</strong>
-				<p>물을 2리터씩 마시면 어쩌고에 좋으니 물을 마셔봐요 !!! </p>
-				<p> 1 Yeas&nbsp;&nbsp; &nbsp;   7/20</p>
-				<div class="joinChBtn">
-					<a href="#">참여하기</a>
-				</div>
-				
-			</div>
-		</li>
-		<li class="item item4">
-			<div class="imagee">ㅇ</div>
-			<div class="cont">
-				<strong>물2리터 마시기 챌린지</strong>
-				<p>물을 2리터씩 마시면 어쩌고에 좋으니 물을 마셔봐요 !!! </p>
-				<p> 1 Yeas&nbsp;&nbsp; &nbsp;   7/20</p>
-				<div class="joinChBtn">
-					<a href="#">참여하기</a>
-				</div>
-				
-			</div>
-		</li>
-		<li class="item item5">
-	<div class="imagee">ㅇ</div>
-			<div class="cont">
-				<strong>물2리터 마시기 챌린지</strong>
-				<p>물을 2리터씩 마시면 어쩌고에 좋으니 물을 마셔봐요 !!! </p>
-				<p> 1 Yeas&nbsp;&nbsp; &nbsp;   7/20</p>
-				<div class="joinChBtn">
-					<a href="#">참여하기</a>
-				</div>
-				
-			</div>
-		</li>
-		<div class="secContainer">
-			<h2 class="pb-2 border-bottom">진행중인 챌린지</h2>
-		</div>
-		<li class="item item6">
-			<div class="imagee">ㅇ</div>
-			<div class="cont">
-				<strong>물2리터 마시기 챌린지</strong>
-				<p>물을 2리터씩 마시면 어쩌고에 좋으니 물을 마셔봐요 !!! </p>
-				<p> 1 Yeas&nbsp;&nbsp; &nbsp;   7/20</p>
-				<div class="joinChBtn">
-					<a href="#">참여하기</a>
-				</div>
-				
-			</div>
-		</li>
-		<li class="item item7">
-			<div class="imagee">ㅇ</div>
-			<div class="cont">
-				<strong>물2리터 마시기 챌린지</strong>
-				<p>물을 2리터씩 마시면 어쩌고에 좋으니 물을 마셔봐요 !!! </p>
-				<p> 1 Yeas&nbsp;&nbsp; &nbsp;   7/20</p>
-				<div class="joinChBtn">
-					<a href="#">참여하기</a>
-				</div>
-				
-			</div>
-		</li>
-		<li class="item item8">
-			
-			<div class="imagee">ㅇ</div>
-			<div class="cont">
-				<strong>물2리터 마시기 챌린지</strong>
-				<p>물을 2리터씩 마시면 어쩌고에 좋으니 물을 마셔봐요 !!! </p>
-				<p> 1 Yeas&nbsp;&nbsp; &nbsp;   7/20</p>
-				<div class="joinChBtn">
-					<a href="#">참여하기</a>
-				</div>
-				
-			</div>
-		</li>
-		<li class="item item9">
-			
-			<div class="imagee">ㅇ</div>
-			<div class="cont">
-				<strong>물2리터 마시기 챌린지</strong>
-				<p>물을 2리터씩 마시면 어쩌고에 좋으니 물을 마셔봐요 !!! </p>
-				<p> 1 Yeas&nbsp;&nbsp; &nbsp;   7/20</p>
-				<div class="joinChBtn">
-					<a href="#">참여하기</a>
-				</div>
-				
-			</div>
-		</li>
+	
 		<div class="secContainer">
 			<h2 class="pb-2 border-bottom">완료된 챌린지</h2>
 		</div>
@@ -287,6 +221,6 @@ a{
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
-<script src="js/scripts.js"></script>
+<!-- <script src="js/scripts.js"></script> -->
 </body>
 </html>
