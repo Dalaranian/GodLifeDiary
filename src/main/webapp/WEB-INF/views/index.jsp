@@ -13,6 +13,8 @@
 	<button onclick="location.href='index/main'">hello</button>
 	<button onclick="location.href='challenge/detail'">main</button>
 	<button onclick="location.href='mypage/mypage'">mypage</button>
+	<button onclick="location.href='challenge/detail'">challengedetail</button>
+	<button onclick="location.href='challenge/insert'">challengeinsert</button>
 <!-- Responsive navbar-->
 <nav class="navbar navbar-expand-sm navbar-dark cOrange">
 	<div class="container-fluid">

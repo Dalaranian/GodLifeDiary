@@ -20,7 +20,7 @@
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link active" aria-current="page" href="main">Home</a></li>
 					<li class="nav-item"><a class="nav-link" href="mypage">마이페이지</a></li>
-					<li class="nav-item"><a class="nav-link" href="#!">logout</a></li>
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/login/logout">logout</a></li>
 				</ul>
 			</div>
 		</div>

@@ -48,10 +48,9 @@ public class LoginController {
     	 
     	 if (user != null && user.getUserPw().equals(userPw)) {
              session.setAttribute("user", user);
-             return "redirect:/";
+             return "redirect:/index/main";
          } else {
              model.addAttribute("error", "아이디 또는 비밀번호가 일치하지 않습니다.");
-             System.out.println(userId+" "+userPw);
              return "loginform";
          }
     }

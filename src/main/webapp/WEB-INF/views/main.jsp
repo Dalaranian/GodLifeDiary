@@ -118,7 +118,7 @@ a{
 						<li><a class="dropdown-item" href="#">운동 </a></li>
 						<li><a class="dropdown-item" href="#">취미 </a></li>
 					</ul></li>
-				<li class="nav-item"><a class="nav-link" href="">마이페이지</a></li>
+				<li class="nav-item"><a class="nav-link" href="../mypage/mypage">마이페이지</a></li>
 				<li class="nav-item"><a class="nav-link disabled">관리자모드</a></li>
 
 			</ul>
@@ -141,7 +141,7 @@ a{
 				<p>물을 2리터씩 마시면 어쩌고에 좋으니 물을 마셔봐요 !!! </p>
 				<p> 1 Yeas&nbsp;&nbsp; &nbsp;   7/20</p>
 				<div class="joinChBtn">
-					<a href="#">참여하기</a>
+					<a href="../mypage/insert?$	} ">참여하기</a>
 				</div>
 				
 			</div>
