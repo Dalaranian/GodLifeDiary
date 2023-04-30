@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,9 +27,9 @@ public class KakaoLoginController {
 	public Map<String, String> kakaoAuth(@RequestBody UserDto dto, HttpSession session) {
 		Map<String, String> result = new HashMap<>();
 		UserDto user = loginBiz.findByUserId(dto.getUserId());
-		System.out.println(dto);
+		System.out.println(dto + "\n" + user);
 		if(user != null) {
-			//있는 계정일 시, 바로 로그인
+			//있는 계정일 시, 바로 로그
 			result.put("result", "true");
 		}else {
 			//없는 계정일 시, 회원가입 페이지로 이동
