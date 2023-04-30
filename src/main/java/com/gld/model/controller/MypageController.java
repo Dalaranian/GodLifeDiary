@@ -13,7 +13,7 @@ public class MypageController {
 	}
 	
 	@RequestMapping("/insert")
-	public String mypageInsert() {
+	public String mychallengeInsert() {
 		
 		return "mypage";
 	}

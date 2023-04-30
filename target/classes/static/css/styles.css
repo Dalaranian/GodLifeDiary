@@ -3961,6 +3961,7 @@ textarea.form-control-lg {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
+  position: relative;
 }
 .navbar-nav .show > .nav-link,
 .navbar-nav .nav-link.active {
@@ -11726,4 +11727,43 @@ textarea.form-control-lg {
   height: 4rem;
   width: 4rem;
   font-size: 2rem;
+}
+/*------------------------------------------navbar-------------------------------------------------*/
+.navbar {
+	position: relative;
+	width: 100%;
+	height: 60px;
+}
+#nav-total {
+	width: 100%;
+	height: 40px;
+	position: absolute;
+}
+#nav-title {
+	margin-left: 30px;
+	position: absolute;
+	left: 0;
+}
+#nav-category {
+	width: 120px;
+	text-align: center;
+	position: absolute;
+	left: 120px;
+}
+#nav-insertChallenge {
+	width: 150px;
+	text-align: center;
+	position: absolute;
+	left: 240px;
+}
+#nav-search {
+	width: 300px;
+	position: absolute;
+	left: 400px;
+}
+#nav-mypage {
+	width: 100px;
+	text-align: center;
+	position: absolute;
+	right: 30px;
 }
