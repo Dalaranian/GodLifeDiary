@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.gld.model.biz.KakaoLoginBiz;
 import com.gld.model.biz.LoginBiz;
 import com.gld.model.dto.UserDto;
 
@@ -25,6 +26,9 @@ public class KakaoLoginController {
 
 	@Autowired
 	private LoginBiz loginBiz;
+	
+	@Autowired
+	private KakaoLoginBiz kakaoLogin;
 
 	@ResponseBody
 	@PostMapping("/authSender")
@@ -71,7 +75,11 @@ public class KakaoLoginController {
 		dto.setUserPhone(userPhone);
 		dto.setOnOffNoty("Y");
 		dto.setUserLoginType("K");
-		System.out.println(dto);
-		return "";
+		if(kakaoLogin.insert(dto) > 0) {
+			return "redirect:/login/login";
+		}else {
+			return "redirect:/kakaoAuth/join";
+		}
 	}
+
 }
