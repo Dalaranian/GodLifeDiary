@@ -1,5 +1,7 @@
 package com.gld.model.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,6 +29,7 @@ public class KakaoLoginController {
 	@ResponseBody
 	@PostMapping("/authSender")
 	public Map<String, String> kakaoAuth(@RequestBody UserDto dto, HttpSession session) {
+		System.out.println("authSeder 진입");
 		Map<String, String> result = new HashMap<>();
 		UserDto user = loginBiz.findByUserId(dto.getUserId());
 		System.out.println("kakaoAuth\n" + dto + "\n" + user);
@@ -44,9 +47,31 @@ public class KakaoLoginController {
 
 	@GetMapping("/kakaoJoin")
 	public String kakaoJoin(String userId, String userName, Model model) {
+		System.out.println("kakaoJoin진입");
 		System.out.println(userId + "\n" + userName);
 		model.addAttribute("userId", userId);
 		model.addAttribute("userName", userName);
 		return "kakaoJoin";
+	}
+
+	@PostMapping("/join")
+	public String join(String userId, String userPw, String userName, String userBirth, String userPhone) {
+		System.out.println("join 진입");
+		UserDto dto = new UserDto();
+		dto.setUserId(userId);
+		dto.setUserPw(userPw);
+		dto.setUserName(userName);
+		SimpleDateFormat sdp = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			dto.setUserBirth(sdp.parse(userBirth));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		dto.setUserPhone(userPhone);
+		dto.setOnOffNoty("Y");
+		dto.setUserLoginType("K");
+		System.out.println(dto);
+		return "";
 	}
 }

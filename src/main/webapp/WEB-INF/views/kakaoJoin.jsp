@@ -96,15 +96,15 @@
   <div class="center-box">
     <h1>회원가입</h1>
     <div class="joinForm">
-        <form>
+        <form action="/kakaoAuth/join" method="post">
             <div class="joinContent">
                 <label for="id">아이디</label>
-                <input type="text" id="id" name="id" value="${userId }"><br>
+                <input type="text" id="id" name="userId" value="${userId }" readonly><br>
             </div>
 
             <div class="joinContent">
                 <label for="password">비밀번호</label>
-                <input type="password" id="password" name="password"><br>
+                <input type="password" id="password" name="userPw"><br>
             </div>
 
             <div class="joinContent">
@@ -114,17 +114,17 @@
 
             <div class="joinContent">
                 <label for="name">이름</label>
-                <input type="text" id="name" name="name" value="${userName }"><br>
+                <input type="text" id="name" name="userName" value="${userName }" readonly><br>
             </div>
 
             <div class="joinContent">
             <label for="birthdate">생년월일</label>
-            <input type="date" id="birthdate" name="birthdate"><br>
+            <input type="date" id="birthdate" name="userBirth"><br>
             </div>
 
             <div class="joinContent">
             <label for="phone">전화번호</label>
-            <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
+            <input type="tel" id="phone" name="userPhone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
             <button type="button" id="get_verification_code">인증번호 받기</button><br>
             </div>
 
