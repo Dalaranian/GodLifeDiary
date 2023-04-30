@@ -20,7 +20,7 @@
 		</li>
 		<li id="nav-category"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">챌린지 보기</a>
 			<ul class="dropdown-menu">
-				<li><a class="dropdown-item" href="#">All</a></li>
+				<li><a class="dropdown-item" href="../challenge/main">All</a></li>
 				<li><a class="dropdown-item" href="#">공부 </a></li>
 				<li><a class="dropdown-item" href="#">습관 </a></li>
 				<li><a class="dropdown-item" href="#">운동 </a></li>
