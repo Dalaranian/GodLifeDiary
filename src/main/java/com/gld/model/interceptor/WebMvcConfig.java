@@ -10,7 +10,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginInterceptor())
                 .addPathPatterns("/**")  
-                .excludePathPatterns("/challenge/main","/login/**","/css/**", "/js/**", "/images/**","/","/resources/**","/index/**", "/kakaoAuth/**", "/error"); 
+                .excludePathPatterns("/challenge/main","/login/**","/css/**", "/js/**", "/images/**","/","/resources/**","/index/**"); 
     }
 }
 

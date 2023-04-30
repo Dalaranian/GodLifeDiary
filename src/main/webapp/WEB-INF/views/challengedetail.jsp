@@ -7,18 +7,8 @@
 <title>Detail</title>
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../resources/css/styles.css" rel="stylesheet" />
+<link href="../resources/css/font.css" rel="stylesheet" />
 <style type="text/css">
-    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@200&display=swap');
-    @font-face {
-        font-family: 'LINESeedKR-Bd';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
-        font-weight: 700;
-        font-style: normal;
-    }
-    body {
-        font-family: 'LINESeedKR-Bd';
-    }
-
 /*---------------------------beginning-------------------------------*/
     .section {
         box-sizing: border-box;
