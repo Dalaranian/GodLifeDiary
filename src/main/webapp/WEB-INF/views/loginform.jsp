@@ -180,8 +180,10 @@ li {
 	                        success: function(res) {
 	                        	console.log(res.result)
 	                   			if(res.result === "true"){
+	                   				alert("로그인 성공")
 	                   				location.href="/challenge/main";
 	                   			}else{
+	                   				alert("최초로 로그인 하셨음으로, 추가 정보가 필요합니다. ")
 	                   				location.href="/login/join"
 	                   			}
 	                        },
