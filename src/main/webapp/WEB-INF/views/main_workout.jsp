@@ -189,7 +189,7 @@
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${challenges}" var="challenge">
-						<c:if test="${challenge.challengeCategory eq '운동' }">
+						<c:if test="${challenge.challengeCategory eq '운동'}">
 							<li class="item">
 								<div class="cont">
 									<strong id="c_name">${challenge.challengeName }</strong>
@@ -210,7 +210,7 @@
 	</div>
 	
 	<div class="sec-main">
-		<h2 class="pb-2 border-bottom colorGrey">종료된 챌린지</h2>
+		<h2 class="pb-2 border-bottom colorGrey)</h2>
 		<ul class="each-category">
 			<c:choose>
 				<c:when test="${empty challenges }">
@@ -218,7 +218,7 @@
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${challenges}" var="challenge">
-						<c:if test="${challenge.challengeCategory eq '운동' }">
+						<c:if test="${challenge.challengeCategory eq '운동' && challenge.challengeEnabled eq 'N'}">
 							<li class="item">
 								<div class="cont">
 									<strong id="c_name">${challenge.challengeName }</strong>
