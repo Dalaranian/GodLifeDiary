@@ -7,8 +7,8 @@ import com.gld.model.dto.UserDto;
 
 @Mapper
 public interface KakaoLoginMapper {
-	
-	@Insert(" IN")
-	int insertKakao(UserDto dto);
+
+	@Insert(" INSERT INTO G_USER VALUES(NULL, #{userId}, #{userPw}, #{userName}, 0, #{onOffNoty}, #{userLoginType}, #{userPhone}, #{userBirth}) ")
+	int insertUser(UserDto dto);
 
 }
