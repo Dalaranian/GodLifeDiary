@@ -99,7 +99,7 @@
         <form>
             <div class="joinContent">
                 <label for="id">아이디</label>
-                <input type="text" id="id" name="id"><br>
+                <input type="text" id="id" name="id" value="${userId }"><br>
             </div>
 
             <div class="joinContent">
@@ -114,7 +114,7 @@
 
             <div class="joinContent">
                 <label for="name">이름</label>
-                <input type="text" id="name" name="name"><br>
+                <input type="text" id="name" name="name" value="${userName }"><br>
             </div>
 
             <div class="joinContent">
