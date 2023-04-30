@@ -1,3 +1,5 @@
+<div align="center">
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
 ![header](https://capsule-render.vercel.app/api?type=waving&color=random&height=150&section=header&text=갓생%20일지&fontSize=70)<br>
@@ -31,5 +33,7 @@
     </tr>
     </tbody>
 </table>
+
+</div>
 
 
