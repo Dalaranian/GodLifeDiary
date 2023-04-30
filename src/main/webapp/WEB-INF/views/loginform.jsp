@@ -178,12 +178,11 @@ li {
 	                        contentType: 'application/json; charset=utf-8',
 	                        dataType: 'json',
 	                        success: function(res) {
+	                        	console.log(res.result)
 	                   			if(res.result === "true"){
-	                   				alert("로그인 성공")
 	                   				location.href="/challenge/main";
 	                   			}else{
-	                   				alert(res.userName+"님은 최초로 로그인 하셨음으로, 추가 정보가 필요합니다. ");
-	                   				location.href="/kakaoAuth/kakaoJoin?userId="+res.userId+"&userName="+res.userName;
+	                   				location.href="/login/join"
 	                   			}
 	                        },
 	                        error: function(error) {
