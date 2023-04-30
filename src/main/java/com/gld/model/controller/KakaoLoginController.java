@@ -51,6 +51,6 @@ public class KakaoLoginController {
 		System.out.println(userId + "\n" + userName);
 		model.addAttribute("userId", userId);
 		model.addAttribute("userName", userName);
-		return "kakaoJosin";
+		return "kakaoJoin";
 	}
 }
