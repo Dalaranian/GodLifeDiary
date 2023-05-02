@@ -189,7 +189,7 @@
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${challenges}" var="challenge">
-						<c:if test="${challenge.challengeCategory eq '습관' }">
+						<c:if test="${challenge.challengeCategory eq '습관' && challenge.challengeEnabled eq 'Y'}">
 							<li class="item">
 								<div class="cont">
 									<strong id="c_name">${challenge.challengeName }</strong>

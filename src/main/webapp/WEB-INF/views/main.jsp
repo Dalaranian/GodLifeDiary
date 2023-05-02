@@ -187,19 +187,21 @@
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${challenges}" var="challenge">
-						<li class="item">
-							<div class="cont">
-								<strong id="c_name">${challenge.challengeName }</strong>
-								<p id="c_info">${challenge.challengeInfo }</p>
-								<p id="c_maxmember">${challenge.challengeMaxMember }명 (인원 표기 필요할까)</p>
-								<p id="c_duration">${challenge.challengeDuration }주 코스</p>
-								
-								
-								<div id="c_joinBtn">
-									<a href="../mypage/insert?$	">참여하기</a>
+						<c:if test="${challenge.challengeEnabled eq 'Y' }">
+							<li class="item">
+								<div class="cont">
+									<strong id="c_name">${challenge.challengeName }</strong>
+									<p id="c_info">${challenge.challengeInfo }</p>
+									<p id="c_maxmember">${challenge.challengeMaxMember }명 (인원 표기 필요할까)</p>
+									<p id="c_duration">${challenge.challengeDuration }주 코스</p>
+									
+									
+									<div id="c_joinBtn">
+										<a href="../mypage/insert?$	">참여하기</a>
+									</div>
 								</div>
-							</div>
-						</li>
+							</li>
+						</c:if>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>

@@ -1,5 +1,7 @@
 package com.gld.model.dto;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -45,14 +47,14 @@ public class ChallengeDto implements Persistable<Long> {
    private String challengeHashtag;
     
     @Column(name="CHALLENGE_STARTED_DATE")
-   private String challengeStartedDate;
+   private Date challengeStartedDate;
 
    public ChallengeDto() {
       super();
    }
 
    public ChallengeDto(Long seq, String challengeName, String challengeInfo, int challengeMaxMember,
-         int challengeDuration, String challengeEnabled, String challengeCategory, String challengeHashtag, String challengeStartedDate) {
+         int challengeDuration, String challengeEnabled, String challengeCategory, String challengeHashtag, Date challengeStartedDate) {
       super();
       this.seq = seq;
       this.challengeName = challengeName;
@@ -129,11 +131,11 @@ public class ChallengeDto implements Persistable<Long> {
       this.challengeHashtag = challengeHashtag;
    }
    
-   public String getChallengeStartedDate() {
+   public Date getChallengeStartedDate() {
 	   return challengeStartedDate;
    }
    
-   public void setChallengeStartedDate(String challengeStartedDate) {
+   public void setChallengeStartedDate(Date challengeStartedDate) {
 	      this.challengeStartedDate = challengeStartedDate;
    }
 
