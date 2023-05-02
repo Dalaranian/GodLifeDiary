@@ -29,6 +29,7 @@ public class ChallengeController {
        return "main";
       } 
    
+
    @GetMapping("/main_study")
    public String getStudyChallenges(Model model) {
        List<ChallengeDto> challenges = challengeBiz.selectAll();
@@ -58,7 +59,10 @@ public class ChallengeController {
    } 
    
    @GetMapping("/detail")
-   public String moveToDetail() {
+   public String moveToDetail(Model model, String challengeName) {
+	  ChallengeDto challenge = challengeBiz.selectOne(challengeName);
+	  model.addAttribute("challenge",challenge);
+	  
       return "challengedetail";
    }
    

@@ -196,7 +196,6 @@
 									<p id="c_info">${challenge.challengeInfo }</p>
 									<p id="c_maxmember">${challenge.challengeMaxMember }명 (인원 표기 필요할까)</p>
 									<p id="c_duration">${challenge.challengeDuration }주 코스</p>
-									<p id="c_category">챌린지명은 ${challenge.challengeCategory }입니다 </p>
 									<div id="c_joinBtn">
 										<a href="../mypage/insert?$	">참여하기</a>
 									</div>
