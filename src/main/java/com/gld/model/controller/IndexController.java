@@ -34,13 +34,4 @@ public class IndexController {
 	public String kakaloLoging() {
 		return "kakao_login";
 	}
-	
-	@PostMapping("/kakaoAuth")
-	public String kakaoAuth(@RequestBody UserDto dto, Model model) {
-		System.out.println(dto);
-		/*if(loginBiz.selectOne(dto)!=null) {
-			
-		}*/
-		return "";
-	}
 }
