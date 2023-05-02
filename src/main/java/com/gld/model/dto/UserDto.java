@@ -4,13 +4,18 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "G_USER")
 public class UserDto {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
     @Column(name = "USER_ID",nullable = false, unique = true)
@@ -35,6 +40,7 @@ public class UserDto {
 	private String userPhone;
     
     @Column(name = "USER_BIRTH",nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date userBirth;
 
 	public UserDto() {
