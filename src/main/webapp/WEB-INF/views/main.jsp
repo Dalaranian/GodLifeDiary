@@ -48,6 +48,12 @@
 	width: 100px;
 	text-align: center;
 	position: absolute;
+	right: 130px;
+}
+#nav-logout {
+	width: 100px;
+	text-align: center;
+	position: absolute;
 	right: 30px;
 }
 /*------------------------------------------메인-------------------------------------------------*/
@@ -172,6 +178,14 @@
 			</form>
 		</li>
 		<li id="nav-mypage"><a class="nav-link" href="../mypage/mypage">마이페이지</a></li>
+		<c:choose>
+			<c:when test="${empty user }">
+				<li id="nav-logout"><a class="nav-link" href="../login/login">login</a></li>
+			</c:when>
+			<c:otherwise>
+				<li id="nav-logout"><a class="nav-link" href="../login/logout">logout</a></li>
+			</c:otherwise>
+		</c:choose>
 	</ul>
 </nav>
 <br><br>

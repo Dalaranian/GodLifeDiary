@@ -351,7 +351,7 @@
             <div class="left_first">
                 <h2 id="challenge_title">${challenge.challengeName }</h2>
                 <div class="challenge_dscr">
-                    <p>${challenge.challengeDuration }아 </p>
+                    <p>${challenge.challengeDuration } </p>
                     <p>${challenge.challengeMaxMember }명 </p>
                     <textarea readonly="readonly">${challenge.challengeInfo }</textarea>
                     
