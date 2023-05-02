@@ -32,30 +32,30 @@ public class ChallengeController {
 
    @GetMapping("/main_study")
    public String getStudyChallenges(Model model) {
-       List<ChallengeDto> challenges = challengeBiz.selectAll();
+       List<ChallengeDto> challenges = challengeBiz.findbyCate("공부");
        model.addAttribute("challenges", challenges);
-       return "main_study";
+       return "main";
    } 
    
    @GetMapping("/main_habit")
    public String getHabitChallenges(Model model) {
-       List<ChallengeDto> challenges = challengeBiz.selectAll();
+       List<ChallengeDto> challenges = challengeBiz.findbyCate("습관");
        model.addAttribute("challenges", challenges);
-       return "main_habit";
+       return "main";
    } 
    
    @GetMapping("/main_hobby")
    public String getHobbyChallenges(Model model) {
-       List<ChallengeDto> challenges = challengeBiz.selectAll();
+       List<ChallengeDto> challenges = challengeBiz.findbyCate("취미");
        model.addAttribute("challenges", challenges);
-       return "main_hobby";
+       return "main";
    } 
    
    @GetMapping("/main_workout")
    public String getWorkoutChallenges(Model model) {
-       List<ChallengeDto> challenges = challengeBiz.selectAll();
+       List<ChallengeDto> challenges = challengeBiz.findbyCate("운동");
        model.addAttribute("challenges", challenges);
-       return "main_workout";
+       return "main";
    } 
    
    @GetMapping("/detail")

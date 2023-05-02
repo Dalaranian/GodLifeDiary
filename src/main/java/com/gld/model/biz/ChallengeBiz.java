@@ -29,4 +29,9 @@ public class ChallengeBiz {
 	   return challengeRepository.findByChallengeName(ChallengeName);
    }
    
+   public List<ChallengeDto> findbyCate(String ChallengeCategory) {
+       return challengeRepository.findByChallengeCategory(ChallengeCategory);
+   }
+
+
 }
