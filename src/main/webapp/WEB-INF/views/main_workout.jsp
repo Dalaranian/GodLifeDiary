@@ -48,12 +48,6 @@
 	width: 100px;
 	text-align: center;
 	position: absolute;
-	right: 130px;
-}
-#nav-logout {
-	width: 100px;
-	text-align: center;
-	position: absolute;
 	right: 30px;
 }
 /*------------------------------------------메인-------------------------------------------------*/
@@ -154,6 +148,7 @@
 	box-shadow : 0px 0px 7px rgba(0,0,0,0.3);
 }
 
+
 </style>
 </head>
 <body>
@@ -178,22 +173,15 @@
 			</form>
 		</li>
 		<li id="nav-mypage"><a class="nav-link" href="../mypage/mypage">마이페이지</a></li>
-		<c:choose>
-			<c:when test="${empty user }">
-				<li id="nav-logout"><a class="nav-link" href="../login/login">login</a></li>
-			</c:when>
-			<c:otherwise>
-				<li id="nav-logout"><a class="nav-link" href="../login/logout">logout</a></li>
-			</c:otherwise>
-		</c:choose>
 	</ul>
 </nav>
 <br><br>
 <!-- ------------------------------------------메인------------------------------------------------- -->
 <div class="list_wrap">
 	<div class="sec-main">
-		<h1 class="pb-2">전체 챌린지</h1>
+		<h1 class="pb-2">운동 관련 챌린지</h1>
 		<h2 class="pb-2 border-bottom colorGrey">참여가능한 챌린지</h2>
+		
 		<ul class="each-category">
 			<c:choose>
 				<c:when test="${empty challenges }">
@@ -201,15 +189,13 @@
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${challenges}" var="challenge">
-						<c:if test="${challenge.challengeEnabled eq 'Y' }">
+						<c:if test="${challenge.challengeCategory eq '운동' && challenge.challengeEnabled eq 'Y'}">
 							<li class="item">
 								<div class="cont">
 									<strong id="c_name">${challenge.challengeName }</strong>
 									<p id="c_info">${challenge.challengeInfo }</p>
 									<p id="c_maxmember">${challenge.challengeMaxMember }명 (인원 표기 필요할까)</p>
 									<p id="c_duration">${challenge.challengeDuration }주 코스</p>
-									
-									
 									<div id="c_joinBtn">
 										<a href="../mypage/insert?$	">참여하기</a>
 									</div>
@@ -224,14 +210,14 @@
 	
 	<div class="sec-main">
 		<h2 class="pb-2 border-bottom colorGrey">진행중/종료된 챌린지</h2>
-		<ul class="each-category"> 
+		<ul class="each-category">
 			<c:choose>
 				<c:when test="${empty challenges }">
 					<h3>-----등록된 챌린지가 없습니다-----</h3>
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${challenges}" var="challenge">
-						<c:if test="${challenge.challengeEnabled eq 'N'}">
+						<c:if test="${challenge.challengeCategory eq '운동' && challenge.challengeEnabled eq 'N'}">
 							<li class="item">
 								<div class="cont">
 									<strong id="c_name">${challenge.challengeName }</strong>
@@ -258,5 +244,4 @@
 </footer>
 <!--  지우면 카테고리 드롭다운 예쁘게 할 수 없음 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
 </html>

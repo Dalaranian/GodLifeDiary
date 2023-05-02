@@ -61,6 +61,11 @@ a {
 	background-color:#ff6600;
 }
 
+
+.colorGrey{
+	color: grey;
+}
+
 /* --------------------------------------- body ----------------------------------------*/
 
 .introduce_form{
@@ -165,10 +170,6 @@ a {
 
 .startBtn:active {
     transform: scale(1.5);
-}
-
-.cSora{
-	backgroud-color: #BDCBDA !important;
 }
 
 /* --------------------------------------- footer ----------------------------------------*/

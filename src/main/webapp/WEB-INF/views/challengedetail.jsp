@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +10,18 @@
 <title>Detail</title>
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../resources/css/styles.css" rel="stylesheet" />
-<link href="../resources/css/font.css" rel="stylesheet" />
 <style type="text/css">
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@200&display=swap');
+    @font-face {
+        font-family: 'LINESeedKR-Bd';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+        font-weight: 700;
+        font-style: normal;
+    }
+    body {
+        font-family: 'LINESeedKR-Bd';
+    }
+
 /*---------------------------beginning-------------------------------*/
     .section {
         box-sizing: border-box;
@@ -336,11 +349,15 @@
     <div class="section">
         <div class="left_part">
             <div class="left_first">
-                <h2 id="challenge_title">챌린지 이름ㅇㅇㅇ</h2>
+                <h2 id="challenge_title">${challenge.challengeName }</h2>
                 <div class="challenge_dscr">
-                    <p>기간</p>
-                    <p>인원</p>
-                    <textarea readonly="readonly">소개</textarea>
+                    <p>${challenge.challengeDuration } </p>
+                    <p>${challenge.challengeMaxMember }명 </p>
+                    <textarea readonly="readonly">${challenge.challengeInfo }</textarea>
+                    
+                    <c:set var="timestamp" value="${challenge.challengeStartedDate}" />
+					<c:set var="startDate" value="${timestamp.toLocalDateTime().toLocalDate()}" />
+					<c:set var="duration" value="${challenge.challengeDuration}" />
                 </div>
             </div>
             <div class="left_second">
@@ -349,23 +366,19 @@
                     <table>
                         <tr>
                             <th>1주차</th>
-                            <td id="did"><div class="date-tooltip" data-tooltip="2023.04.13.Mon"></div></td>
-                            <td id="did"><div class="date-tooltip" data-tooltip="2023.04.14.Tue"></div></td>
+                            <c:forEach var="date" begin="0" end="${duration }">
+                            	<td id="did"><div class="date-tooltip" data-tooltip="${startDate } "></div></td>
+                            	<c:set var="startDate" value="${startDate.plusDays(1)}" />
+                            </c:forEach>
+                        </tr>
+                        <tr>
+                            <th>2주차</th>
+                           	<td id="did"><div class="date-tooltip" data-tooltip="2023.04.14.Tue"></div></td>
                             <td id="did"><div class="date-tooltip" data-tooltip="2023.04.15.Wed"></div></td>
                             <td id="didnt"><div class="date-tooltip" data-tooltip="2023.04.16.Thu"></div></td>
                             <td id="didnt"><div class="date-tooltip" data-tooltip="2023.04.17.Fri"></div></td>
                             <td id="did"><div class="date-tooltip" data-tooltip="2023.04.18.Sat"></div></td>
                             <td id="did"><div class="date-tooltip" data-tooltip="2023.04.19.Sun"></div></td>
-                        </tr>
-                        <tr>
-                            <th>2주차</th>
-                            <td id="did"></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
                         </tr>
                     </table>
                 </div>
