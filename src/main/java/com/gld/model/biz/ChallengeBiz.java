@@ -1,6 +1,7 @@
 package com.gld.model.biz;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,10 @@ public class ChallengeBiz {
    public List<ChallengeDto> selectAll() {
        
        return challengeRepository.findAll();
+   }
+   
+   public ChallengeDto selectOne(String ChallengeName) {
+	   return challengeRepository.findByChallengeName(ChallengeName);
    }
    
 }

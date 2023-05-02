@@ -1,10 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Login</title>
+
+<c:if test="${not empty message}">
+	<script>
+						alert("${message}");
+						</script>
+</c:if>
+
 <style type="text/css">
 .signup1 {
 	width: 500px;
@@ -131,10 +139,10 @@ li {
 					</div>
 					<button id="submitButton" type="submit">Sign in</button>
 					<% if(request.getAttribute("error")!=null){ %>
-						<script>
+					<script>
 							alert('<%= request.getAttribute("error") %>');
 						</script>
-						<%} %>
+					<%} %>
 					<ul>
 						<li><a href="/login/join">회원가입</a></li>&nbsp;
 						<li><a href="/login/find">아이디 찾기</a></li>&nbsp;
@@ -172,23 +180,23 @@ li {
  	                   const json_kakao_account = JSON.stringify(obj);
 	                   /* 불러온 계정 정보 컨트롤러로 보내기 */
 	                     $.ajax({
-	                        url: '/kakaoAuth/authSender',
-	                        type: 'POST',
-	                        data: json_kakao_account,
-	                        contentType: 'application/json; charset=utf-8',
-	                        dataType: 'json',
-	                        success: function(res) {
-	                   			if(res.result === "true"){
-	                   				alert("로그인 성공")
-	                   				location.href="/challenge/main";
-	                   			}else{
-	                   				alert(res.userName+"님은 최초로 로그인 하셨음으로, 추가 정보가 필요합니다. ");
-	                   				location.href="/kakaoAuth/kakaoJoin?userId="+res.userId+"&userName="+res.userName;
-	                   			}
-	                        },
-	                        error: function(error) {
-	                            console.log(error);
-	                        }
+	                    	 url: '/kakaoAuth/authSender',
+		                        type: 'POST',
+		                        data: json_kakao_account,
+		                        contentType: 'application/json; charset=utf-8',
+		                        dataType: 'json',
+		                        success: function(res) {
+		                   			if(res.result === "true"){
+		                   				alert("로그인 성공")
+		                   				location.href="/challenge/main";
+		                   			}else{
+		                   				alert(res.userName+"님은 최초로 로그인 하셨음으로, 추가 정보가 필요합니다. ");
+		                   				location.href="/kakaoAuth/kakaoJoin?userId="+res.userId+"&userName="+res.userName;
+		                   			}
+		                        },
+		                        error: function(error) {
+		                            console.log(error);
+		                        }
 	                    });
 	                }
 	            });
@@ -197,6 +205,4 @@ li {
 	}
 	</script>
 </body>
-</html>
-
 </html>
