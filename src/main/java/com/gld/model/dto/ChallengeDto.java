@@ -143,7 +143,7 @@ public class ChallengeDto implements Persistable<Long> {
       return "ChellangeDto [seq=" + seq + ", challengeName=" + challengeName + ", challengeInfo=" + challengeInfo
             + ", challengeMaxMember=" + challengeMaxMember + ", challengeDuration=" + challengeDuration
             + ", challengeEnabled=" + challengeEnabled + ", challengeCategory=" + challengeCategory
-            + ", challengeHashtag=" + challengeHashtag + challengeStartedDate + "]";
+            + ", challengeHashtag=" + challengeHashtag + ", challengeStartedDate=" + challengeStartedDate + "]";
    }
 
    @Override
