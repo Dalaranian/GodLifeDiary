@@ -19,7 +19,7 @@ public class ChallengeController {
    @Autowired
     private ChallengeBiz challengeBiz;
    
-   	
+      
    @GetMapping("/main")
    public String getAllChallenges(Model model) {
        // 모든 Challenge 엔티티 조회
@@ -60,9 +60,9 @@ public class ChallengeController {
    
    @GetMapping("/detail")
    public String moveToDetail(Model model, String challengeName) {
-	  ChallengeDto challenge = challengeBiz.selectOne(challengeName);
-	  model.addAttribute("challenge",challenge);
-	  
+     ChallengeDto challenge = challengeBiz.selectOne(challengeName);
+     model.addAttribute("challenge",challenge);
+     
       return "challengedetail";
    }
    

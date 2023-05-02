@@ -26,7 +26,7 @@ public class ChallengeBiz {
    }
    
    public ChallengeDto selectOne(String ChallengeName) {
-	   return challengeRepository.findByChallengeName(ChallengeName);
+      return challengeRepository.findByChallengeName(ChallengeName);
    }
    
    public List<ChallengeDto> findbyCate(String ChallengeCategory) {
