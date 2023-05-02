@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -346,50 +351,59 @@
     <div class="section">
         <div class="left_part">
             <div class="left_first">
-                <h2 id="challenge_title">챌린지 이름ㅇㅇㅇ</h2>
+                <h2 id="challenge_title">${challenge.challengeName }</h2>
                 <div class="challenge_dscr">
-                    <p>기간</p>
-                    <p>인원</p>
-                    <textarea readonly="readonly">소개</textarea>
+                    <p>${challenge.challengeDuration } </p>
+                    <p>${challenge.challengeMaxMember }명 </p>
+                    <textarea readonly="readonly">${challenge.challengeInfo }</textarea>
+                    
+                    <c:set var="timestamp" value="${challenge.challengeStartedDate}" />
+					<c:set var="startDate" value="${timestamp.toLocalDateTime().toLocalDate()}" />
+					<c:set var="duration" value="${challenge.challengeDuration}" />
+					
+					
+					<!-- 챌린지 끝나는 날짜 -->
+					<c:set var="forProgress" value="${timestamp.toLocalDateTime().toLocalDate()}" />  
+					
+					<!-- 오늘 날짜  -->
+					<jsp:useBean id="now" class="java.util.Date" />
+					<fmt:parseNumber value="${now.time / (1000*60*60*24)}" integerOnly="true" var="nowfmtTime" scope="request"/>
+					<fmt:parseNumber value="${challenge.challengeStartedDate.time / (1000*60*60*24)}" integerOnly="true" var="dbDtParse" scope="request"/>
+					<c:set var="temp" value="${nowfmtTime - dbDtParse }" />
+					<c:set var="PassDayCnt" value="${temp/duration }"/>
+					<c:set var="percentage" value="${PassDayCnt *100}"/>
+					<fmt:parseNumber var="percent" value="${percentage}" integerOnly="true"/>
+
+					<!--  퍼센테이지 계산 -->
+			
                 </div>
             </div>
             <div class="left_second">
                 <div class="challenge_status">
                     <h4>진행현황</h4>
                     <table>
-                        <tr>
-                            <th>1주차</th>
-                            <td id="did"><div class="date-tooltip" data-tooltip="2023.04.13.Mon"></div></td>
-                            <td id="did"><div class="date-tooltip" data-tooltip="2023.04.14.Tue"></div></td>
-                            <td id="did"><div class="date-tooltip" data-tooltip="2023.04.15.Wed"></div></td>
-                            <td id="didnt"><div class="date-tooltip" data-tooltip="2023.04.16.Thu"></div></td>
-                            <td id="didnt"><div class="date-tooltip" data-tooltip="2023.04.17.Fri"></div></td>
-                            <td id="did"><div class="date-tooltip" data-tooltip="2023.04.18.Sat"></div></td>
-                            <td id="did"><div class="date-tooltip" data-tooltip="2023.04.19.Sun"></div></td>
-                        </tr>
-                        <tr>
-                            <th>2주차</th>
-                            <td id="did"></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                    	<c:forEach var="date" begin="0" end="${duration*7-1}">
+                    		<c:if test="${date % 7 eq 0}">
+								    <tr>
+								       <th><fmt:parseNumber value="${date / 7 + 1}" integerOnly="true"/>주차</th>
+								    </c:if>
+								    <td id="did"><div class="date-tooltip" data-tooltip="${startDate } "></div></td>
+								    <c:set var="startDate" value="${startDate.plusDays(1)}" />
+							    	<c:if test="${date % 7 eq 6}">
+								        </tr>
+								    </c:if>
+							    
+							</c:forEach>
+                            
                     </table>
                 </div>
             </div>
             <div class="left_third">
                 <div class="challenge_progress">
-                    <h4>진행률</h4>
-                    <div class="progress">
-                        <div class="prog-bar col_success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-                            40% Complete
-                        </div>
-                    </div>
+                    <h4>챌린지 만료까지</h4>
+
                     <div class="skill-bar">
-                        <div class="skill-percentage" per="90%" style="max-width:90%"></div>
+                        <div class="skill-percentage" per="${percent }%" style="max-width:${percent }%"></div>
                     </div>
                 </div>
             </div>
@@ -398,7 +412,7 @@
         <div class="right_part">
             <div class="show_date">
                 <a id="pre_day">◀</a>
-                <p id="today">2023/04/27/목</p>
+                <p id="today">여기에 날짜표시될거임</p>
                 <a id="next_day">▶</a>
             </div>
             <div class="comment_my">

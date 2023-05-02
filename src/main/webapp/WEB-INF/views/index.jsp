@@ -8,43 +8,33 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <title>작은 도전이 큰 변화로, 갓생일지</title>
 <link href="../resources/css/styles.css" rel="stylesheet" />
+<link href="../resources/css/font.css" rel="stylesheet" />
 </head>
 <body>
-	<button onclick="location.href='index/main'">hello</button>
-	<button onclick="location.href='challenge/detail'">main</button>
-	<button onclick="location.href='mypage/mypage'">mypage</button>
-	<button onclick="location.href='challenge/detail'">challengedetail</button>
-	<button onclick="location.href='challenge/insert'">challengeinsert</button>
+	<button onclick="location.href='challenge/detail?challengeName=매일 30분 걷기 챌린지'">challengedetail</button>
 <!-- Responsive navbar-->
 <nav class="navbar navbar-expand-sm navbar-dark cOrange">
-	<div class="container-fluid">
-		<a class="navbar-brand" href="#">갓생일지</a>
-		<button class="navbar-toggler" type="button">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse" id="navbarsExample03">
-			<ul class="navbar-nav me-auto mb-2 mb-sm-0">
-				<li class="nav-item"><a class="nav-link active"
-					aria-current="page" href="index/main">Home</a></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#"
-					data-bs-toggle="dropdown" aria-expanded="false">Category</a>
-					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="#">All</a></li>
-						<li><a class="dropdown-item" href="#">운동</a></li>
-						<li><a class="dropdown-item" href="#">공부</a></li>
-						<li><a class="dropdown-item" href="#">습관</a></li>
-					</ul></li>
-				<li class="nav-item"><a class="nav-link" href="mypage/mypage">마이페이지</a></li>
-				<li class="nav-item"><a class="nav-link disabled">관리자모드</a></li>
-
+	<ul class="navbar-nav me-auto mb-2 mb-sm-0" id="nav-total">
+		<li>
+			<a class="navbar-brand" id="nav-title" href="../">갓생일지</a>
+		</li>
+		<li id="nav-category"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">챌린지 보기</a>
+			<ul class="dropdown-menu">
+				<li><a class="dropdown-item" href="../challenge/main">All</a></li>
+				<li><a class="dropdown-item" href="#">공부 </a></li>
+				<li><a class="dropdown-item" href="#">습관 </a></li>
+				<li><a class="dropdown-item" href="#">운동 </a></li>
+				<li><a class="dropdown-item" href="#">취미 </a></li>
 			</ul>
+		</li>
+		<li id="nav-insertChallenge"><a class="nav-link" href="../challenge/insert">새 챌린지 만들기</a></li>
+		<li id="nav-search">
 			<form role="search">
 				<input class="form-control" type="search" placeholder="Search">
 			</form>
-		</div>
-	</div>
+		</li>
+		<li id="nav-mypage"><a class="nav-link" href="../mypage/mypage">마이페이지</a></li>
+	</ul>
 </nav>
 
 
