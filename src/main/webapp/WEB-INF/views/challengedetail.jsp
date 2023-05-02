@@ -382,22 +382,19 @@
                 <div class="challenge_status">
                     <h4>진행현황</h4>
                     <table>
-                        <tr>
-                            <th>1주차</th>
-                            <c:forEach var="date" begin="0" end="${duration }">
-                            	<td id="did"><div class="date-tooltip" data-tooltip="${startDate } "></div></td>
-                            	<c:set var="startDate" value="${startDate.plusDays(1)}" />
-                            </c:forEach>
-                        </tr>
-                        <tr>
-                            <th>2주차</th>
-                           	<td id="did"><div class="date-tooltip" data-tooltip="2023.04.14.Tue"></div></td>
-                            <td id="did"><div class="date-tooltip" data-tooltip="2023.04.15.Wed"></div></td>
-                            <td id="didnt"><div class="date-tooltip" data-tooltip="2023.04.16.Thu"></div></td>
-                            <td id="didnt"><div class="date-tooltip" data-tooltip="2023.04.17.Fri"></div></td>
-                            <td id="did"><div class="date-tooltip" data-tooltip="2023.04.18.Sat"></div></td>
-                            <td id="did"><div class="date-tooltip" data-tooltip="2023.04.19.Sun"></div></td>
-                        </tr>
+                    	<c:forEach var="date" begin="0" end="${duration*7-1}">
+                    		<c:if test="${date % 7 eq 0}">
+								    <tr>
+								       <th><fmt:parseNumber value="${date / 7 + 1}" integerOnly="true"/>주차</th>
+								    </c:if>
+								    <td id="did"><div class="date-tooltip" data-tooltip="${startDate } "></div></td>
+								    <c:set var="startDate" value="${startDate.plusDays(1)}" />
+							    	<c:if test="${date % 7 eq 6}">
+								        </tr>
+								    </c:if>
+							    
+							</c:forEach>
+                            
                     </table>
                 </div>
             </div>
