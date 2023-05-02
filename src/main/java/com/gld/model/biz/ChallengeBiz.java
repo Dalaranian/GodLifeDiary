@@ -29,9 +29,12 @@ public class ChallengeBiz {
       return challengeRepository.findByChallengeName(ChallengeName);
    }
    
+   public ChallengeDto selectOneBySeq(String seq) {
+	   return challengeRepository.findBySeq(Long.parseLong(seq));
+   }
+   
    public List<ChallengeDto> findbyCate(String ChallengeCategory) {
        return challengeRepository.findByChallengeCategory(ChallengeCategory);
    }
-
 
 }
