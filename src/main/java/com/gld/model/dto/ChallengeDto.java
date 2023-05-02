@@ -1,5 +1,7 @@
 package com.gld.model.dto;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +21,7 @@ import org.springframework.data.domain.Persistable;
 public class ChallengeDto implements Persistable<Long> {
    
    @Id
-    @Column(name = "SEQ",nullable = false)
+   @Column(name = "SEQ",nullable = false)
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long seq;
     
@@ -35,33 +37,43 @@ public class ChallengeDto implements Persistable<Long> {
    @Column(name = "CHALLENGE_DURATION", nullable = false)
    private int challengeDuration;
 
-    @Column(name = "CHALLENGE_ENABLED")
+   @Column(name = "CHALLENGE_ENABLED")
    private String challengeEnabled;
     
-    @Column(name = "CHALLENGE_CATEGORY", nullable = false)
+   @Column(name = "CHALLENGE_CATEGORY", nullable = false)
    private String challengeCategory;
     
-    @Column(name = "CHALLENGE_HASHTAG")
+   @Column(name = "CHALLENGE_HASHTAG")
    private String challengeHashtag;
+   
+   @Column(name = "CHALLENGE_STARTED_DATE")
+   private Date challengeStartedDate;
 
    public ChallengeDto() {
       super();
    }
 
-   public ChallengeDto(Long seq, String challengeName, String challengeInfo, int challengeMaxMember,
-         int challengeDuration, String challengeEnabled, String challengeCategory, String challengeHashtag) {
-      super();
-      this.seq = seq;
-      this.challengeName = challengeName;
-      this.challengeInfo = challengeInfo;
-      this.challengeMaxMember = challengeMaxMember;
-      this.challengeDuration = challengeDuration;
-      this.challengeEnabled = challengeEnabled;
-      this.challengeCategory = challengeCategory;
-      this.challengeHashtag = challengeHashtag;
-   }
+   
 
-   public Long getSeq() {
+   public ChallengeDto(Long seq, String challengeName, String challengeInfo, int challengeMaxMember, int challengeDuration,
+		String challengeEnabled, String challengeCategory, String challengeHashtag, Date challengeStartedDate,
+		boolean isNew) {
+	super();
+	this.seq = seq;
+	this.challengeName = challengeName;
+	this.challengeInfo = challengeInfo;
+	this.challengeMaxMember = challengeMaxMember;
+	this.challengeDuration = challengeDuration;
+	this.challengeEnabled = challengeEnabled;
+	this.challengeCategory = challengeCategory;
+	this.challengeHashtag = challengeHashtag;
+	this.challengeStartedDate = challengeStartedDate;
+	this.isNew = isNew;
+}
+
+
+
+public Long getSeq() {
       return seq;
    }
 
@@ -124,19 +136,24 @@ public class ChallengeDto implements Persistable<Long> {
    public void setChallengeHashtag(String challengeHashtag) {
       this.challengeHashtag = challengeHashtag;
    }
-
-   @Override
-   public String toString() {
-      return "ChellangeDto [seq=" + seq + ", challengeName=" + challengeName + ", challengeInfo=" + challengeInfo
-            + ", challengeMaxMember=" + challengeMaxMember + ", challengeDuration=" + challengeDuration
-            + ", challengeEnabled=" + challengeEnabled + ", challengeCategory=" + challengeCategory
-            + ", challengeHashtag=" + challengeHashtag + "]";
-   }
+   
+   public Date getChallengeStartedDate() {
+		return challengeStartedDate;
+	}
+   
+   public void setChallengeStartedDate(Date challengeStartedDate) {
+		this.challengeStartedDate = challengeStartedDate;
+	}
+  
 
    @Override
    public Long getId() {
       return this.seq;
    }
+
+   
+
+
 
    @Transient
    private boolean isNew = true;
