@@ -179,7 +179,7 @@
 <div class="list_wrap">
 	<div class="sec-main">
 		<h1 class="pb-2">공부 관련 챌린지</h1>
-		<h2 class="pb-2 border-bottom colorGrey">진행중 챌린지</h2>
+		<h2 class="pb-2 border-bottom colorGrey">참여가능한 챌린지</h2>
 		<ul class="each-category">
 			<c:choose>
 				<c:when test="${empty challenges }">
@@ -207,7 +207,7 @@
 	</div>
 	
 	<div class="sec-main">
-		<h2 class="pb-2 border-bottom colorGrey">종료된 챌린지</h2>
+		<h2 class="pb-2 border-bottom colorGrey">진행중/종료된 챌린지</h2>
 		<ul class="each-category">
 			<c:choose>
 				<c:when test="${empty challenges }">

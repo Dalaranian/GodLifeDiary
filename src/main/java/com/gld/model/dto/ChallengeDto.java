@@ -43,13 +43,16 @@ public class ChallengeDto implements Persistable<Long> {
     
     @Column(name = "CHALLENGE_HASHTAG")
    private String challengeHashtag;
+    
+    @Column(name="CHALLENGE_STARTED_DATE")
+   private String challengeStartedDate;
 
    public ChallengeDto() {
       super();
    }
 
    public ChallengeDto(Long seq, String challengeName, String challengeInfo, int challengeMaxMember,
-         int challengeDuration, String challengeEnabled, String challengeCategory, String challengeHashtag) {
+         int challengeDuration, String challengeEnabled, String challengeCategory, String challengeHashtag, String challengeStartedDate) {
       super();
       this.seq = seq;
       this.challengeName = challengeName;
@@ -59,6 +62,7 @@ public class ChallengeDto implements Persistable<Long> {
       this.challengeEnabled = challengeEnabled;
       this.challengeCategory = challengeCategory;
       this.challengeHashtag = challengeHashtag;
+      this.challengeStartedDate = challengeStartedDate;
    }
 
    public Long getSeq() {
@@ -124,13 +128,22 @@ public class ChallengeDto implements Persistable<Long> {
    public void setChallengeHashtag(String challengeHashtag) {
       this.challengeHashtag = challengeHashtag;
    }
+   
+   public String getChallengeStartedDate() {
+	   return challengeStartedDate;
+   }
+   
+   public void setChallengeStartedDate(String challengeStartedDate) {
+	      this.challengeStartedDate = challengeStartedDate;
+   }
 
+   
    @Override
    public String toString() {
       return "ChellangeDto [seq=" + seq + ", challengeName=" + challengeName + ", challengeInfo=" + challengeInfo
             + ", challengeMaxMember=" + challengeMaxMember + ", challengeDuration=" + challengeDuration
             + ", challengeEnabled=" + challengeEnabled + ", challengeCategory=" + challengeCategory
-            + ", challengeHashtag=" + challengeHashtag + "]";
+            + ", challengeHashtag=" + challengeHashtag + challengeStartedDate + "]";
    }
 
    @Override

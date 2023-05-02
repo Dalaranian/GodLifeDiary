@@ -179,7 +179,7 @@
 <div class="list_wrap">
 	<div class="sec-main">
 		<h1 class="pb-2">취미 관련 챌린지</h1>
-		<h2 class="pb-2 border-bottom colorGrey">진행중 챌린지</h2>
+		<h2 class="pb-2 border-bottom colorGrey">참여가능한 챌린지</h2>
 		<ul class="each-category">
 			<c:choose>
 				<c:when test="${empty challenges }">
@@ -207,7 +207,7 @@
 	</div>
 	
 	<div class="sec-main">
-		<h2 class="pb-2 border-bottom colorGrey">종료된 챌린지</h2>
+		<h2 class="pb-2 border-bottom colorGrey">진행중/종료된 챌린지</h2>
 		<ul class="each-category">
 			<c:choose>
 				<c:when test="${empty challenges }">
@@ -222,6 +222,9 @@
 									<p id="c_info">${challenge.challengeInfo }</p>
 									<p id="c_maxmember">${challenge.challengeMaxMember }명 (인원 표기 필요할까)</p>
 									<p id="c_duration">${challenge.challengeDuration }주 코스</p>
+									<div id="c_joinBtn">
+										<a href="../challenge/detail?$">진행상황 보기</a>
+									</div>
 								</div>
 							</li>
 						</c:if>

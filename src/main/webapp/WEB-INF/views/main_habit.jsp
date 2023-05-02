@@ -131,6 +131,8 @@
 	width: 38%;
 	height: 30px;
 }
+
+
 .list_wrap .item a{
 	display:inline-block;
 	padding:5px 10px;
@@ -179,7 +181,7 @@
 <div class="list_wrap">
 	<div class="sec-main">
 		<h1 class="pb-2">습관 관련 챌린지</h1>
-		<h2 class="pb-2 border-bottom colorGrey">진행중 챌린지</h2>
+		<h2 class="pb-2 border-bottom colorGrey">참여가능한 챌린지</h2>
 		<ul class="each-category">
 			<c:choose>
 				<c:when test="${empty challenges }">
@@ -207,8 +209,8 @@
 	</div>
 	
 	<div class="sec-main">
-		<h2 class="pb-2 border-bottomm colorGrey">종료된 챌린지</h2>
-		<ul class="each-category">
+
+		<h2 class="pb-2 border-bottom colorGrey">진행중/종료된 챌린지</h2>
 			<c:choose>
 				<c:when test="${empty challenges }">
 					<h3>-----등록된 챌린지가 없습니다-----</h3>
