@@ -132,4 +132,8 @@ public class UserDto {
 				+ userPhone + ", userBirth=" + userBirth + "]";
 	}
 
+	public Long getId() {
+		return Id;
+	}
+
 }
