@@ -341,9 +341,26 @@
 
 </style>
 <script type="text/javascript">
+	var cnt = 1;
     function checking() {
-        alert("오늘의 챌린지를 수행했습니까?");
+        if(cnt%2==1)	{
+            alert("오늘의 챌린지를 수행했나요?");
+        	document.getElementById("checksign").src = "../resources/img/letter-o.png";
+        	document.getElementById("checkbtn").value= "Undo!";
+        	
+        }
+        else {
+        	alert("오늘의 챌린지를 수행하지 못했나요? ㅜㅜ ");
+        	
+        	document.getElementById("checksign").src = "../resources/img/letter-x.png";
+        	document.getElementById("checkbtn").value= "Check!";
+
+        		
+        }
+    	cnt++;
     }
+    
+  </script>
 </script>
 </head>
 <body>
@@ -412,7 +429,7 @@
         <div class="right_part">
             <div class="show_date">
                 <a id="pre_day">◀</a>
-                <p id="today">여기에 날짜표시될거임</p>
+                <p id="today">날짜를 선택해주세요</p>
                 <a id="next_day">▶</a>
             </div>
             <div class="comment_my">
@@ -421,7 +438,7 @@
                     <div class="profile">
                         <img id="profile_img" src="./imgs/aaa.jpg" alt="img">
                         <div id="profile_nick">nickname</div>
-                        <div id="profile_check"><input type="button" name="didornot" value="Check!" onclick="checking();" class="buttonDesign">&nbsp;<img id="checksign" src="./imgs/x_sign.png"></div>
+                        <div id="profile_check"><input type="button" name="didornot" value="Check!" onclick="checking();" class="buttonDesign" id="checkbtn">&nbsp;<img id="checksign" src="../resources/img/letter-x.png"></div>
                     </div>
                     <div id="commentContainer">
                         <textarea id="comment" name="comment"></textarea>
@@ -436,7 +453,7 @@
                     <div class="profile">
                         <img id="profile_img" src="./imgs/aaa.jpg" alt="img">
                         <div id="profile_nick">nickname</div>
-                        <div id="profile_check"><img id="checksign" src="./imgs/o_sign.png"></div>
+                        <div id="profile_check"><img id="checksign" src="../resources/img/letter-o.png"></div>
                     </div>
                     <textarea id="comment" name="comment" readonly="readonly">오늘은 진짜 일찍 일어나기 너무 힘들었는데 그래도 알람 한 번만에 일어났다 뿌듯하다ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ</textarea>
                 </div>
@@ -444,7 +461,7 @@
                     <div class="profile">
                         <img id="profile_img" src="./imgs/aaa.jpg" alt="img">
                         <div id="profile_nick">nickname</div>
-                        <div id="profile_check"><img id="checksign" src="./imgs/x_sign.png"></div>
+                        <div id="profile_check"><img id="checksign" src="../resources/img/letter-x.png"></div>
                     </div>
                     <textarea id="comment" name="comment" readonly="readonly">textarea 자동으로 높이 조절하는거 jq로 구현하든지, 그냥 지금처럼 스크롤</textarea>
                 </div>

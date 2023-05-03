@@ -39,6 +39,9 @@ public class RegisteredBiz {
 	public List<RegisteredMemberDto> selectAll() {
 
 		return rmRepository.findAll();
+    }
+	public int delete(String challengeSeq, Long id) {
+		return mapper.deleteRegister(challengeSeq, id);
 	}
 	
 }
