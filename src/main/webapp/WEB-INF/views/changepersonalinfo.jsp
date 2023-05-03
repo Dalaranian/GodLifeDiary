@@ -289,7 +289,7 @@ button[type="submit"] {
 						id="passwordCheck"><br>
 				</div>
 				<button onclick="return checkPw()">확인하기</button>
-				<button type="submit" name="pwChangeSubmitBtn" disabled>변경하기</button>
+				<button type="submit" name="pwChangeSubmitBtn" onclick="alert('비밀번호가 변경되었습니다.')" disabled>변경하기</button>
 			</form>
 		</div>
 	</div>
