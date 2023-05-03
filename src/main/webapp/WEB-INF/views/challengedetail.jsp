@@ -340,28 +340,67 @@
     }
 
 </style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript">
 	var cnt = 1;
     function checking() {
         if(cnt%2==1)	{
             alert("오늘의 챌린지를 수행했나요?");
         	document.getElementById("checksign").src = "../resources/img/letter-o.png";
-        	document.getElementById("checkbtn").value= "Undo!";
-        	
+        	document.getElementById("checkbtn").value= "Undo!";	
         }
         else {
         	alert("오늘의 챌린지를 수행하지 못했나요? ㅜㅜ ");
         	
         	document.getElementById("checksign").src = "../resources/img/letter-x.png";
         	document.getElementById("checkbtn").value= "Check!";
-
-        		
         }
     	cnt++;
     }
     
+    function goToCommentDate(seq, id, commentDate){
+    	console.log("durlsms");
+		let commentVal = {
+			"seq" : seq,
+			"id" : id,
+			"commentDate" : commentDate
+		};
+		
+		
+		$.ajax({
+				type:"post",
+				url:"/challenge/ajaxComment",
+				data:JSON.stringify(commentVal),
+				contentType:"application/json",
+				dataType:"json",
+				success:function(res){
+					console.log(res);
+					console.log(res.comment);
+					console.log(res.list);
+					 
+					if(res.comment == null){
+						$("#today").html(commentDate);
+					}else{
+						console.log(res.comment.isDone);
+						$("#today").html(res.comment.commentDate);
+						$("#comment").html(res.comment.comment);
+						$("#profile_check").html(res.comment.isDone);
+						$("#profile_nick").html(res.list[0].id);
+					
+					} 
+					
+					
+			         
+				},
+				error:function(){
+					alert("통신 실패 ");
+				}
+			});
+	
+	
+		}
   </script>
-</script>
+
 </head>
 <body>
     <!-- Header -->
@@ -395,6 +434,8 @@
 			
                 </div>
             </div>
+            	<c:set var="user" value="${sessionScope.user}" />
+            	
             <div class="left_second">
                 <div class="challenge_status">
                     <h4>진행현황</h4>
@@ -404,7 +445,8 @@
 								    <tr>
 								       <th><fmt:parseNumber value="${date / 7 + 1}" integerOnly="true"/>주차</th>
 								    </c:if>
-								    <td id="did"><div class="date-tooltip" data-tooltip="${startDate } "></div></td>
+								    <td id="did"><div class="date-tooltip" data-tooltip="${startDate } " onclick="goToCommentDate(${challenge.seq}, ${user.id}, '${startDate}')"></div></td>
+								    
 								    <c:set var="startDate" value="${startDate.plusDays(1)}" />
 							    	<c:if test="${date % 7 eq 6}">
 								        </tr>
@@ -437,7 +479,7 @@
                 <div class="comment_each">
                     <div class="profile">
                         <img id="profile_img" src="./imgs/aaa.jpg" alt="img">
-                        <div id="profile_nick">nickname</div>
+                        <div id="profile_nick">${user.userId}</div>
                         <div id="profile_check"><input type="button" name="didornot" value="Check!" onclick="checking();" class="buttonDesign" id="checkbtn">&nbsp;<img id="checksign" src="../resources/img/letter-x.png"></div>
                     </div>
                     <div id="commentContainer">
@@ -447,40 +489,17 @@
                 </div>
             </div>
 
-            <div class="comment_others">
+             <div class="comment_others">
                 <div id="record_title">Others</div>
                 <div class="comment_each">
                     <div class="profile">
                         <img id="profile_img" src="./imgs/aaa.jpg" alt="img">
                         <div id="profile_nick">nickname</div>
-                        <div id="profile_check"><img id="checksign" src="../resources/img/letter-o.png"></div>
+                        <div id="profile_check"><img id="checksign" src="./imgs/o_sign.png"></div>
                     </div>
                     <textarea id="comment" name="comment" readonly="readonly">오늘은 진짜 일찍 일어나기 너무 힘들었는데 그래도 알람 한 번만에 일어났다 뿌듯하다ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ</textarea>
                 </div>
-                <div class="comment_each">
-                    <div class="profile">
-                        <img id="profile_img" src="./imgs/aaa.jpg" alt="img">
-                        <div id="profile_nick">nickname</div>
-                        <div id="profile_check"><img id="checksign" src="../resources/img/letter-x.png"></div>
-                    </div>
-                    <textarea id="comment" name="comment" readonly="readonly">textarea 자동으로 높이 조절하는거 jq로 구현하든지, 그냥 지금처럼 스크롤</textarea>
-                </div>
-                <div class="comment_each">
-                    <div class="profile">
-                        <img id="profile_img" src="./imgs/aaa.jpg" alt="img">
-                        <div id="profile_nick">nickname</div>
-                        <div id="profile_check"><img id="checksign" src="./imgs/x_sign.png"></div>
-                    </div>
-                    <textarea id="comment" name="comment" readonly="readonly">모아보기 기능 추가할건지</textarea>
-                </div>
-                <div class="comment_each">
-                    <div class="profile">
-                        <img id="profile_img" src="./imgs/aaa.jpg" alt="img">
-                        <div id="profile_nick">nickname</div>
-                        <div id="profile_check"><img id="checksign" src="./imgs/x_sign.png"></div>
-                    </div>
-                    <textarea id="comment" name="comment" readonly="readonly">반복</textarea>
-                </div>
+                
             </div>
         </div>
     </div>

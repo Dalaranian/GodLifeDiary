@@ -1,9 +1,12 @@
 package com.gld.model.controller;
 
+import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,14 +14,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gld.model.biz.ChallengeBiz;
+import com.gld.model.biz.CommentBiz;
 import com.gld.model.biz.LoginBiz;
 import com.gld.model.biz.RegisteredBiz;
 import com.gld.model.dto.ChallengeDto;
+import com.gld.model.dto.CommentDto;
+import com.gld.model.dto.CommentId;
 import com.gld.model.dto.UserDto;
 
 @Controller
@@ -33,6 +40,9 @@ public class ChallengeController {
 
 	@Autowired
 	private LoginBiz loginBiz;
+	
+	@Autowired
+	private CommentBiz commentBiz;
 
 
 	@GetMapping("/main")
@@ -95,6 +105,31 @@ public class ChallengeController {
 		challengeBiz.insert(dto);
 		return "challengeinsert_res";
 	}
+	
+	 @PostMapping("/ajaxComment")
+	   @ResponseBody
+	   public Map<String, Object> commentDate(@RequestBody CommentId commentid) {
+		   System.out.println(commentid.getSeq()+" " +commentid.getId()+" "+commentid.getCommentDate());
+		   Map<String, Object> res = new HashMap<>();
+		   
+		   
+		   CommentDto comment = commentBiz.selectComment(commentid.getSeq(), commentid.getId(), commentid.getCommentDate());
+		   List<CommentDto> list = commentBiz.selectComments(commentid.getSeq(), commentid.getCommentDate());
+		   //System.out.println(comment.getId());
+		   System.out.println(list.get(2).getComment());
+		   Map<String, CommentDto> map = new HashMap<>();
+		   
+		   if(comment != null) {
+			   map.put("comment", comment);
+		   }else {
+			   map.put("comment", null);
+		   }
+		   
+		   res.put("comment", map);
+		   res.put("list",list);
+		   
+		   return res;
+	   }
 
 	// 참여하기 버튼 눌렀을때 로직
 	@RequestMapping(value = "/joinuser", method = RequestMethod.POST)
