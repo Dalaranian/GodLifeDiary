@@ -1,51 +1,63 @@
 package com.gld.model.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.gld.model.repository.RegisteredMemberRepository;
 
 @Entity
 @Table(name = "G_USER")
 public class UserDto {
+
 	@Id
 	@Column(name = "ID",nullable = false, unique = true)
     private Long id;
 
-    @Column(name = "USER_ID",nullable = false, unique = true)
-    private String userId;
+	// table join (G_USER 일대다 REGISTERED_MEMBER)
+	@OneToMany(mappedBy = "userDto", fetch = FetchType.LAZY)
+	private List<RegisteredMemberDto> list = new ArrayList<>();
+	//
 
-    @Column(name = "USER_PW",nullable = false)
-    private String userPw;
-    
-    @Column(name = "USER_NAME",nullable = false)
+	@Column(name = "USER_ID", nullable = false, unique = true)
+	private String userId;
+
+	@Column(name = "USER_PW", nullable = false)
+	private String userPw;
+
+	@Column(name = "USER_NAME", nullable = false)
 	private String userName;
-    
-    @Column(name = "COMPLETED_CHALLENGE",nullable = false)
+
+	@Column(name = "COMPLETED_CHALLENGE", nullable = false)
 	private int completedChallenge;
-    
-    @Column(name = "ONOFF_NOTY",nullable = false)
+
+	@Column(name = "ONOFF_NOTY", nullable = false)
 	private String onOffNoty;
-    
-    @Column(name = "USER_LOGINTYPE",nullable = false)
+
+	@Column(name = "USER_LOGINTYPE", nullable = false)
 	private String userLoginType;
-    
-    @Column(name = "USER_PHONE",nullable = false)
+
+	@Column(name = "USER_PHONE", nullable = false)
 	private String userPhone;
-    
-    @Column(name = "USER_BIRTH",nullable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+
+	@Column(name = "USER_BIRTH", nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date userBirth;
 
 	public UserDto() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public UserDto(Long id, String userId, String userPw, String userName, int completedChallenge, String onOffNoty,
@@ -134,8 +146,15 @@ public class UserDto {
 		this.userBirth = userBirth;
 	}
 
-	
 
-	
+	/////////////////////
+	// join table 관련
+	public List<RegisteredMemberDto> getList() {
+		return list;
+	}
+
+	public void setList(List<RegisteredMemberDto> list) {
+		this.list = list;
+	}
 
 }

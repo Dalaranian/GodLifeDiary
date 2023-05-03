@@ -13,7 +13,6 @@ public class KakaoLoginBiz {
 	private KakaoLoginMapper kakao;
 
 	public int insert(UserDto dto) {
-		// TODO Auto-generated method stub
 		return kakao.insertUser(dto);
 	}
 

@@ -10,20 +10,21 @@ import com.gld.model.dto.UserDto;
 import com.gld.model.repository.UserRepository;
 
 @Service
+@Transactional
 public class LoginBiz {
 
 	@Autowired
-    private UserRepository userRepository;
-	
+	private UserRepository userRepository;
+
 	public UserDto findByUserId(String userId) {
-		
+
 		UserDto user = userRepository.findByUserId(userId);
-		
+
 		return user;
 	}
-	
+
 	public void insert(UserDto dto) {
-	      
+
 		userRepository.save(dto);
 	}
 
