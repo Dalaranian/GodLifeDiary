@@ -175,6 +175,23 @@
 	text-align: center;
 	background-color: white;
 }
+#c_drop {
+	display: inline-block;
+	position: absolute;
+	right: 25px;
+	bottom: 25px;
+	width: 33%;
+	height: 30px;
+	border: 2px solid #F7570B;
+	border-radius: 1rem;
+	padding: 3px;
+	color: #F7570B;
+	font-weight: bold;
+	text-align: center;
+	background-color: black;
+}
+
+
 </style>
 </head>
 <body>
@@ -278,6 +295,7 @@
 						</c:choose>
 					</p>
 				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -369,7 +387,9 @@
 											<p id="c_maxmember">${challenge.challengeMaxMember }명(인원
 												표기 필요할까)</p>
 											<p id="c_duration">${challenge.challengeDuration }주코스</p>
+											<p id="c_drop"><a href="#" onclick="deleteRegist('${challenge.seq}', '${user.id}', this)">포기하기</a></p>
 										</div>
+										
 									</li>
 								</c:if>
 							</c:forEach>
@@ -394,6 +414,7 @@
 											<p id="c_maxmember">${challenge.challengeMaxMember }명(인원
 												표기 필요할까)</p>
 											<p id="c_duration">${challenge.challengeDuration }주코스</p>
+											
 										</div>
 									</li>
 								</c:if>
@@ -404,6 +425,35 @@
 			</div>
 		</div>
 	</div>
-
+<!--jquery -->
+	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript">
+	  function deleteRegist(seq, id, ele) {
+		
+		 let regist = {
+	      challengeSeq: seq,
+	      userId: id
+	    };
+	    const deleteRegistMember = JSON.stringify(regist);
+	    alert(deleteRegistMember);
+	    $.ajax({
+	      url: '/challenge/deleteregist',
+	      type : 'post',
+	      data: deleteRegistMember,
+	      contentType: 'application/json; charset=utf-8',
+	   	  dataType: 'json',
+	      success: function(res) {
+/* 	        console.log(res);
+ */	        if(res){
+	        	alert("삭제");
+	        	$(ele).parents("li").remove();
+	        }
+	      },
+	      error: function(error) {
+	        alert("error");
+	      }
+	    });
+	  }
+	</script>
 </body>
 </html>

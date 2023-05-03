@@ -26,4 +26,9 @@ public class RegisteredBiz {
 		// TODO Auto-generated method stub
 		mapper.challengeStart(challengeSeq);
 	}
+	
+	public int delete(String challengeSeq, Long id) {
+		return mapper.deleteRegister(challengeSeq, id);
+	}
+	
 }

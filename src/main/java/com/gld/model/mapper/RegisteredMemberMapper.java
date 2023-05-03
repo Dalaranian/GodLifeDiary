@@ -1,5 +1,6 @@
 package com.gld.model.mapper;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -19,5 +20,8 @@ public interface RegisteredMemberMapper {
 	// CHALLENGE 의 MAX 맴버가 찼을 떄, 챌린지를 시작하는 매퍼
 	@Update(" UPDATE G_CHALLENGE SET CHALLENGE_ENABLED = 'N', CHALLENGE_STARTED_DATE = NOW() WHERE SEQ = #{challengeSeq }; ")
 	void challengeStart(String challengeSeq);
-
+	
+	@Delete(" DELETE FROM REGISTERED_MEMBER WHERE  ID=#{id} AND SEQ= #{challengeSeq}; ")
+	int deleteRegister(String challengeSeq, Long id);
+	
 }

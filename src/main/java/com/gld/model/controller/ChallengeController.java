@@ -1,5 +1,6 @@
 package com.gld.model.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gld.model.biz.ChallengeBiz;
 import com.gld.model.biz.LoginBiz;
@@ -60,21 +63,21 @@ public class ChallengeController {
 		List<ChallengeDto> challenges = challengeBiz.findbyCate("습관");
 		model.addAttribute("challenges", challenges);
 		return "main";
-}
+	}
 
 	@GetMapping("/main_hobby")
 	public String getHobbyChallenges(Model model) {
 		List<ChallengeDto> challenges = challengeBiz.findbyCate("취미");
 		model.addAttribute("challenges", challenges);
 		return "main";
-}
+	}
 
 	@GetMapping("/main_workout")
 	public String getWorkoutChallenges(Model model) {
 		List<ChallengeDto> challenges = challengeBiz.findbyCate("운동");
 		model.addAttribute("challenges", challenges);
 		return "main";
-}
+	}
 
 	@GetMapping("/detail")
 	public String moveToDetail(Model model, String challengeName) {
@@ -140,4 +143,49 @@ public class ChallengeController {
 		}
 		return "error 발생";
 	}
+		
+	// 포기하기 delete 
+	@RequestMapping(value = "/deleteregist", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Boolean> deleteregist(@RequestBody String json) {
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Boolean> res = new HashMap<String, Boolean>();
+		
+		try {
+			// JSON 문자열을 Java 객체로 변환
+			Map<String, Object> map = mapper.readValue(json, new TypeReference<Map<String, Object>>() {
+			});
+			
+			// Java 객체에서 값을 추출하여 변수에 할당
+			String challengeSeq = map.get("challengeSeq").toString();
+			String userId = map.get("userId").toString();
+			// 필요한 DTO, 첼린지별 사람 준비
+			ChallengeDto currentChallenge = challengeBiz.selectOneBySeq(challengeSeq);
+			UserDto currentUser = loginBiz.findByUserId(userId);
+			
+			System.out.println("필요한 정보 로딩 완료");
+			
+			
+			
+			// 디비에 지우기 
+			if (currentChallenge.getChallengeEnabled().equals("Y")) {
+				int delRes = registeredBiz.delete(challengeSeq, Long.parseLong(userId));
+				System.out.println("controller del res: " + delRes);
+				if(delRes > 0) {
+					res.put("res", true);
+					return res;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.put("res", false);
+			return res;
+		}
+		
+		res.put("res", false);
+		return res;	}
+		
+		
+		
 }
+
+
