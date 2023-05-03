@@ -257,7 +257,8 @@
 	      userId: id
 	    };
 	    const registJson = JSON.stringify(regist);
-/* 	    alert(registJson); */
+/*	    alert(registJson); */
+
 	    $.ajax({
 	      url: '/challenge/joinuser',
 	      type : 'post',
