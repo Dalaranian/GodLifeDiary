@@ -11,5 +11,6 @@ import com.gld.model.dto.UserDto;
 public interface UserRepository extends JpaRepository<UserDto, Long> {
 
 	UserDto findByUserId(String userId);
+	
 }
 

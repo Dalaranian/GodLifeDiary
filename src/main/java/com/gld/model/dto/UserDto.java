@@ -23,9 +23,8 @@ import com.gld.model.repository.RegisteredMemberRepository;
 public class UserDto {
 
 	@Id
-	@Column(name = "ID")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long Id;
+	@Column(name = "ID",nullable = false, unique = true)
+    private Long id;
 
 	// table join (G_USER 일대다 REGISTERED_MEMBER)
 	@OneToMany(mappedBy = "userDto", fetch = FetchType.LAZY)
@@ -64,7 +63,7 @@ public class UserDto {
 	public UserDto(Long id, String userId, String userPw, String userName, int completedChallenge, String onOffNoty,
 			String userLoginType, String userPhone, Date userBirth) {
 		super();
-		this.Id = id;
+		this.id = id;
 		this.userId = userId;
 		this.userPw = userPw;
 		this.userName = userName;
@@ -76,11 +75,11 @@ public class UserDto {
 	}
 
 	public Long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(Long id) {
-		this.Id = id;
+		this.id = id;
 	}
 
 	public String getUserId() {
@@ -147,12 +146,6 @@ public class UserDto {
 		this.userBirth = userBirth;
 	}
 
-	@Override
-	public String toString() {
-		return "UserDto [id=" + Id + ", userId=" + userId + ", userPw=" + userPw + ", userName=" + userName
-				+ ", completedChallenge=" + completedChallenge + ", onOffNoty=" + onOffNoty + ", userLoginType="
-				+ userLoginType + ", userPhone=" + userPhone + ", userBirth=" + userBirth + "]";
-	}
 
 	/////////////////////
 	// join table 관련

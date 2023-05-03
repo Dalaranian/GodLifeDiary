@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gld.model.biz.ChallengeBiz;
 import com.gld.model.biz.LoginBiz;
+import com.gld.model.biz.RegisteredBiz;
 import com.gld.model.dto.ChallengeDto;
 import com.gld.model.dto.RegisteredMemberDto;
 import com.gld.model.dto.UserDto;
@@ -26,6 +27,9 @@ public class MypageController {
 	private LoginBiz loginBiz;
 	@Autowired
 	private ChallengeBiz challengeBiz;
+	@Autowired
+	private RegisteredBiz registeredBiz;
+
 
 	@GetMapping("/mypage")
 	public String moveToMypage(HttpSession session, Model model) {
@@ -36,9 +40,14 @@ public class MypageController {
 		for(RegisteredMemberDto rmDto : rms) {
 			chals.add(rmDto.getChallengeDto());
 		}
-		model.addAttribute("rms", rms); //진행 중인 챌린지 카운트 해야 하니까.. 근데 여기서는 status를 모르는데?
-		model.addAttribute("challenges", chals);
+
 		model.addAttribute("user", userDto);
+		model.addAttribute("rms", rms); //내가 참여 중인/참여한 챌린지 카운트
+		model.addAttribute("challenges", chals);
+
+		//REGISTERED_MEMBER 전체 보내기 (챌린지 별 참여 인원 카운트하려고)
+		List<RegisteredMemberDto> rmTotal = registeredBiz.selectAll();
+		model.addAttribute("rmTotal", rmTotal);
 		return "mypage";
 	}
 	

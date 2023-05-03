@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
+<link href="../resources/css/font.css" rel="stylesheet" />
 <style>
     @font-face {
     font-family: 'Pretendard-Regular';
@@ -66,10 +67,12 @@
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 7px;
+        font-size: 14px;
         cursor: pointer;
         border-radius: 5px;
         width:24%;
+        margin: 0;
+        vertical-align: middle;
     }
     .joinContent{
         width: 100%;
