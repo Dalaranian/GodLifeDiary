@@ -21,7 +21,7 @@ public interface RegisteredMemberMapper {
 	@Update(" UPDATE G_CHALLENGE SET CHALLENGE_STARTED_DATE = NOW() WHERE SEQ = #{challengeSeq };")
 	void challengeStart(String challengeSeq);
 	
-	@Delete(" DELETE FROM REGISTERED_MEMBER (ID, SEQ) VALUES (#{id}, #{challengeSeq}); ")
+	@Delete(" DELETE FROM REGISTERED_MEMBER WHERE  ID=#{id} AND SEQ= #{challengeSeq}; ")
 	int deleteRegister(String challengeSeq, Long id);
 	
 }
