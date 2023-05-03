@@ -340,14 +340,62 @@
     }
 
 </style>
+<!-- <script type="text/javascript">
+function checking() {
+    alert("오늘의 챌린지를 수행했습니까?");
+}
+function goToCommentDate(seq, id, commentDate, challengeName) {
+    window.location.href = "/challenge/ajaxComment?seq=" + seq + "&id=" + id + "&commentDate=" + commentDate + "&challengeName="+challengeName;
+}
+</script> -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript">
-    function checking() {
-        alert("오늘의 챌린지를 수행했습니까?");
-    }
-    function goToCommentDate(seq, id, commentDate, challengeName) {
-        window.location.href = "/challenge/commentdate?seq=" + seq + "&id=" + id + "&commentDate=" + commentDate + "&challengeName="+challengeName;
-    }
+
+	function goToCommentDate(seq, id, commentDate){
+
+		let commentVal = {
+			"seq" : seq,
+			"id" : id,
+			"commentDate" : commentDate
+		};
+		
+		
+		$.ajax({
+				type:"post",
+				url:"/challenge/ajaxComment",
+				data:JSON.stringify(commentVal),
+				contentType:"application/json",
+				dataType:"json",
+				success:function(res){
+					console.log(res);
+					console.log(res.comment);
+					console.log(res.list);
+					 
+					if(res.comment == null){
+						$("#today").html(commentDate);
+					}else{
+						console.log(res.comment.isDone);
+						$("#today").html(res.comment.commentDate);
+						$("#comment").html(res.comment.comment);
+						$("#profile_check").html(res.comment.isDone);
+						
+						/* for(let i=0){
+							$("#dd").html(res.list.)
+						} */
+					} 
+					
+					
+			         
+				},
+				error:function(){
+					alert("통신 실패 ");
+				}
+			});
+	
+	
+		}
 </script>
+
 </head>
 <body>
     <!-- Header -->
@@ -391,7 +439,7 @@
 								    <tr>
 								       <th><fmt:parseNumber value="${date / 7 + 1}" integerOnly="true"/>주차</th>
 								    </c:if>
-								    <td id="did"><div class="date-tooltip" data-tooltip="${startDate } " onclick="goToCommentDate(${challenge.seq}, ${user.id}, '${startDate}', '${challenge.challengeName }')"></div></td>
+								    <td id="did"><div class="date-tooltip" data-tooltip="${startDate } " onclick="goToCommentDate(${challenge.seq}, ${user.id}, '${startDate}')"></div></td>
 								    <c:set var="startDate" value="${startDate.plusDays(1)}" />
 							    	<c:if test="${date % 7 eq 6}">
 								        </tr>
@@ -416,7 +464,7 @@
         <div class="right_part">
             <div class="show_date">
                 <a id="pre_day">◀</a>
-                <p id="today">여기에 날짜표시될거임</p>
+                <p id="today">날짜를 선택해주세요 </p>
                 <a id="next_day">▶</a>
             </div>
             <div class="comment_my">
@@ -424,7 +472,7 @@
                 <div class="comment_each">
                     <div class="profile">
                         <img id="profile_img" src="./imgs/aaa.jpg" alt="img">
-                        <div id="profile_nick">nickname</div>
+                        <div id="profile_nick">${user.userId}</div>
                         <div id="profile_check"><input type="button" name="didornot" value="Check!" onclick="checking();" class="buttonDesign">&nbsp;<img id="checksign" src="./imgs/x_sign.png"></div>
                     </div>
                     <div id="commentContainer">

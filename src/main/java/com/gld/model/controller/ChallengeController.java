@@ -1,7 +1,9 @@
 package com.gld.model.controller;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -9,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gld.model.biz.ChallengeBiz;
 import com.gld.model.biz.CommentBiz;
@@ -85,19 +89,47 @@ public class ChallengeController {
       challengeBiz.insert(dto);
       return "challengeinsert_res";
    } 
-   @GetMapping("/commentdate")
-   public String commentDate(Model model,@RequestParam Integer seq, @RequestParam Integer id, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate commentDate,@RequestParam String challengeName) {
-	   CommentDto comment = commentBiz.selectComment(seq, id, commentDate);
-	   //System.out.println(seq+" "+ id+" "+commentDate);
+   @PostMapping("/ajaxComment")
+   @ResponseBody
+   public Map<String, Object> commentDate(@RequestBody CommentId commentid) {
+	   System.out.println(commentid.getSeq()+" " +commentid.getId()+" "+commentid.getCommentDate());
+	   Map<String, Object> res = new HashMap<>();
+	   
+	   
+	   CommentDto comment = commentBiz.selectComment(commentid.getSeq(), commentid.getId(), commentid.getCommentDate());
+	   List<CommentDto> list = commentBiz.selectComments(commentid.getSeq(), commentid.getCommentDate());
 	   //System.out.println(comment.getId());
+	   System.out.println(list.get(2).getComment());
+	   Map<String, CommentDto> map = new HashMap<>();
 	   
-	   model.addAttribute("comment",comment);
+	   if(comment != null) {
+		   map.put("comment", comment);
+	   }else {
+		   map.put("comment", null);
+	   }
 	   
-//	   ChallengeDto challenge = challengeBiz.selectOne(challengeName);
-//	   model.addAttribute("challenge",challenge);
+	   res.put("comment", map);
+	   res.put("list",list);
 	   
-	   return "redirect:/challenge/detail";
+	   return res;
    }
+   
+//   @PostMapping("/ajaxComment")
+//   @ResponseBody
+//   public Map<String, CommentDto> commentDate(@RequestBody Integer seq, @RequestBody Integer id, @RequestBody @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate commentDate) {
+//	   System.out.println(seq+" "+ id+" "+commentDate);
+//	   
+//	   CommentDto comment = commentBiz.selectComment(seq, id, commentDate);
+//	   
+//	   System.out.println(comment.getId());
+//	   
+//	   Map<String, CommentDto> map = new HashMap<>();
+//	   map.put("comment", comment);
+//	   
+//	  
+//	   
+//	   return map;
+//   }
    
    
    
