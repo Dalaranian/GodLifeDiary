@@ -164,7 +164,7 @@
 	<!-- ------------------------------------------메인------------------------------------------------- -->
 	<div class="list_wrap">
 		<div class="sec-main">
-			<h1 class="pb-2">${cate }챌린지</h1>
+			<h1 class="pb-2">${cate } 챌린지</h1>
 			<h2 class="pb-2 border-bottom colorGrey">참여가능한 챌린지</h2>
 			<ul class="each-category">
 				<c:choose>
@@ -179,16 +179,16 @@
 										<strong id="c_name">${challenge.challengeName }</strong>
 										<p id="c_info">${challenge.challengeInfo }</p>
 										<p id="c_members">
+											<c:set var="cnt" value="0"></c:set>
 											<c:forEach items="${rmTotal}" var="rm">
 												<c:if test="${challenge.seq eq rm.seq }">
 													<c:set var="cnt" value="${cnt+1 }"></c:set>
 												</c:if>
 											</c:forEach>
 											<c:out value="${cnt }"></c:out>
-											<c:set var="cnt" value="0"></c:set>
 										</p>
 										<p id="c_maxmember">/ ${challenge.challengeMaxMember }명</p>
-										<p id="c_duration">${challenge.challengeDuration }주코스</p>
+										<p id="c_duration">${challenge.challengeDuration }주 코스</p>
 										<div id="c_joinBtn">
 											<a href="#"
 												onclick="join('${challenge.seq }', '${user.userId }')">참여하기

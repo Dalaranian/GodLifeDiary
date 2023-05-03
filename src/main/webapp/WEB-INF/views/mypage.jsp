@@ -202,6 +202,21 @@
 	background-color: white;
 	font-size: 14px;
 }
+a {
+	letter-spacing: -1px;
+	text-decoration: none;
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+}
+a:hover {
+	text-decoration: none;
+}
+#c_detail:hover #c_delete:hover {
+	font-weight: bold;
+	box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.3);
+}
+
 </style>
 </head>
 <body>
@@ -318,20 +333,17 @@
 			<li class="nav-item" role="presentation">
 				<button class="nav-link active" id="home-tab" data-bs-toggle="tab"
 					data-bs-target="#home-tab-pane" type="button" role="tab"
-					aria-controls="home-tab-pane" aria-selected="true">진행중인
-					챌린지</button>
+					aria-controls="home-tab-pane" aria-selected="true">진행중인 챌린지</button>
 			</li>
 			<li class="nav-item" role="presentation">
 				<button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab"
 					data-bs-target="#nav-contact" type="button" role="tab"
-					aria-controls="nav-contact" aria-selected="false">대기 중인
-					챌린지</button>
+					aria-controls="nav-contact" aria-selected="false">대기 중인 챌린지</button>
 			</li>
 			<li class="nav-item" role="presentation">
 				<button class="nav-link" id="profile-tab" data-bs-toggle="tab"
 					data-bs-target="#profile-tab-pane" type="button" role="tab"
-					aria-controls="profile-tab-pane" aria-selected="false">완료된
-					챌린지</button>
+					aria-controls="profile-tab-pane" aria-selected="false">완료된	챌린지</button>
 			</li>
 		</ul>
 		<div class="tab-content">

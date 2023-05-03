@@ -12,8 +12,12 @@
 						alert("${message}");
 						</script>
 </c:if>
-
+<link href="../resources/css/font.css" rel="stylesheet" />
 <style type="text/css">
+a {
+	text-decoration: none;
+	color: grey;
+}
 .signup1 {
 	width: 500px;
 	height: 500px;
@@ -123,7 +127,7 @@ li {
 	<div class="signup1">
 		<div class="signup2">
 			<div class="signup_header">
-				<span id="signin">Sign in</span>
+				<span id="signin">로그인</span>
 				<button type="button" value="취소" id="cnxlButton"
 					onclick="history.back()">X</button>
 			</div>
@@ -137,7 +141,7 @@ li {
 						<label for="floatingPw">Password</label> <input type="password"
 							id="floatingPw" name="userPw">
 					</div>
-					<button id="submitButton" type="submit">Sign in</button>
+					<button id="submitButton" type="submit">로그인하기</button>
 					<%
 					if (request.getAttribute("error") != null) {
 					%>
@@ -148,8 +152,8 @@ li {
 					}
 					%>
 					<ul>
-						<li><a href="/login/join">회원가입</a></li>&nbsp;
-						<li><a href="/login/find">아이디 찾기</a></li>&nbsp;
+						<li><a href="/login/join">회원가입</a></li>&nbsp;| 
+						<li><a href="/login/find">아이디 찾기</a></li>&nbsp;| 
 						<li><a href="/login/find">비밀번호 찾기</a></li>
 					</ul>
 					<hr>
