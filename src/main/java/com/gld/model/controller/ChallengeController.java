@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gld.model.biz.ChallengeBiz;
 import com.gld.model.biz.LoginBiz;
@@ -140,4 +142,45 @@ public class ChallengeController {
 		}
 		return "error 발생";
 	}
+		
+	// 포기하기 delete 
+	@RequestMapping(value = "/deleteregist", method = RequestMethod.POST)
+	public @ResponseBody String deleteregist(@RequestBody String json) {
+		ObjectMapper mapper = new ObjectMapper();
+				
+		try {
+			// JSON 문자열을 Java 객체로 변환
+			Map<String, Object> map = mapper.readValue(json, new TypeReference<Map<String, Object>>() {
+			});
+			
+			// Java 객체에서 값을 추출하여 변수에 할당
+			String challengeSeq = map.get("challengeSeq").toString();
+			String userId = map.get("userId").toString();
+			
+			// 필요한 DTO, 첼린지별 사람 준비
+			ChallengeDto currentChallenge = challengeBiz.selectOneBySeq(challengeSeq);
+			UserDto currentUser = loginBiz.findByUserId(userId);
+			System.out.println();				
+			int currentMember = registeredBiz.coutBySeq(challengeSeq);
+			
+			System.out.println("필요한 정보 로딩 완료");
+			
+			// 디비에 지우기 
+			if (currentChallenge.getChallengeEnabled().equals("Y")) {
+				int res = registeredBiz.delete(challengeSeq, currentUser.getId());
+				if(res > 0) {
+					return currentChallenge.getChallengeName() + " 삭제됐어용 ";
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "삭제실패용 " ;
+		}
+		return "error 발생";
+	}
+		
+		
+		
 }
+
+
