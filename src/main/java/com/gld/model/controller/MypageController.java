@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gld.model.biz.ChallengeBiz;
@@ -40,7 +41,17 @@ public class MypageController {
 		model.addAttribute("user", userDto);
 		return "mypage";
 	}
-
-
+	
+	@GetMapping("/gotopwchange")
+	public String gotoPwChange() {
+		return "changepersonalinfo";
+	}
+	
+	@PostMapping("/changePw")
+	public String changePw(HttpSession session, String PW) {
+		UserDto user = (UserDto) session.getAttribute("user");
+		System.out.println(user.toString());
+		return null;
+	}
 
 }
