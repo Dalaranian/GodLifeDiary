@@ -47,11 +47,14 @@ public class MypageController {
 		return "changepersonalinfo";
 	}
 	
-	@PostMapping("/changePw")
-	public String changePw(HttpSession session, String PW) {
+	@PostMapping("/changepw")
+	public String changePw(HttpSession session, String userPw) {
 		UserDto user = (UserDto) session.getAttribute("user");
-		System.out.println(user.toString());
-		return null;
+		
+		int res = loginBiz.changePw(user, userPw);
+		
+		session.removeAttribute("user");
+		return "loginform";
 	}
 
 }

@@ -276,49 +276,19 @@ button[type="submit"] {
 	<br>
 	<br>
 	<div class="center-box">
-		<h1>회원가입</h1>
+		<h1>비밀번호 변경</h1>
 		<div class="joinForm">
-			<form action="/login/joincheck" method="post">
-				<input type="hidden" name="onOffNoty" value="Y"> <input
-					type="hidden" name="userLoginType" value="G">
+			<form action="/mypage/changepw" method="post">
+				<input type="hidden" name="userId" value="${user.userId }">
 				<div class="joinContent">
-					<label for="id">아이디</label> <input type="text" id="id"
-						name="userId"><br>
+					<label for="password">비밀번호</label> 
+					<input type="password"id="password" name="userPw"><br>
 				</div>
-
 				<div class="joinContent">
-					<label for="password">비밀번호</label> <input type="password"
-						id="password" name="userPw"><br>
+					<label for="password">비밀번호 확인</label> 
+					<input type="passworr" id="passwordCheck"><br>
 				</div>
-
-				<div class="joinContent">
-					<label for="password_confirm">비밀번호 재확인</label> <input
-						type="password" id="password_confirm" name="password_confirm"><br>
-				</div>
-
-				<div class="joinContent">
-					<label for="name">이름</label> <input type="text" id="name"
-						name="userName"><br>
-				</div>
-
-				<div class="joinContent">
-					<label for="birthdate">생년월일</label> <input type="date"
-						id="birthdate" name="userBirth"><br>
-				</div>
-
-				<div class="joinContent">
-					<label for="phone">전화번호</label> <input type="tel" id="phone"
-						name="userPhone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
-					<button type="button" id="get_verification_code">인증번호 받기</button>
-					<br>
-				</div>
-
-				<div class="joinContent">
-					<label for="verification_code">인증번호</label> <input type="text"
-						id="verification_code" name="verification_code"><br>
-				</div>
-
-				<button type="submit">가입하기</button>
+				<button type="submit">변경하기</button>
 			</form>
 		</div>
 	</div>
