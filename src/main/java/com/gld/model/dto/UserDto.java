@@ -18,49 +18,47 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.gld.model.repository.RegisteredMemberRepository;
 
-
 @Entity
 @Table(name = "G_USER")
 public class UserDto {
-	
+
 	@Id
 	@Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+	private Long Id;
 
-	//table join (G_USER 일대다 REGISTERED_MEMBER)
-	@OneToMany(mappedBy = "userDto", fetch=FetchType.LAZY)
+	// table join (G_USER 일대다 REGISTERED_MEMBER)
+	@OneToMany(mappedBy = "userDto", fetch = FetchType.LAZY)
 	private List<RegisteredMemberDto> list = new ArrayList<>();
 	//
-	
-    @Column(name = "USER_ID",nullable = false, unique = true)
-    private String userId;
 
-    @Column(name = "USER_PW",nullable = false)
-    private String userPw;
-    
-    @Column(name = "USER_NAME",nullable = false)
+	@Column(name = "USER_ID", nullable = false, unique = true)
+	private String userId;
+
+	@Column(name = "USER_PW", nullable = false)
+	private String userPw;
+
+	@Column(name = "USER_NAME", nullable = false)
 	private String userName;
-    
-    @Column(name = "COMPLETED_CHALLENGE",nullable = false)
+
+	@Column(name = "COMPLETED_CHALLENGE", nullable = false)
 	private int completedChallenge;
-    
-    @Column(name = "ONOFF_NOTY",nullable = false)
+
+	@Column(name = "ONOFF_NOTY", nullable = false)
 	private String onOffNoty;
-    
-    @Column(name = "USER_LOGINTYPE",nullable = false)
+
+	@Column(name = "USER_LOGINTYPE", nullable = false)
 	private String userLoginType;
-    
-    @Column(name = "USER_PHONE",nullable = false)
+
+	@Column(name = "USER_PHONE", nullable = false)
 	private String userPhone;
-    
-    @Column(name = "USER_BIRTH",nullable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+
+	@Column(name = "USER_BIRTH", nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date userBirth;
 
 	public UserDto() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public UserDto(String userId, String userPw, String userName, int completedChallenge, String onOffNoty,
@@ -75,7 +73,7 @@ public class UserDto {
 		this.userPhone = userPhone;
 		this.userBirth = userBirth;
 	}
-	
+
 	public String getUserId() {
 		return userId;
 	}
@@ -148,14 +146,13 @@ public class UserDto {
 	}
 
 	/////////////////////
-	//join table 관련
+	// join table 관련
 	public List<RegisteredMemberDto> getList() {
 		return list;
 	}
+
 	public void setList(List<RegisteredMemberDto> list) {
 		this.list = list;
 	}
-	
-	
 
 }

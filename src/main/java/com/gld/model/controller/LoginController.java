@@ -20,52 +20,52 @@ import com.gld.model.repository.UserRepository;
 @Controller
 @RequestMapping("/login")
 public class LoginController {
-	
-    @Autowired
-    private LoginBiz loginBiz;
-    
-    @GetMapping("/login")
+
+	@Autowired
+	private LoginBiz loginBiz;
+
+	@GetMapping("/login")
 	public String moveToLogin() {
 		System.out.println("go to loginform");
 		return "loginform";
 	}
-    
-    @GetMapping("/join")
+
+	@GetMapping("/join")
 	public String moveToJoin() {
 		System.out.println("go to joinform");
 		return "joinform";
 	}
-    
-    @GetMapping("/find")
+
+	@GetMapping("/find")
 	public String moveToFind() {
 		System.out.println("go to findform");
 		return "findform";
 	}
 
-    
-    @PostMapping("/logincheck")
-    public String login(String userId, String userPw, HttpSession session,Model model) {
-    	 UserDto user = loginBiz.findByUserId(userId);
-    	 
-    	 if (user != null && user.getUserPw().equals(userPw)) {
-             session.setAttribute("user", user);
-             return "redirect:/challenge/main";
-         } else {
-             model.addAttribute("error", "아이디 또는 비밀번호가 일치하지 않습니다.");
-             return "loginform";
-         }
-    }
-    
-    @PostMapping("/joincheck")
-    public String join(UserDto dto, RedirectAttributes redirectAttributes) {
-    	loginBiz.insert(dto);
-    	redirectAttributes.addFlashAttribute("message","회원가입이 완료되었습니다. 로그인 해주세요.");
-    	return "redirect:/login/login";
-    }
 
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-        session.removeAttribute("user");
-        return "redirect:/";
-    }
+	@PostMapping("/logincheck")
+	public String login(String userId, String userPw, HttpSession session,Model model) {
+		UserDto user = loginBiz.findByUserId(userId);
+
+		if (user != null && user.getUserPw().equals(userPw)) {
+			session.setAttribute("user", user);
+			return "redirect:/challenge/main";
+		} else {
+			model.addAttribute("error", "아이디 또는 비밀번호가 일치하지 않습니다.");
+			return "loginform";
+		}
+	}
+
+	@PostMapping("/joincheck")
+	public String join(UserDto dto, RedirectAttributes redirectAttributes) {
+		loginBiz.insert(dto);
+		redirectAttributes.addFlashAttribute("message","회원가입이 완료되었습니다. 로그인 해주세요.");
+		return "redirect:/login/login";
+	}
+
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("user");
+		return "redirect:/";
+	}
 }

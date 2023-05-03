@@ -14,22 +14,22 @@ import com.gld.model.dto.UserDto;
 @Controller
 @RequestMapping("/index")
 public class IndexController {
-	
+
 	@Autowired
 	LoginBiz loginBiz;
-/*
+	/*
 	@GetMapping("/main")
 	public String moveToMain() {
 		System.out.println("go to main");
 		return "main";
 	}*/
-	
+
 	@GetMapping("/index")
 	public String goToIndex() {
 		return "index";
 	}
-	
-	
+
+
 	@GetMapping("/kakao_login")
 	public String kakaloLoging() {
 		return "kakao_login";
