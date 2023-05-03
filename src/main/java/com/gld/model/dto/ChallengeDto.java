@@ -1,12 +1,15 @@
 package com.gld.model.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PostLoad;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
@@ -24,6 +27,11 @@ public class ChallengeDto implements Persistable<Long> {
    @Column(name = "SEQ",nullable = false)
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long seq;
+   
+	//table join (G_CHALLENGE 일대다 REGISTERED_MEMBER)
+	@OneToMany(mappedBy = "challengeDto")
+	private List<RegisteredMemberDto> list = new ArrayList<>();
+
     
    @Column(name = "CHALLENGE_NAME", nullable = false)
    private String challengeName;
@@ -145,15 +153,11 @@ public Long getSeq() {
 		this.challengeStartedDate = challengeStartedDate;
 	}
   
-
+   //challenge insert할 때 쓴 기능들..
    @Override
    public Long getId() {
       return this.seq;
    }
-
-   
-
-
 
    @Transient
    private boolean isNew = true;
@@ -168,7 +172,16 @@ public Long getSeq() {
    void markNotNew() {
       this.isNew = false;
    }
-   
+   /////////////////////////////////////
+
+
+    //table join 관련
+	public List<RegisteredMemberDto> getList() {
+		return list;
+	}
+	public void setList(List<RegisteredMemberDto> list) {
+		this.list = list;
+	}
    
 
 }

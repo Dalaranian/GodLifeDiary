@@ -1,15 +1,16 @@
 package com.gld.model.biz;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gld.model.dto.ChallengeDto;
 import com.gld.model.repository.ChallengeRepository;
 
 @Service
+@Transactional
 public class ChallengeBiz {
    
    @Autowired

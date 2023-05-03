@@ -10,6 +10,7 @@ import com.gld.model.dto.UserDto;
 import com.gld.model.repository.UserRepository;
 
 @Service
+@Transactional
 public class LoginBiz {
 
 	@Autowired

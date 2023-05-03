@@ -1,23 +1,38 @@
 package com.gld.model.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.gld.model.repository.RegisteredMemberRepository;
+
 
 @Entity
 @Table(name = "G_USER")
 public class UserDto {
+	
 	@Id
+	@Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
+	//table join (G_USER 일대다 REGISTERED_MEMBER)
+	@OneToMany(mappedBy = "userDto", fetch=FetchType.LAZY)
+	private List<RegisteredMemberDto> list = new ArrayList<>();
+	//
+	
     @Column(name = "USER_ID",nullable = false, unique = true)
     private String userId;
 
@@ -60,7 +75,7 @@ public class UserDto {
 		this.userPhone = userPhone;
 		this.userBirth = userBirth;
 	}
-
+	
 	public String getUserId() {
 		return userId;
 	}
@@ -131,5 +146,16 @@ public class UserDto {
 				+ completedChallenge + ", onOffNoty=" + onOffNoty + ", userLoginType=" + userLoginType + ", userPhone="
 				+ userPhone + ", userBirth=" + userBirth + "]";
 	}
+
+	/////////////////////
+	//join table 관련
+	public List<RegisteredMemberDto> getList() {
+		return list;
+	}
+	public void setList(List<RegisteredMemberDto> list) {
+		this.list = list;
+	}
+	
+	
 
 }
