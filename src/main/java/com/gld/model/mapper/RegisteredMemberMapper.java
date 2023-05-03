@@ -17,7 +17,7 @@ public interface RegisteredMemberMapper {
 	int insertRegister(String challengeSeq, Long id);
 
 	// CHALLENGE 의 MAX 맴버가 찼을 떄, 챌린지를 시작하는 매퍼
-	@Update(" UPDATE G_CHALLENGE SET CHALLENGE_ENABLED = 'I', CHALLENGE_STARTED_DATE = NOW() WHERE SEQ = #{challengeSeq }; ")
+	@Update(" UPDATE G_CHALLENGE SET CHALLENGE_ENABLED = 'N', CHALLENGE_STARTED_DATE = NOW() WHERE SEQ = #{challengeSeq }; ")
 	void challengeStart(String challengeSeq);
 
 }
