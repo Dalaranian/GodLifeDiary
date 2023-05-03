@@ -11,30 +11,30 @@ import com.gld.model.repository.ChallengeRepository;
 
 @Service
 public class ChallengeBiz {
-   
-   @Autowired
-   private ChallengeRepository challengeRepository;
-   
-   public void insert(ChallengeDto dto) {
-      
-      challengeRepository.save(dto);
-   }
-   
-   public List<ChallengeDto> selectAll() {
-       
-       return challengeRepository.findAll();
-   }
-   
-   public ChallengeDto selectOne(String ChallengeName) {
-      return challengeRepository.findByChallengeName(ChallengeName);
-   }
-   
-   public ChallengeDto selectOneBySeq(String seq) {
-	   return challengeRepository.findBySeq(Long.parseLong(seq));
-   }
-   
-   public List<ChallengeDto> findbyCate(String ChallengeCategory) {
-       return challengeRepository.findByChallengeCategory(ChallengeCategory);
-   }
+
+	@Autowired
+	private ChallengeRepository challengeRepository;
+
+	public void insert(ChallengeDto dto) {
+
+		challengeRepository.save(dto);
+	}
+
+	public List<ChallengeDto> selectAll() {
+
+		return challengeRepository.findAll();
+	}
+
+	public ChallengeDto selectOne(String ChallengeName) {
+		return challengeRepository.findByChallengeName(ChallengeName);
+	}
+
+	public ChallengeDto selectOneBySeq(String seq) {
+		return challengeRepository.findBySeq(Long.parseLong(seq));
+	}
+
+	public List<ChallengeDto> findbyCate(String ChallengeCategory) {
+		return challengeRepository.findByChallengeCategory(ChallengeCategory);
+	}
 
 }

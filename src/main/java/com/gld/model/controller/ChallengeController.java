@@ -30,9 +30,9 @@ public class ChallengeController {
 
 	@Autowired
 	private RegisteredBiz registeredBiz;
-	
+
 	@Autowired
-    private LoginBiz loginBiz;
+	private LoginBiz loginBiz;
 
 	@GetMapping("/main")
 	public String getAllChallenges(Model model) {
@@ -89,7 +89,7 @@ public class ChallengeController {
 		challengeBiz.insert(dto);
 		return "challengeinsert_res";
 	}
-	
+
 	// 참여하기 버튼 눌렀을때 로직
 	@RequestMapping(value = "/joinuser", method = RequestMethod.POST)
 	public @ResponseBody String joinUser(@RequestBody String json) {
@@ -102,26 +102,35 @@ public class ChallengeController {
 			// Java 객체에서 값을 추출하여 변수에 할당
 			String challengeSeq = map.get("challengeSeq").toString();
 			String userId = map.get("userId").toString();
-			
+
 			// 필요한 DTO, 첼린지별 사람 준비
 			ChallengeDto currentChallenge = challengeBiz.selectOneBySeq(challengeSeq);
 			UserDto currentUser = loginBiz.findByUserId(userId);
-			System.out.println();
 			int currentMember = registeredBiz.coutBySeq(challengeSeq);
 			
-			System.out.println("필요한 정보 로딩 완료");
-			
-			//비교 후 디비에 넣기
+			System.out.println("필요한 정보 로딩 완료\n" + currentChallenge + "\n" + currentUser + "\n" + currentMember);
+
+			// 비교 후 디비에 넣기
 			if (currentChallenge.getChallengeEnabled().equals("Y")
 					&& currentMember < currentChallenge.getChallengeMaxMember()) {
 				int res = registeredBiz.insert(challengeSeq, currentUser.getId());
-				if(res > 0) {
+				System.out.println("controller insert res: " + res);
+				
+				// 디비 반영 후 맥스맴버와 커랜트 맴버 비교하기
+				int member = registeredBiz.coutBySeq(challengeSeq);
+				// 비교 후 둘이 같으면 첼린지 시작
+				if(currentChallenge.getChallengeMaxMember() <= member) {
+					System.out.println("넘아갔다. \n" + member + "\n" + currentChallenge.getChallengeMaxMember());
+					registeredBiz.challengeStart(challengeSeq);
+				}
+				
+				if (res > 0) {
 					return currentChallenge.getChallengeName() + " 에 참여하였습니다. ";
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "참여에 실패하였습니다. 다시 시도해주세요 " ;// 클라이언트로 반환할 데이터
+			return "참여에 실패하였습니다. 다시 시도해주세요 ";// 클라이언트로 반환할 데이터
 		}
 		return "error 발생";
 	}

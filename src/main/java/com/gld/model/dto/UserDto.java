@@ -132,4 +132,11 @@ public class UserDto {
 		this.userBirth = userBirth;
 	}
 
+	@Override
+	public String toString() {
+		return "UserDto [id=" + id + ", userId=" + userId + ", userPw=" + userPw + ", userName=" + userName
+				+ ", completedChallenge=" + completedChallenge + ", onOffNoty=" + onOffNoty + ", userLoginType="
+				+ userLoginType + ", userPhone=" + userPhone + ", userBirth=" + userBirth + "]";
+	}
+
 }

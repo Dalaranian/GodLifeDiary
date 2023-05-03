@@ -231,7 +231,7 @@
 
 										<div id="c_joinBtn">
 											<a href="#"
-												onclick="join(${challenge.seq }, ${user.userId })">참여하기
+												onclick="join('${challenge.seq }', '${user.userId }')">참여하기
 											</a>
 										</div>
 									</div>
@@ -295,9 +295,9 @@
 	      type : 'post',
 	      data: registJson,
 	      contentType: 'application/json; charset=utf-8',
-	      dataType: 'json',
+/* 	      dataType: 'json', */
 	      success: function(res) {
-	        alert("res");
+	        alert(res);
 	      },
 	      error: function(error) {
 	        alert("error");

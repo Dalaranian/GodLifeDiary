@@ -15,9 +15,21 @@ public class RegisteredBiz {
 		return mapper.countBySeq(seq);
 	}
 
-	@Transactional
+//	@Transactional
+//	public int insert(String challengeSeq, Long id) {
+//		// TODO Auto-generated method stub
+//		return mapper.insertRegister(challengeSeq, id);
+//	}
+	
 	public int insert(String challengeSeq, Long id) {
 		// TODO Auto-generated method stub
-		return mapper.insertRegister(challengeSeq, id);
+		int res = mapper.insertRegister(challengeSeq, id);
+		System.out.println("biz insert res: " + res);
+		return res;
+	}
+
+	public void challengeStart(String challengeSeq) {
+		// TODO Auto-generated method stub
+		mapper.challengeStart(challengeSeq);
 	}
 }
