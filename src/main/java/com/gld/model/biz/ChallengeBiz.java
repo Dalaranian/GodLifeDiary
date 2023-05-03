@@ -1,16 +1,18 @@
 package com.gld.model.biz;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gld.model.dto.ChallengeDto;
 import com.gld.model.repository.ChallengeRepository;
 
 @Service
+@Transactional
 public class ChallengeBiz {
+
 
 	@Autowired
 	private ChallengeRepository challengeRepository;
@@ -29,12 +31,6 @@ public class ChallengeBiz {
 		return challengeRepository.findByChallengeName(ChallengeName);
 	}
 
-	public ChallengeDto selectOneBySeq(String seq) {
-		return challengeRepository.findBySeq(Long.parseLong(seq));
-	}
-
 	public List<ChallengeDto> findbyCate(String ChallengeCategory) {
 		return challengeRepository.findByChallengeCategory(ChallengeCategory);
 	}
-
-}
