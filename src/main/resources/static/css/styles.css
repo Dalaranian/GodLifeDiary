@@ -11762,6 +11762,12 @@ textarea.form-control-lg {
 	position: absolute;
 	left: 400px;
 }
+#nav-logout {
+	width: 100px;
+	text-align: center;
+	position: absolute;
+	right: 130px;
+}
 #nav-mypage {
 	width: 100px;
 	text-align: center;

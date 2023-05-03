@@ -11,58 +11,6 @@
 <link href="../resources/css/styles.css" rel="stylesheet" />
 <link href="../resources/css/font.css" rel="stylesheet" />
 <style>
-/*------------------------------------------navbar-------------------------------------------------*/
-.navbar {
-	position: relative;
-	width: 100%;
-	height: 60px;
-}
-
-#nav-total {
-	width: 100%;
-	height: 40px;
-	position: absolute;
-}
-
-#nav-title {
-	margin-left: 30px;
-	position: absolute;
-	left: 0;
-}
-
-#nav-category {
-	width: 120px;
-	text-align: center;
-	position: absolute;
-	left: 120px;
-}
-
-#nav-insertChallenge {
-	width: 150px;
-	text-align: center;
-	position: absolute;
-	left: 240px;
-}
-
-#nav-search {
-	width: 300px;
-	position: absolute;
-	left: 400px;
-}
-
-#nav-mypage {
-	width: 100px;
-	text-align: center;
-	position: absolute;
-	right: 130px;
-}
-
-#nav-logout {
-	width: 100px;
-	text-align: center;
-	position: absolute;
-	right: 30px;
-}
 /*------------------------------------------메인-------------------------------------------------*/
 .list_wrap {
 	width: 90%;
@@ -194,7 +142,6 @@
 					<input class="form-control" type="search" placeholder="Search">
 				</form>
 			</li>
-			<li id="nav-mypage"><a class="nav-link" href="../mypage/mypage">마이페이지</a></li>
 			<c:choose>
 				<c:when test="${empty user }">
 					<li id="nav-logout"><a class="nav-link" href="../login/login">login</a></li>
@@ -203,6 +150,7 @@
 					<li id="nav-logout"><a class="nav-link" href="../login/logout">logout</a></li>
 				</c:otherwise>
 			</c:choose>
+			<li id="nav-mypage"><a class="nav-link" href="../mypage/mypage">마이페이지</a></li>
 		</ul>
 	</nav>
 	<br>
