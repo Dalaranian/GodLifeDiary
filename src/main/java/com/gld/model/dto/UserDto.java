@@ -4,8 +4,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,32 +13,32 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "G_USER")
 public class UserDto {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+	@Column(name = "ID", nullable = false, unique = true)
+	private Long id;
 
-    @Column(name = "USER_ID",nullable = false, unique = true)
-    private String userId;
+	@Column(name = "USER_ID", nullable = false, unique = true)
+	private String userId;
 
-    @Column(name = "USER_PW",nullable = false)
-    private String userPw;
-    
-    @Column(name = "USER_NAME",nullable = false)
+	@Column(name = "USER_PW", nullable = false)
+	private String userPw;
+
+	@Column(name = "USER_NAME", nullable = false)
 	private String userName;
-    
-    @Column(name = "COMPLETED_CHALLENGE",nullable = false)
+
+	@Column(name = "COMPLETED_CHALLENGE", nullable = false)
 	private int completedChallenge;
-    
-    @Column(name = "ONOFF_NOTY",nullable = false)
+
+	@Column(name = "ONOFF_NOTY", nullable = false)
 	private String onOffNoty;
-    
-    @Column(name = "USER_LOGINTYPE",nullable = false)
+
+	@Column(name = "USER_LOGINTYPE", nullable = false)
 	private String userLoginType;
-    
-    @Column(name = "USER_PHONE",nullable = false)
+
+	@Column(name = "USER_PHONE", nullable = false)
 	private String userPhone;
-    
-    @Column(name = "USER_BIRTH",nullable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+
+	@Column(name = "USER_BIRTH", nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date userBirth;
 
 	public UserDto() {
@@ -48,9 +46,10 @@ public class UserDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public UserDto(String userId, String userPw, String userName, int completedChallenge, String onOffNoty,
+	public UserDto(Long id, String userId, String userPw, String userName, int completedChallenge, String onOffNoty,
 			String userLoginType, String userPhone, Date userBirth) {
 		super();
+		this.id = id;
 		this.userId = userId;
 		this.userPw = userPw;
 		this.userName = userName;
@@ -59,6 +58,14 @@ public class UserDto {
 		this.userLoginType = userLoginType;
 		this.userPhone = userPhone;
 		this.userBirth = userBirth;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getUserId() {
@@ -123,17 +130,6 @@ public class UserDto {
 
 	public void setUserBirth(Date userBirth) {
 		this.userBirth = userBirth;
-	}
-
-	@Override
-	public String toString() {
-		return "UserDto [userId=" + userId + ", userPw=" + userPw + ", userName=" + userName + ", completedChallenge="
-				+ completedChallenge + ", onOffNoty=" + onOffNoty + ", userLoginType=" + userLoginType + ", userPhone="
-				+ userPhone + ", userBirth=" + userBirth + "]";
-	}
-
-	public Long getId() {
-		return Id;
 	}
 
 }
