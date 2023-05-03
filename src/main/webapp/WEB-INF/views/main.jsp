@@ -210,7 +210,15 @@
 	<!-- ------------------------------------------메인------------------------------------------------- -->
 	<div class="list_wrap">
 		<div class="sec-main">
-			<h1 class="pb-2">전체 챌린지</h1>
+			<c:choose >
+				<c:when test="${empty cateList }">
+					<h1 class="pb-2">${challenges.get(0).challengeCategory} 챌린지</h1>
+				</c:when>
+				<c:otherwise>
+					<h1 class="pb-2">전체 챌린지</h1>
+				</c:otherwise>
+			</c:choose>
+			
 			<h2 class="pb-2 border-bottom colorGrey">참여가능한 챌린지</h2>
 			<ul class="each-category">
 				<c:choose>

@@ -44,6 +44,7 @@ public class ChallengeController {
 		List<ChallengeDto> challenges = challengeBiz.selectAll();
 		// 조회된 엔티티들을 모델에 담아서 뷰로 전달
 		model.addAttribute("challenges", challenges);
+		model.addAttribute("cateList","전체");
 		return "main";
 
 	}
