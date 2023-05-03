@@ -112,26 +112,5 @@ public class ChallengeController {
 	   res.put("list",list);
 	   
 	   return res;
-   }
-   
-//   @PostMapping("/ajaxComment")
-//   @ResponseBody
-//   public Map<String, CommentDto> commentDate(@RequestBody Integer seq, @RequestBody Integer id, @RequestBody @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate commentDate) {
-//	   System.out.println(seq+" "+ id+" "+commentDate);
-//	   
-//	   CommentDto comment = commentBiz.selectComment(seq, id, commentDate);
-//	   
-//	   System.out.println(comment.getId());
-//	   
-//	   Map<String, CommentDto> map = new HashMap<>();
-//	   map.put("comment", comment);
-//	   
-//	  
-//	   
-//	   return map;
-//   }
-   
-   
-   
-     
+   }    
 }

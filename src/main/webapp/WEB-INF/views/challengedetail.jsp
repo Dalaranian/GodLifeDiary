@@ -344,13 +344,11 @@
 function checking() {
     alert("오늘의 챌린지를 수행했습니까?");
 }
-function goToCommentDate(seq, id, commentDate, challengeName) {
-    window.location.href = "/challenge/ajaxComment?seq=" + seq + "&id=" + id + "&commentDate=" + commentDate + "&challengeName="+challengeName;
-}
+
 </script> -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript">
-
+	
 	function goToCommentDate(seq, id, commentDate){
 
 		let commentVal = {
@@ -374,14 +372,18 @@ function goToCommentDate(seq, id, commentDate, challengeName) {
 					if(res.comment == null){
 						$("#today").html(commentDate);
 					}else{
-						console.log(res.comment.isDone);
-						$("#today").html(res.comment.commentDate);
-						$("#comment").html(res.comment.comment);
-						$("#profile_check").html(res.comment.isDone);
+						console.log(res);
+						console.log(res.list[0].id);
+						console.log(res.comment.comment.isDone);
+						$("#today").html(res.comment.comment.commentDate);
+						$("#comment").html(res.comment.comment.comment);
+						$("#profile_check").html(res.comment.comment.isDone);
+						$("#profile_nick").html(res.list[0].id);
+						$(".comment_others #profile_nick").html(res.list[1].id);
 						
-						/* for(let i=0){
-							$("#dd").html(res.list.)
-						} */
+						/* for(let i=0 i<res.list.length() i++){
+							$(".comment_others").append('<div id="profile_nick">res.list[i].id</div>'); 
+						}    */
 					} 
 					
 					
