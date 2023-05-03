@@ -11,6 +11,58 @@
 <link href="../resources/css/styles.css" rel="stylesheet" />
 <link href="../resources/css/font.css" rel="stylesheet" />
 <style>
+/*------------------------------------------navbar-------------------------------------------------*/
+.navbar {
+	position: relative;
+	width: 100%;
+	height: 60px;
+}
+
+#nav-total {
+	width: 100%;
+	height: 40px;
+	position: absolute;
+}
+
+#nav-title {
+	margin-left: 30px;
+	position: absolute;
+	left: 0;
+}
+
+#nav-category {
+	width: 120px;
+	text-align: center;
+	position: absolute;
+	left: 120px;
+}
+
+#nav-insertChallenge {
+	width: 150px;
+	text-align: center;
+	position: absolute;
+	left: 240px;
+}
+
+#nav-search {
+	width: 300px;
+	position: absolute;
+	left: 400px;
+}
+
+#nav-mypage {
+	width: 100px;
+	text-align: center;
+	position: absolute;
+	right: 130px;
+}
+
+#nav-logout {
+	width: 100px;
+	text-align: center;
+	position: absolute;
+	right: 30px;
+}
 /*------------------------------------------메인-------------------------------------------------*/
 .list_wrap {
 	width: 90%;
@@ -142,6 +194,7 @@
 					<input class="form-control" type="search" placeholder="Search">
 				</form>
 			</li>
+			<li id="nav-mypage"><a class="nav-link" href="../mypage/mypage">마이페이지</a></li>
 			<c:choose>
 				<c:when test="${empty user }">
 					<li id="nav-logout"><a class="nav-link" href="../login/login">login</a></li>
@@ -150,7 +203,6 @@
 					<li id="nav-logout"><a class="nav-link" href="../login/logout">logout</a></li>
 				</c:otherwise>
 			</c:choose>
-			<li id="nav-mypage"><a class="nav-link" href="../mypage/mypage">마이페이지</a></li>
 		</ul>
 	</nav>
 	<br>
@@ -175,8 +227,12 @@
 										<p id="c_maxmember">${challenge.challengeMaxMember }명(인원
 											표기 필요할까)</p>
 										<p id="c_duration">${challenge.challengeDuration }주코스</p>
+
+
 										<div id="c_joinBtn">
-											<a href="../mypage/insert?$   ">참여하기</a>
+											<a href="#"
+												onclick="join('${challenge.seq }', '${user.userId }')">참여하기
+											</a>
 										</div>
 									</div>
 								</li>
@@ -224,5 +280,31 @@
 	<!--  지우면 카테고리 드롭다운 예쁘게 할 수 없음 -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<!--jquery -->
+	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript">
+	  function join(seq, id) {
+	    let regist = {
+	      challengeSeq: seq,
+	      userId: id
+	    };
+	    const registJson = JSON.stringify(regist);
+	    alert(registJson);
+	    $.ajax({
+	      url: '/challenge/joinuser',
+	      type : 'post',
+	      data: registJson,
+	      contentType: 'application/json; charset=utf-8',
+/* 	      dataType: 'json', */
+	      success: function(res) {
+	        alert(res);
+	      },
+	      error: function(error) {
+	        alert("error");
+	      }
+	    });
+	  }
+	</script>
+
 </body>
 </html>

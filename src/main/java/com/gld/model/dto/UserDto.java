@@ -61,9 +61,10 @@ public class UserDto {
 		super();
 	}
 
-	public UserDto(String userId, String userPw, String userName, int completedChallenge, String onOffNoty,
+	public UserDto(Long id, String userId, String userPw, String userName, int completedChallenge, String onOffNoty,
 			String userLoginType, String userPhone, Date userBirth) {
 		super();
+		this.Id = id;
 		this.userId = userId;
 		this.userPw = userPw;
 		this.userName = userName;
@@ -72,6 +73,14 @@ public class UserDto {
 		this.userLoginType = userLoginType;
 		this.userPhone = userPhone;
 		this.userBirth = userBirth;
+	}
+
+	public Long getId() {
+		return Id;
+	}
+
+	public void setId(Long id) {
+		this.Id = id;
 	}
 
 	public String getUserId() {
@@ -140,9 +149,9 @@ public class UserDto {
 
 	@Override
 	public String toString() {
-		return "UserDto [userId=" + userId + ", userPw=" + userPw + ", userName=" + userName + ", completedChallenge="
-				+ completedChallenge + ", onOffNoty=" + onOffNoty + ", userLoginType=" + userLoginType + ", userPhone="
-				+ userPhone + ", userBirth=" + userBirth + "]";
+		return "UserDto [id=" + Id + ", userId=" + userId + ", userPw=" + userPw + ", userName=" + userName
+				+ ", completedChallenge=" + completedChallenge + ", onOffNoty=" + onOffNoty + ", userLoginType="
+				+ userLoginType + ", userPhone=" + userPhone + ", userBirth=" + userBirth + "]";
 	}
 
 	/////////////////////
