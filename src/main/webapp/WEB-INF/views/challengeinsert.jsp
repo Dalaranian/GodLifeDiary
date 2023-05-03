@@ -127,13 +127,13 @@
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="challengeMaxMember" id="personRadios3"
-                                value="50">
-                            <label class="form-check-label" for="personRadios3">50명</label>
+                                value="20">
+                            <label class="form-check-label" for="personRadios3">20명</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="challengeMaxMember" id="personRadios4"
-                                value="100">
-                            <label class="form-check-label" for="personRadios4">100명</label>
+                                value="30">
+                            <label class="form-check-label" for="personRadios4">30명</label>
                         </div>
                     </div>    
                 </div>

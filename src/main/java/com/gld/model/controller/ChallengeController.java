@@ -22,6 +22,7 @@ import com.gld.model.biz.ChallengeBiz;
 import com.gld.model.biz.LoginBiz;
 import com.gld.model.biz.RegisteredBiz;
 import com.gld.model.dto.ChallengeDto;
+import com.gld.model.dto.RegisteredMemberDto;
 import com.gld.model.dto.UserDto;
 
 @Controller
@@ -29,13 +30,13 @@ import com.gld.model.dto.UserDto;
 public class ChallengeController {
 
 	@Autowired
+	private LoginBiz loginBiz;
+
+	@Autowired
 	private ChallengeBiz challengeBiz;
 
 	@Autowired
 	private RegisteredBiz registeredBiz;
-
-	@Autowired
-	private LoginBiz loginBiz;
 
 
 	@GetMapping("/main")
@@ -44,6 +45,12 @@ public class ChallengeController {
 		List<ChallengeDto> challenges = challengeBiz.selectAll();
 		// 조회된 엔티티들을 모델에 담아서 뷰로 전달
 		model.addAttribute("challenges", challenges);
+		model.addAttribute("cate", "전체"); //어떤 카테고리인지 띄우려고
+
+		//REGISTERED_MEMBER 전체 보내기
+		List<RegisteredMemberDto> rmTotal = registeredBiz.selectAll();
+		model.addAttribute("rmTotal", rmTotal);
+		
 		return "main";
 
 	}
@@ -52,30 +59,37 @@ public class ChallengeController {
 
 	@GetMapping("/main_study")
 	public String getStudyChallenges(Model model) {
-		List<ChallengeDto> challenges = challengeBiz.findbyCate("공부");
+		String category = "공부";
+		List<ChallengeDto> challenges = challengeBiz.findbyCate(category);
 		model.addAttribute("challenges", challenges);
+		model.addAttribute("cate", category);
 		return "main";
 	} 
 
-
 	@GetMapping("/main_habit")
 	public String getHabitChallenges(Model model) {
-		List<ChallengeDto> challenges = challengeBiz.findbyCate("습관");
+		String category = "습관";
+		List<ChallengeDto> challenges = challengeBiz.findbyCate(category);
 		model.addAttribute("challenges", challenges);
+		model.addAttribute("cate", category);
 		return "main";
 	}
 
 	@GetMapping("/main_hobby")
 	public String getHobbyChallenges(Model model) {
-		List<ChallengeDto> challenges = challengeBiz.findbyCate("취미");
+		String category = "취미";
+		List<ChallengeDto> challenges = challengeBiz.findbyCate(category);
 		model.addAttribute("challenges", challenges);
+		model.addAttribute("cate", category);
 		return "main";
 	}
 
 	@GetMapping("/main_workout")
 	public String getWorkoutChallenges(Model model) {
-		List<ChallengeDto> challenges = challengeBiz.findbyCate("운동");
+		String category = "운동";
+		List<ChallengeDto> challenges = challengeBiz.findbyCate(category);
 		model.addAttribute("challenges", challenges);
+		model.addAttribute("cate", category);
 		return "main";
 	}
 

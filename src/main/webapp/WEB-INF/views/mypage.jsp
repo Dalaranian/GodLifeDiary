@@ -74,9 +74,11 @@
 	margin: 0;
 	font-size: 24px;
 }
+
 #rvs {
 	margin: 0;
 }
+
 #rvsButton {
 	cursor: pointer;
 	width: 90%;
@@ -92,7 +94,7 @@
 
 .mychallenges {
 	box-sizing: border-box;
-	width: 80%;
+	width: 90%;
 	position: relative;
 	left: 50%;
 	transform: translate(-50%, 0%);
@@ -130,6 +132,10 @@
 	position: relative;
 }
 
+.item:nth-child(3n-1) {
+	margin: 0 0 40px 0;
+}
+
 .cont {
 	width: 100%;
 	height: 100%;
@@ -155,26 +161,62 @@
 #c_info {
 	margin-bottom: 5px;
 }
-
+#c_members {
+	display: inline-block;
+	font-size: 24px;
+}
 #c_maxmember {
+	display: inline-block;
 	color: grey;
 }
 
-#c_duration {
+#c_detail {
 	display: inline-block;
 	position: absolute;
 	left: 25px;
 	bottom: 25px;
-	width: 38%;
+	width: 48%;
+	height: 30px;
+	border-radius: 1rem;
+	padding: 5px;
+	font-weight: bold;
+	text-align: center;
+	font-size: 14px;
+	color: white;
+	background-color: #F7570B;
+}
+
+#c_delete {
+	display: inline-block;
+	position: absolute;
+	right: 25px;
+	bottom: 25px;
+	width: 28%;
 	height: 30px;
 	border: 2px solid #F7570B;
 	border-radius: 1rem;
-	padding: 3px;
+	padding: 5px;
 	color: #F7570B;
 	font-weight: bold;
 	text-align: center;
 	background-color: white;
+	font-size: 14px;
 }
+a {
+	letter-spacing: -1px;
+	text-decoration: none;
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+}
+a:hover {
+	text-decoration: none;
+}
+#c_detail:hover #c_delete:hover {
+	font-weight: bold;
+	box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.3);
+}
+
 #c_drop {
 	display: inline-block;
 	position: absolute;
@@ -190,7 +232,6 @@
 	text-align: center;
 	background-color: black;
 }
-
 
 </style>
 </head>
@@ -238,7 +279,9 @@
 					<p class="profiletag">ID</p>
 					<p class="profilecont">${user.userId }</p>
 				</div>
-					<p id="rvs"><button type="button" value="개인정보수정" id="rvsButton">개인정보수정</button></p>
+				<p id="rvs">
+					<button type="button" value="개인정보수정" id="rvsButton">개인정보수정</button>
+				</p>
 			</div>
 			<div id="mystatus">
 				<div class="myprofile-">
@@ -307,20 +350,17 @@
 			<li class="nav-item" role="presentation">
 				<button class="nav-link active" id="home-tab" data-bs-toggle="tab"
 					data-bs-target="#home-tab-pane" type="button" role="tab"
-					aria-controls="home-tab-pane" aria-selected="true">진행중인
-					챌린지</button>
+					aria-controls="home-tab-pane" aria-selected="true">진행중인 챌린지</button>
 			</li>
 			<li class="nav-item" role="presentation">
 				<button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab"
 					data-bs-target="#nav-contact" type="button" role="tab"
-					aria-controls="nav-contact" aria-selected="false">대기 중인
-					챌린지</button>
+					aria-controls="nav-contact" aria-selected="false">대기 중인 챌린지</button>
 			</li>
 			<li class="nav-item" role="presentation">
 				<button class="nav-link" id="profile-tab" data-bs-toggle="tab"
 					data-bs-target="#profile-tab-pane" type="button" role="tab"
-					aria-controls="profile-tab-pane" aria-selected="false">완료된
-					챌린지</button>
+					aria-controls="profile-tab-pane" aria-selected="false">완료된	챌린지</button>
 			</li>
 		</ul>
 		<div class="tab-content">
@@ -337,9 +377,13 @@
 										<div class="cont">
 											<strong id="c_name">${challenge.challengeName }</strong>
 											<p id="c_info">${challenge.challengeInfo }</p>
-											<p id="c_maxmember">${challenge.challengeMaxMember }명(인원
-												표기 필요할까)</p>
-											<p id="c_duration">${challenge.challengeDuration }주코스</p>
+											<p id="c_maxmember">${challenge.challengeMaxMember }명 참여 중</p>
+											<div id="c_detail">
+												<a href="../challenge/detail?$">상세보기</a>
+											</div>
+											<div id="c_delete">
+												<a href="../challenge/delete">포기하기</a>
+											</div>
 										</div>
 									</li>
 								</c:if>
@@ -352,10 +396,10 @@
 						<div class="p-4 p-lg-5 bg-light rounded-3 row">
 							<select name="challengeComment" id="challengeComment">
 								<!--
-                         <c:forEach var="list" items="${result}">
-                              <option value="${list.beverage}">${list.beverage}</option>
-                          </c:forEach> 
-                         -->
+	                         <c:forEach var="list" items="${result}">
+	                             <option value="${list.beverage}">${list.beverage}</option>
+	                         </c:forEach> 
+                         		-->
 								<%
 								for (int i = 0; i < 10; i++) {
 								%>
@@ -384,12 +428,12 @@
 										<div class="cont">
 											<strong id="c_name">${challenge.challengeName }</strong>
 											<p id="c_info">${challenge.challengeInfo }</p>
+
 											<p id="c_maxmember">${challenge.challengeMaxMember }명(인원
 												표기 필요할까)</p>
 											<p id="c_duration">${challenge.challengeDuration }주코스</p>
 											<p id="c_drop"><a href="#" onclick="deleteRegist('${challenge.seq}', '${user.id}', this)">포기하기</a></p>
 										</div>
-										
 									</li>
 								</c:if>
 							</c:forEach>
@@ -411,8 +455,7 @@
 										<div class="cont">
 											<strong id="c_name">${challenge.challengeName }</strong>
 											<p id="c_info">${challenge.challengeInfo }</p>
-											<p id="c_maxmember">${challenge.challengeMaxMember }명(인원
-												표기 필요할까)</p>
+											<p id="c_maxmember">${challenge.challengeMaxMember }명 참여 중</p>
 											<p id="c_duration">${challenge.challengeDuration }주코스</p>
 											
 										</div>
