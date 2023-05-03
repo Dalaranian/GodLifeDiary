@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
@@ -61,7 +62,6 @@
 
 .myprofile- {
 	margin: 15px 0;
-	width: 33%;
 }
 
 .profiletag {
@@ -74,6 +74,21 @@
 	margin: 0;
 	font-size: 24px;
 }
+#rvs {
+	margin: 0;
+}
+#rvsButton {
+	cursor: pointer;
+	width: 90%;
+	border-radius: 0.5rem;
+	border: none;
+	font-size: 1.1rem;
+	color: white;
+	background-color: #F7570B;
+	padding: 7px;
+	margin-bottom: 30px;
+	vertical-align: middle;
+}
 
 .mychallenges {
 	box-sizing: border-box;
@@ -81,7 +96,6 @@
 	position: relative;
 	left: 50%;
 	transform: translate(-50%, 0%);
-	margin-bottom: 50px;
 }
 
 #myTab {
@@ -188,6 +202,7 @@
 					<input class="form-control" type="search" placeholder="Search">
 				</form>
 			</li>
+			<li id="nav-logout"><a class="nav-link" href="../login/logout">logout</a></li>
 			<li id="nav-mypage"><a class="nav-link" href="../mypage/mypage">마이페이지</a></li>
 		</ul>
 	</nav>
@@ -206,23 +221,62 @@
 					<p class="profiletag">ID</p>
 					<p class="profilecont">${user.userId }</p>
 				</div>
-				<div class="myprofile-">
-					<p class="profiletag">LEVEL</p>
-					<p class="profilecont">계산해야 함</p>
-				</div>
+					<p id="rvs"><button type="button" value="개인정보수정" id="rvsButton">개인정보수정</button></p>
 			</div>
 			<div id="mystatus">
 				<div class="myprofile-">
 					<p class="profiletag">진행 중인 챌린지</p>
-					<p class="profilecont">5개</p>
+					<p class="profilecont">
+						<c:forEach items="${challenges}" var="challenge">
+							<c:if test="${challenge.challengeEnabled eq 'N' }">
+								<c:set var="enabled_N" value="${enabled_N+1 }"></c:set>
+							</c:if>
+						</c:forEach>
+						<c:choose>
+							<c:when test="${empty enabled_N}">
+								0개
+							</c:when>
+							<c:otherwise>
+								<c:out value="${enabled_N }"></c:out>개
+							</c:otherwise>
+						</c:choose>
+					</p>
 				</div>
 				<div class="myprofile-">
 					<p class="profiletag">대기 중인 챌린지</p>
-					<p class="profilecont">5개</p>
+					<p class="profilecont">
+						<c:forEach items="${challenges}" var="challenge">
+							<c:if test="${challenge.challengeEnabled eq 'Y' }">
+								<c:set var="enabled_Y" value="${enabled_Y+1 }"></c:set>
+							</c:if>
+						</c:forEach>
+						<c:choose>
+							<c:when test="${empty enabled_Y}">
+								0개
+							</c:when>
+							<c:otherwise>
+								<c:out value="${enabled_Y }"></c:out>개
+							</c:otherwise>
+						</c:choose>
+					</p>
 				</div>
 				<div class="myprofile-">
 					<p class="profiletag">완료된 챌린지</p>
-					<p class="profilecont">5개</p>
+					<p class="profilecont">
+						<c:forEach items="${challenges}" var="challenge">
+							<c:if test="${challenge.challengeEnabled eq 'I' }">
+								<c:set var="enabled_I" value="${enabled_I+1 }"></c:set>
+							</c:if>
+						</c:forEach>
+						<c:choose>
+							<c:when test="${empty enabled_I}">
+								0개
+							</c:when>
+							<c:otherwise>
+								<c:out value="${enabled_I }"></c:out>개
+							</c:otherwise>
+						</c:choose>
+					</p>
 				</div>
 			</div>
 		</div>
@@ -285,12 +339,12 @@
                           </c:forEach> 
                          -->
 								<%
-                           for(int i=0; i<10; i++){
-                          %>
-								<option value="<%=i %>">챌린지명<%=i+1 %></option>
+								for (int i = 0; i < 10; i++) {
+								%>
+								<option value="<%=i%>">챌린지명<%=i + 1%></option>
 								<%
-                           }
-                          %>
+								}
+								%>
 							</select>
 							<div>
 								<p>댓글 뿌리는 곳</p>
