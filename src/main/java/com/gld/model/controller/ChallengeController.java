@@ -161,8 +161,6 @@ public class ChallengeController {
 			// 필요한 DTO, 첼린지별 사람 준비
 			ChallengeDto currentChallenge = challengeBiz.selectOneBySeq(challengeSeq);
 			UserDto currentUser = loginBiz.findByUserId(userId);
-			//System.out.println(currentUser.getId());				
-			//int currentMember = registeredBiz.coutBySeq(challengeSeq);
 			
 			System.out.println("필요한 정보 로딩 완료");
 			
@@ -174,7 +172,6 @@ public class ChallengeController {
 				System.out.println("controller del res: " + delRes);
 				if(delRes > 0) {
 					res.put("res", true);
-//					return currentChallenge.getChallengeName() + " 삭제됐어용 ";
 					return res;
 				}
 			}
@@ -182,7 +179,6 @@ public class ChallengeController {
 			e.printStackTrace();
 			res.put("res", false);
 			return res;
-//			return "삭제실패용 " ;
 		}
 		
 		res.put("res", false);
