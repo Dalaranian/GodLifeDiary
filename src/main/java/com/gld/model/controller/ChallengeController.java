@@ -1,23 +1,32 @@
 package com.gld.model.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gld.model.biz.ChallengeBiz;
+import com.gld.model.biz.CommentBiz;
 import com.gld.model.dto.ChallengeDto;
+import com.gld.model.dto.CommentDto;
+import com.gld.model.dto.CommentId;
 
 @Controller
 @RequestMapping("/challenge")
 public class ChallengeController {
 
    @Autowired
-    private ChallengeBiz challengeBiz;
+   private ChallengeBiz challengeBiz;
+   
+   @Autowired
+   private CommentBiz commentBiz;
    
       
    @GetMapping("/main")
@@ -76,6 +85,21 @@ public class ChallengeController {
       challengeBiz.insert(dto);
       return "challengeinsert_res";
    } 
-       
+   @GetMapping("/commentdate")
+   public String commentDate(Model model,@RequestParam Integer seq, @RequestParam Integer id, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate commentDate,@RequestParam String challengeName) {
+	   CommentDto comment = commentBiz.selectComment(seq, id, commentDate);
+	   //System.out.println(seq+" "+ id+" "+commentDate);
+	   //System.out.println(comment.getId());
+	   
+	   model.addAttribute("comment",comment);
+	   
+//	   ChallengeDto challenge = challengeBiz.selectOne(challengeName);
+//	   model.addAttribute("challenge",challenge);
+	   
+	   return "redirect:/challenge/detail";
+   }
+   
+   
+   
      
 }

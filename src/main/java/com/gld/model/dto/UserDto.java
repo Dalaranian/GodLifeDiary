@@ -15,8 +15,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "G_USER")
 public class UserDto {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+	@Column(name = "ID",nullable = false, unique = true)
+    private Long id;
 
     @Column(name = "USER_ID",nullable = false, unique = true)
     private String userId;
@@ -48,9 +48,10 @@ public class UserDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public UserDto(String userId, String userPw, String userName, int completedChallenge, String onOffNoty,
+	public UserDto(Long id, String userId, String userPw, String userName, int completedChallenge, String onOffNoty,
 			String userLoginType, String userPhone, Date userBirth) {
 		super();
+		this.id = id;
 		this.userId = userId;
 		this.userPw = userPw;
 		this.userName = userName;
@@ -59,6 +60,14 @@ public class UserDto {
 		this.userLoginType = userLoginType;
 		this.userPhone = userPhone;
 		this.userBirth = userBirth;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getUserId() {
@@ -125,11 +134,8 @@ public class UserDto {
 		this.userBirth = userBirth;
 	}
 
-	@Override
-	public String toString() {
-		return "UserDto [userId=" + userId + ", userPw=" + userPw + ", userName=" + userName + ", completedChallenge="
-				+ completedChallenge + ", onOffNoty=" + onOffNoty + ", userLoginType=" + userLoginType + ", userPhone="
-				+ userPhone + ", userBirth=" + userBirth + "]";
-	}
+	
+
+	
 
 }

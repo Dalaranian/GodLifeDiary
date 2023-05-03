@@ -344,6 +344,9 @@
     function checking() {
         alert("오늘의 챌린지를 수행했습니까?");
     }
+    function goToCommentDate(seq, id, commentDate, challengeName) {
+        window.location.href = "/challenge/commentdate?seq=" + seq + "&id=" + id + "&commentDate=" + commentDate + "&challengeName="+challengeName;
+    }
 </script>
 </head>
 <body>
@@ -378,6 +381,7 @@
 			
                 </div>
             </div>
+           	<c:set var="user" value="${sessionScope.user}" />
             <div class="left_second">
                 <div class="challenge_status">
                     <h4>진행현황</h4>
@@ -387,12 +391,12 @@
 								    <tr>
 								       <th><fmt:parseNumber value="${date / 7 + 1}" integerOnly="true"/>주차</th>
 								    </c:if>
-								    <td id="did"><div class="date-tooltip" data-tooltip="${startDate } "></div></td>
+								    <td id="did"><div class="date-tooltip" data-tooltip="${startDate } " onclick="goToCommentDate(${challenge.seq}, ${user.id}, '${startDate}', '${challenge.challengeName }')"></div></td>
 								    <c:set var="startDate" value="${startDate.plusDays(1)}" />
 							    	<c:if test="${date % 7 eq 6}">
 								        </tr>
 								    </c:if>
-							    
+								   
 							</c:forEach>
                             
                     </table>
@@ -440,30 +444,7 @@
                     </div>
                     <textarea id="comment" name="comment" readonly="readonly">오늘은 진짜 일찍 일어나기 너무 힘들었는데 그래도 알람 한 번만에 일어났다 뿌듯하다ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ</textarea>
                 </div>
-                <div class="comment_each">
-                    <div class="profile">
-                        <img id="profile_img" src="./imgs/aaa.jpg" alt="img">
-                        <div id="profile_nick">nickname</div>
-                        <div id="profile_check"><img id="checksign" src="./imgs/x_sign.png"></div>
-                    </div>
-                    <textarea id="comment" name="comment" readonly="readonly">textarea 자동으로 높이 조절하는거 jq로 구현하든지, 그냥 지금처럼 스크롤</textarea>
-                </div>
-                <div class="comment_each">
-                    <div class="profile">
-                        <img id="profile_img" src="./imgs/aaa.jpg" alt="img">
-                        <div id="profile_nick">nickname</div>
-                        <div id="profile_check"><img id="checksign" src="./imgs/x_sign.png"></div>
-                    </div>
-                    <textarea id="comment" name="comment" readonly="readonly">모아보기 기능 추가할건지</textarea>
-                </div>
-                <div class="comment_each">
-                    <div class="profile">
-                        <img id="profile_img" src="./imgs/aaa.jpg" alt="img">
-                        <div id="profile_nick">nickname</div>
-                        <div id="profile_check"><img id="checksign" src="./imgs/x_sign.png"></div>
-                    </div>
-                    <textarea id="comment" name="comment" readonly="readonly">반복</textarea>
-                </div>
+                
             </div>
         </div>
     </div>
