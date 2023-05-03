@@ -11,58 +11,6 @@
 <link href="../resources/css/styles.css" rel="stylesheet" />
 <link href="../resources/css/font.css" rel="stylesheet" />
 <style>
-/*------------------------------------------navbar-------------------------------------------------*/
-.navbar {
-	position: relative;
-	width: 100%;
-	height: 60px;
-}
-
-#nav-total {
-	width: 100%;
-	height: 40px;
-	position: absolute;
-}
-
-#nav-title {
-	margin-left: 30px;
-	position: absolute;
-	left: 0;
-}
-
-#nav-category {
-	width: 120px;
-	text-align: center;
-	position: absolute;
-	left: 120px;
-}
-
-#nav-insertChallenge {
-	width: 150px;
-	text-align: center;
-	position: absolute;
-	left: 240px;
-}
-
-#nav-search {
-	width: 300px;
-	position: absolute;
-	left: 400px;
-}
-
-#nav-mypage {
-	width: 100px;
-	text-align: center;
-	position: absolute;
-	right: 130px;
-}
-
-#nav-logout {
-	width: 100px;
-	text-align: center;
-	position: absolute;
-	right: 30px;
-}
 /*------------------------------------------메인-------------------------------------------------*/
 .list_wrap {
 	width: 90%;
@@ -105,7 +53,7 @@
 
 #c_name {
 	display: block;
-	font-size: 18px;
+	font-size: 19px;
 	letter-spacing: -1px;
 	padding-bottom: 3px;
 	border-bottom: 1px solid #F7570B;
@@ -113,8 +61,8 @@
 }
 
 .list_wrap .item p {
-	font-size: 13px;
-	letter-spacing: -1px;
+	font-size: 14px;
+	letter-spacing: -0.8px;
 	margin: 0;
 }
 
@@ -122,7 +70,12 @@
 	margin-bottom: 5px;
 }
 
+#c_members {
+	display: inline-block;
+	font-size: 24px;
+}
 #c_maxmember {
+	display: inline-block;
 	color: grey;
 }
 
@@ -135,11 +88,12 @@
 	height: 30px;
 	border: 2px solid #F7570B;
 	border-radius: 1rem;
-	padding: 3px;
+	padding: 5px;
 	color: #F7570B;
 	font-weight: bold;
 	text-align: center;
 	background-color: white;
+	fong-size: 14px;
 }
 
 #c_joinBtn {
@@ -155,7 +109,7 @@
 .list_wrap .item a {
 	display: inline-block;
 	padding: 5px 10px;
-	font-size: 13px;
+	font-size: 14px;
 	letter-spacing: -1px;
 	width: 100%;
 	height: 100%;
@@ -210,7 +164,7 @@
 	<!-- ------------------------------------------메인------------------------------------------------- -->
 	<div class="list_wrap">
 		<div class="sec-main">
-			<h1 class="pb-2">전체 챌린지</h1>
+			<h1 class="pb-2">${cate }챌린지</h1>
 			<h2 class="pb-2 border-bottom colorGrey">참여가능한 챌린지</h2>
 			<ul class="each-category">
 				<c:choose>
@@ -224,11 +178,17 @@
 									<div class="cont">
 										<strong id="c_name">${challenge.challengeName }</strong>
 										<p id="c_info">${challenge.challengeInfo }</p>
-										<p id="c_maxmember">${challenge.challengeMaxMember }명(인원
-											표기 필요할까)</p>
+										<p id="c_members">
+											<c:forEach items="${rmTotal}" var="rm">
+												<c:if test="${challenge.seq eq rm.seq }">
+													<c:set var="cnt" value="${cnt+1 }"></c:set>
+												</c:if>
+											</c:forEach>
+											<c:out value="${cnt }"></c:out>
+											<c:set var="cnt" value="0"></c:set>
+										</p>
+										<p id="c_maxmember">/ ${challenge.challengeMaxMember }명</p>
 										<p id="c_duration">${challenge.challengeDuration }주코스</p>
-
-
 										<div id="c_joinBtn">
 											<a href="#"
 												onclick="join('${challenge.seq }', '${user.userId }')">참여하기
@@ -257,8 +217,16 @@
 									<div class="cont">
 										<strong id="c_name">${challenge.challengeName }</strong>
 										<p id="c_info">${challenge.challengeInfo }</p>
-										<p id="c_maxmember">${challenge.challengeMaxMember }명(인원
-											표기 필요할까)</p>
+										<p id="c_members">
+											<c:forEach items="${rmTotal}" var="rm">
+												<c:if test="${challenge.seq eq rm.seq }">
+													<c:set var="cnt" value="${cnt+1 }"></c:set>
+												</c:if>
+											</c:forEach>
+											<c:out value="${cnt }"></c:out>
+											<c:set var="cnt" value="0"></c:set>
+										</p>
+										<p id="c_maxmember">/ ${challenge.challengeMaxMember }명</p>
 										<p id="c_duration">${challenge.challengeDuration }주코스</p>
 										<div id="c_joinBtn">
 											<a href="../challenge/detail?$">진행상황 보기</a>
