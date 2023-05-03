@@ -381,11 +381,18 @@
 					if(res.comment == null){
 						$("#today").html(commentDate);
 					}else{
-						console.log(res.comment.isDone);
-						$("#today").html(res.comment.commentDate);
-						$("#comment").html(res.comment.comment);
-						$("#profile_check").html(res.comment.isDone);
+						console.log(res);
+						console.log(res.list[0].id);
+						console.log(res.comment.comment.isDone);
+						$("#today").html(res.comment.comment.commentDate);
+						$("#comment").html(res.comment.comment.comment);
+						$("#profile_check").html(res.comment.comment.isDone);
 						$("#profile_nick").html(res.list[0].id);
+						$(".comment_others #profile_nick").html(res.list[1].id);
+						
+						/* for(let i=0 i<res.list.length() i++){
+							$("#profile_nick").html(res.list[i].id);
+						}   */
 					
 					} 
 					
@@ -495,7 +502,7 @@
                     <div class="profile">
                         <img id="profile_img" src="./imgs/aaa.jpg" alt="img">
                         <div id="profile_nick">nickname</div>
-                        <div id="profile_check"><img id="checksign" src="./imgs/o_sign.png"></div>
+                        <div id="profile_check"><img id="checksign" src="../resources/img/letter-x.png"></div>
                     </div>
                     <textarea id="comment" name="comment" readonly="readonly">오늘은 진짜 일찍 일어나기 너무 힘들었는데 그래도 알람 한 번만에 일어났다 뿌듯하다ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ</textarea>
                 </div>
