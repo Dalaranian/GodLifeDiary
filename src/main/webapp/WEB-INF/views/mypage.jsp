@@ -221,7 +221,7 @@
 					<p class="profiletag">ID</p>
 					<p class="profilecont">${user.userId }</p>
 				</div>
-					<p id="rvs"><button type="button" value="개인정보수정" id="rvsButton">개인정보수정</button></p>
+					<p id="rvs"><button type="button" value="개인정보수정" id="rvsButton" onclick="location.href='/mypage/gotopwchange'">개인정보수정</button></p>
 			</div>
 			<div id="mystatus">
 				<div class="myprofile-">
