@@ -281,17 +281,34 @@ button[type="submit"] {
 			<form action="/mypage/changepw" method="post">
 				<input type="hidden" name="userId" value="${user.userId }">
 				<div class="joinContent">
-					<label for="password">비밀번호</label> 
-					<input type="password"id="password" name="userPw"><br>
+					<label for="password">비밀번호</label> <input type="password"
+						id="password" name="userPw"><br>
 				</div>
 				<div class="joinContent">
-					<label for="password">비밀번호 확인</label> 
-					<input type="passworr" id="passwordCheck"><br>
+					<label for="password">비밀번호 확인</label> <input type="password"
+						id="passwordCheck"><br>
 				</div>
-				<button type="submit">변경하기</button>
+				<button onclick="return checkPw()">확인하기</button>
+				<button type="submit" name="pwChangeSubmitBtn" disabled>변경하기</button>
 			</form>
 		</div>
 	</div>
+	<script type="text/javascript">
+		function checkPw() {
+			const password = document.getElementById("password");
+			const passwordCheck = document.getElementById("passwordCheck");
 
+			if (password.value !== passwordCheck.value) {
+				alert("비밀번호가 일치하지 않습니다.");
+				password.value = "";
+				passwordCheck.value = ""
+				return false;
+			} else {
+				alert("비밀번호가 일치합니다.");
+				document.querySelector("button[name='pwChangeSubmitBtn']").disabled = false;
+				return false;
+			}
+		}
+	</script>
 </body>
 </html>
