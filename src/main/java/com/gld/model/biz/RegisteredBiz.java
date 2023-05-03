@@ -14,12 +14,6 @@ public class RegisteredBiz {
 	public int coutBySeq(String seq) {
 		return mapper.countBySeq(seq);
 	}
-
-//	@Transactional
-//	public int insert(String challengeSeq, Long id) {
-//		// TODO Auto-generated method stub
-//		return mapper.insertRegister(challengeSeq, id);
-//	}
 	
 	public int insert(String challengeSeq, Long id) {
 		// TODO Auto-generated method stub
