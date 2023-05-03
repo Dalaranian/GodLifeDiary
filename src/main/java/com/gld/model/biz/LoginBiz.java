@@ -23,8 +23,6 @@ public class LoginBiz {
 		return user;
 	}
 
-	
-	
 	public void insert(UserDto dto) {
 
 		userRepository.save(dto);
