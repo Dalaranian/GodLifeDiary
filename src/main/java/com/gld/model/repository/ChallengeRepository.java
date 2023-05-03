@@ -11,7 +11,11 @@ import com.gld.model.dto.UserDto;
 @Repository
 public interface ChallengeRepository extends JpaRepository<ChallengeDto, Long> {
 	List<ChallengeDto> findAll();
+
 	ChallengeDto findByChallengeName(String challengeName);
+
 	List<ChallengeDto> findByChallengeCategory(String challengeCategory);
+
+	ChallengeDto findBySeq(Long seq);
 
 }

@@ -19,7 +19,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.springframework.data.domain.Persistable;
 
 @Entity
-@Table(name="G_CHALLENGE")
+@Table(name = "G_CHALLENGE")
 @DynamicInsert
 public class ChallengeDto implements Persistable<Long> {
 
@@ -31,7 +31,6 @@ public class ChallengeDto implements Persistable<Long> {
 	//table join (G_CHALLENGE 일대다 REGISTERED_MEMBER)
 	@OneToMany(mappedBy = "challengeDto")
 	private List<RegisteredMemberDto> list = new ArrayList<>();
-
 
 	@Column(name = "CHALLENGE_NAME", nullable = false)
 	private String challengeName;
@@ -60,9 +59,11 @@ public class ChallengeDto implements Persistable<Long> {
 	public ChallengeDto() {
 		super();
 	}
-	public ChallengeDto(Long seq, String challengeName, String challengeInfo, int challengeMaxMember, int challengeDuration,
-			String challengeEnabled, String challengeCategory, String challengeHashtag, Date challengeStartedDate,
-			boolean isNew) {
+
+	public ChallengeDto(Long seq, String challengeName, String challengeInfo, int challengeMaxMember,
+			int challengeDuration, String challengeEnabled, String challengeCategory, String challengeHashtag,
+			Date challengeStartedDate, boolean isNew) {
+
 		super();
 		this.seq = seq;
 		this.challengeName = challengeName;
@@ -75,6 +76,7 @@ public class ChallengeDto implements Persistable<Long> {
 		this.challengeStartedDate = challengeStartedDate;
 		this.isNew = isNew;
 	}
+  
 	public Long getSeq() {
 		return seq;
 	}
@@ -146,8 +148,9 @@ public class ChallengeDto implements Persistable<Long> {
 	public void setChallengeStartedDate(Date challengeStartedDate) {
 		this.challengeStartedDate = challengeStartedDate;
 	}
-
+  
 	//challenge insert할 때 쓴 기능들..
+
 	@Override
 	public Long getId() {
 		return this.seq;
@@ -166,8 +169,15 @@ public class ChallengeDto implements Persistable<Long> {
 	void markNotNew() {
 		this.isNew = false;
 	}
-	/////////////////////////////////////
 
+	@Override
+	public String toString() {
+		return "ChallengeDto [seq=" + seq + ", challengeName=" + challengeName + ", challengeInfo=" + challengeInfo
+				+ ", challengeMaxMember=" + challengeMaxMember + ", challengeDuration=" + challengeDuration
+				+ ", challengeEnabled=" + challengeEnabled + ", challengeCategory=" + challengeCategory
+				+ ", challengeHashtag=" + challengeHashtag + ", challengeStartedDate=" + challengeStartedDate
+				+ ", isNew=" + isNew + "]";
+	}
 
 	//table join 관련
 	public List<RegisteredMemberDto> getList() {
@@ -176,6 +186,5 @@ public class ChallengeDto implements Persistable<Long> {
 	public void setList(List<RegisteredMemberDto> list) {
 		this.list = list;
 	}
-
 
 }

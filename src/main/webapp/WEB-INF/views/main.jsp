@@ -227,8 +227,12 @@
 										<p id="c_maxmember">${challenge.challengeMaxMember }명(인원
 											표기 필요할까)</p>
 										<p id="c_duration">${challenge.challengeDuration }주코스</p>
+
+
 										<div id="c_joinBtn">
-											<a href="../mypage/insert?$   ">참여하기</a>
+											<a href="#"
+												onclick="join('${challenge.seq }', '${user.userId }')">참여하기
+											</a>
 										</div>
 									</div>
 								</li>
@@ -276,5 +280,31 @@
 	<!--  지우면 카테고리 드롭다운 예쁘게 할 수 없음 -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<!--jquery -->
+	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript">
+	  function join(seq, id) {
+	    let regist = {
+	      challengeSeq: seq,
+	      userId: id
+	    };
+	    const registJson = JSON.stringify(regist);
+	    alert(registJson);
+	    $.ajax({
+	      url: '/challenge/joinuser',
+	      type : 'post',
+	      data: registJson,
+	      contentType: 'application/json; charset=utf-8',
+/* 	      dataType: 'json', */
+	      success: function(res) {
+	        alert(res);
+	      },
+	      error: function(error) {
+	        alert("error");
+	      }
+	    });
+	  }
+	</script>
+
 </body>
 </html>
