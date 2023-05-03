@@ -217,22 +217,6 @@ a:hover {
 	box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.3);
 }
 
-#c_drop {
-	display: inline-block;
-	position: absolute;
-	right: 25px;
-	bottom: 25px;
-	width: 33%;
-	height: 30px;
-	border: 2px solid #F7570B;
-	border-radius: 1rem;
-	padding: 3px;
-	color: #F7570B;
-	font-weight: bold;
-	text-align: center;
-	background-color: black;
-}
-
 </style>
 </head>
 <body>
@@ -382,7 +366,7 @@ a:hover {
 												<a href="../challenge/detail?$">상세보기</a>
 											</div>
 											<div id="c_delete">
-												<a href="../challenge/delete">포기하기</a>
+												<a href="#" onclick="deleteRegist('${challenge.seq}', '${user.id}', this)">포기하기</a>
 											</div>
 										</div>
 									</li>
@@ -428,11 +412,13 @@ a:hover {
 										<div class="cont">
 											<strong id="c_name">${challenge.challengeName }</strong>
 											<p id="c_info">${challenge.challengeInfo }</p>
-
-											<p id="c_maxmember">${challenge.challengeMaxMember }명(인원
-												표기 필요할까)</p>
-											<p id="c_duration">${challenge.challengeDuration }주코스</p>
-											<p id="c_drop"><a href="#" onclick="deleteRegist('${challenge.seq}', '${user.id}', this)">포기하기</a></p>
+											<p id="c_maxmember">${challenge.challengeMaxMember }명 참여 중</p>
+											<div id="c_detail">
+												<a href="../challenge/detail?$">상세보기</a>
+											</div>
+											<div id="c_delete">
+												<a href="#" onclick="deleteRegist('${challenge.seq}', '${user.id}', this)">포기하기</a>
+											</div>
 										</div>
 									</li>
 								</c:if>
@@ -457,7 +443,6 @@ a:hover {
 											<p id="c_info">${challenge.challengeInfo }</p>
 											<p id="c_maxmember">${challenge.challengeMaxMember }명 참여 중</p>
 											<p id="c_duration">${challenge.challengeDuration }주코스</p>
-											
 										</div>
 									</li>
 								</c:if>
