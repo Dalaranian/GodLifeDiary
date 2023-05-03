@@ -50,9 +50,7 @@ public class ChallengeController {
 		//REGISTERED_MEMBER 전체 보내기
 		List<RegisteredMemberDto> rmTotal = registeredBiz.selectAll();
 		model.addAttribute("rmTotal", rmTotal);
-		
 		return "main";
-
 	}
 
 
@@ -63,6 +61,9 @@ public class ChallengeController {
 		List<ChallengeDto> challenges = challengeBiz.findbyCate(category);
 		model.addAttribute("challenges", challenges);
 		model.addAttribute("cate", category);
+		//REGISTERED_MEMBER 전체 보내기
+		List<RegisteredMemberDto> rmTotal = registeredBiz.selectAll();
+		model.addAttribute("rmTotal", rmTotal);
 		return "main";
 	} 
 
@@ -72,6 +73,9 @@ public class ChallengeController {
 		List<ChallengeDto> challenges = challengeBiz.findbyCate(category);
 		model.addAttribute("challenges", challenges);
 		model.addAttribute("cate", category);
+		//REGISTERED_MEMBER 전체 보내기
+		List<RegisteredMemberDto> rmTotal = registeredBiz.selectAll();
+		model.addAttribute("rmTotal", rmTotal);
 		return "main";
 	}
 
@@ -81,6 +85,9 @@ public class ChallengeController {
 		List<ChallengeDto> challenges = challengeBiz.findbyCate(category);
 		model.addAttribute("challenges", challenges);
 		model.addAttribute("cate", category);
+		//REGISTERED_MEMBER 전체 보내기
+		List<RegisteredMemberDto> rmTotal = registeredBiz.selectAll();
+		model.addAttribute("rmTotal", rmTotal);
 		return "main";
 	}
 
@@ -90,6 +97,9 @@ public class ChallengeController {
 		List<ChallengeDto> challenges = challengeBiz.findbyCate(category);
 		model.addAttribute("challenges", challenges);
 		model.addAttribute("cate", category);
+		//REGISTERED_MEMBER 전체 보내기
+		List<RegisteredMemberDto> rmTotal = registeredBiz.selectAll();
+		model.addAttribute("rmTotal", rmTotal);
 		return "main";
 	}
 

@@ -12,18 +12,8 @@
 <title>Detail</title>
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../resources/css/styles.css" rel="stylesheet" />
+<link href="../resources/css/font.css" rel="stylesheet" />
 <style type="text/css">
-    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@200&display=swap');
-    @font-face {
-        font-family: 'LINESeedKR-Bd';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
-        font-weight: 700;
-        font-style: normal;
-    }
-    body {
-        font-family: 'LINESeedKR-Bd';
-    }
-
 /*---------------------------beginning-------------------------------*/
     .section {
         box-sizing: border-box;
@@ -33,14 +23,42 @@
         left: 50%;
         transform: translate(-50%, 0%);
     }
+    #challenge_title {
+    	padding: 10px 30px;
+    	margin: 20px;
+    	margin-bottom: 30px;
+    	border-bottom: 1px solid lightgrey;
+    	position: relative;
+    	height: 70px;
+    }
+    #challenge_title>h1 {
+    	display: inline-block;
+    	position: absolute;
+    }
+    
+    #member_number {
+		display: inline-block;
+		width: 120px;
+		height: 32px;
+		border: 2px solid #F7570B;
+		border-radius: 1rem;
+		padding: 5px;
+		color: #F7570B;
+		font-weight: bold;
+		text-align: center;
+		background-color: white;
+		fong-size: 14px;
+    	position: absolute;
+    	right: 30px;
+    	bottom: 0;
+    }
+
 /*left---------------------------------------------------------*/
     .left_part {
         box-sizing: border-box;
         width: 45%;
-        height: 100%;
         position: absolute;
         left: 0;
-        margin-top: 30px;
     }
     .left_part>div {
         width: 100%;
@@ -48,15 +66,9 @@
     }
 /*left_first---------------------------------------------------------*/
     .left_first {
-        height: 40%;
         padding-left: 20px;
         padding-right: 20px;
         padding-bottom: 20px;
-    }
-    #challenge_title {
-        width: 100%;
-        height: 20%;
-        padding: 10px;
     }
     .challenge_dscr {
         width: 100%;
@@ -88,7 +100,7 @@
 
     }
     th {
-        width: 38px;
+        width: 50px;
         height: 20px;
         font-size: 10pt;
         vertical-align: bottom;
@@ -158,29 +170,10 @@
         border: 1px solid lightgrey;
         border-radius: 0.5rem;
         padding: 20px;
+        position: relative;
     }
-    .progress {
-        height: 20px;
-        margin: 20px 0; 
-        overflow: hidden; 
-        background-color: #f5f5f5; 
-        border-radius: 1rem; 
-        -webkit-box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%); 
-        box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
-    }
-    .prog-bar {
-        float: left; width: 0%; height: 100%; 
-        font-size: 12px; line-height: 20px; 
-        color: #fff; text-align: center; 
-        vertical-align: middle;
-        background-color: #337ab7; 
-        -webkit-box-shadow: inset 0 -1px 0 rgb(0 0 0 / 15%); 
-        box-shadow: inset 0 -1px 0 rgb(0 0 0 / 15%); 
-        -webkit-transition: width .6s ease; /* keyframe 사용으로 Animation 효과도 줄 수 있다. */
-        -o-transition: width .6s ease;
-    } 
-    .col_success {
-        background-color: #F95001;
+    #progressbar {
+    	margin-top: 40px;
     }
     /*------------------------*/
     .skill-bar {
@@ -234,7 +227,6 @@
         width: 55%;
         position: absolute;
         right: 0;
-        margin-top: 50px;
         padding: 20px;
     }
     .show_date {
@@ -364,15 +356,51 @@
 </script>
 </head>
 <body>
+	<nav class="navbar navbar-expand-sm navbar-dark cOrange">
+		<ul class="navbar-nav me-auto mb-2 mb-sm-0" id="nav-total">
+			<li><a class="navbar-brand" id="nav-title" href="../">갓생일지</a></li>
+			<li id="nav-category"><a class="nav-link dropdown-toggle"
+				href="#" data-bs-toggle="dropdown" aria-expanded="false">챌린지 보기</a>
+				<ul class="dropdown-menu">
+					<li><a class="dropdown-item" href="../challenge/main">All</a></li>
+					<li><a class="dropdown-item" href="../challenge/main_study">공부
+					</a></li>
+					<li><a class="dropdown-item" href="../challenge/main_habit">습관
+					</a></li>
+					<li><a class="dropdown-item" href="../challenge/main_workout">운동
+					</a></li>
+					<li><a class="dropdown-item" href="../challenge/main_hobby">취미
+					</a></li>
+				</ul></li>
+			<li id="nav-insertChallenge"><a class="nav-link"
+				href="../challenge/insert">새 챌린지 만들기</a></li>
+			<li id="nav-search">
+				<form role="search">
+					<input class="form-control" type="search" placeholder="Search">
+				</form>
+			</li>
+			<li id="nav-mypage"><a class="nav-link" href="../mypage/mypage">마이페이지</a></li>
+			<c:choose>
+				<c:when test="${empty user }">
+					<li id="nav-logout"><a class="nav-link" href="../login/login">login</a></li>
+				</c:when>
+				<c:otherwise>
+					<li id="nav-logout"><a class="nav-link" href="../login/logout">logout</a></li>
+				</c:otherwise>
+			</c:choose>
+		</ul>
+	</nav>
     <!-- Header -->
     <div class="section">
-        <div class="left_part">
+    	<div id="challenge_title">
+	    	<h1>${challenge.challengeName }</h1>
+        	<p id="member_number">${challenge.challengeMaxMember }명 참여 중</p>
+    	</div>
+    	<div class="left_part">
             <div class="left_first">
-                <h2 id="challenge_title">${challenge.challengeName }</h2>
                 <div class="challenge_dscr">
-                    <p>${challenge.challengeDuration } </p>
-                    <p>${challenge.challengeMaxMember }명 </p>
-                    <textarea readonly="readonly">${challenge.challengeInfo }</textarea>
+                    <p>${challenge.challengeInfo }</p>
+                    <p>${challenge.challengeHashtag }</p>
                     
                     <c:set var="timestamp" value="${challenge.challengeStartedDate}" />
 					<c:set var="startDate" value="${timestamp.toLocalDateTime().toLocalDate()}" />
@@ -418,10 +446,11 @@
             <div class="left_third">
                 <div class="challenge_progress">
                     <h4>챌린지 만료까지</h4>
-
-                    <div class="skill-bar">
-                        <div class="skill-percentage" per="${percent }%" style="max-width:${percent }%"></div>
-                    </div>
+					<div id="progressbar">
+	                    <div class="skill-bar">
+	                        <div class="skill-percentage" per="${percent }%" style="max-width:${percent }%"></div>
+	                    </div>
+					</div>
                 </div>
             </div>
         </div>
