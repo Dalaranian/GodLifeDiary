@@ -221,7 +221,7 @@
 										<p id="c_maxmember">명</p>
 										<p id="c_duration">${challenge.challengeDuration }주 코스</p>
 										<div id="c_joinBtn">
-											<a href="../challenge/detail?$">진행상황 보기</a>
+											<a href="/challenge/detail_frommain?challengeName=${challenge.challengeName }">상세보기</a>
 										</div>
 									</div>
 								</li>

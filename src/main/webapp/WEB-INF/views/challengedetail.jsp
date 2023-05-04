@@ -497,7 +497,6 @@
                 </div>
             </div>
             	<c:set var="user" value="${sessionScope.user}" />
-            	
             <div class="left_second">
                 <div class="challenge_status">
                     <h4>진행현황</h4>
@@ -513,9 +512,7 @@
 							    	<c:if test="${date % 7 eq 6}">
 								        </tr>
 								    </c:if>
-							    
 							</c:forEach>
-                            
                     </table>
                 </div>
             </div>
@@ -524,7 +521,14 @@
                     <h4>챌린지 만료까지</h4>
 					<div id="progressbar">
 	                    <div class="skill-bar">
-	                        <div class="skill-percentage" per="${percent }%" style="max-width:${percent }%"></div>
+							<c:choose>
+								<c:when test="${percent > 100}">
+			                        <div class="skill-percentage" per="100%" style="max-width:100%"></div>
+								</c:when>
+								<c:otherwise>
+			                        <div class="skill-percentage" per="${percent }%" style="max-width:${percent }%"></div>
+								</c:otherwise>
+							</c:choose>
 	                    </div>
 					</div>
                 </div>

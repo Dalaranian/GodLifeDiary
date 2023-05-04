@@ -24,7 +24,7 @@
 <style type="text/css">
 .mypage-total {
 	box-sizing: border-box;
-	width: 70%;
+	width: 50%;
 	position: relative;
 	left: 50%;
 	transform: translate(-50%, 0%);
@@ -382,7 +382,16 @@ a:hover {
 										<div class="cont">
 											<strong id="c_name">${challenge.challengeName }</strong>
 											<p id="c_info">${challenge.challengeInfo }</p>
-											<p id="c_maxmember">${challenge.challengeMaxMember }명 참여 중</p>
+											<p id="c_members">
+												<c:set var="cnt" value="0"></c:set>
+												<c:forEach items="${rmTotal}" var="rm">
+													<c:if test="${challenge.seq eq rm.seq }">
+														<c:set var="cnt" value="${cnt+1 }"></c:set>
+													</c:if>
+												</c:forEach>
+												<c:out value="${cnt }"></c:out>
+											</p>
+											<p id="c_maxmember">/ ${challenge.challengeMaxMember }명</p>
 											<div id="c_delete">
 												<a href="#" onclick="deleteRegist('${challenge.seq}', '${user.id}', this)">포기하기</a>
 											</div>
@@ -408,8 +417,7 @@ a:hover {
 										<div class="cont">
 											<strong id="c_name">${challenge.challengeName }</strong>
 											<p id="c_info">${challenge.challengeInfo }</p>
-											<p id="c_maxmember">${challenge.challengeMaxMember }명 참여 중</p>
-											<p id="c_duration">${challenge.challengeDuration }주코스</p>
+											<p id="c_maxmember">${challenge.challengeMaxMember }명 참여 완료</p>
 										</div>
 									</li>
 								</c:if>
