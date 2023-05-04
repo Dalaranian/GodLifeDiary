@@ -74,9 +74,11 @@
 	margin: 0;
 	font-size: 24px;
 }
+
 #rvs {
 	margin: 0;
 }
+
 #rvsButton {
 	cursor: pointer;
 	width: 90%;
@@ -175,6 +177,71 @@
 	text-align: center;
 	background-color: white;
 }
+/* ------------------- */
+@font-face {
+	font-family: 'Pretendard-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+		format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
+
+body {
+	font-family: 'Pretendard-Regular', sans-serif;
+}
+/* 중앙에 위치한 박스 스타일 */
+.center-box {
+	width: 500px;
+	height: 500px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border: 2px solid black;
+	border-radius: 0.8rem;
+	padding-bottom: 50px;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+h1 {
+	display: block;
+	font-size: 2em;
+	margin-block-start: 0.67em;
+	margin-block-end: 0.67em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	font-weight: bold;
+}
+
+button[type="submit"] {
+	width: 100%;
+	margin-top: 10px;
+	background-color: #F7570B;
+	border: none;
+	color: white;
+	padding: 10px 20px;
+	text-align: center;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.joinContent {
+	width: 100%;
+	margin-bottom: 15px;
+}
+
+.joinContent>input {
+	width: 68%;
+	height: 40px;
+	box-sizing: border-box;
+	display: inline-block;
+	border: 0.7px solid rgb(185, 184, 184);
+	border-radius: 0.5rem;
+}
 </style>
 </head>
 <body>
@@ -208,202 +275,40 @@
 	</nav>
 	<br>
 	<br>
-	<div class="mypage-total">
-		<div id="insert_title">마이페이지</div>
-		<!-- 이름 닉넴 통계 등이 나오는 부분 -->
-		<div class="myprofile">
-			<div id="myinfo">
-				<div class="myprofile-">
-					<p class="profiletag">NAME</p>
-					<p class="profilecont">${user.userName }</p>
+	<div class="center-box">
+		<h1>비밀번호 변경</h1>
+		<div class="joinForm">
+			<form action="/mypage/changepw" method="post">
+				<input type="hidden" name="userId" value="${user.userId }">
+				<div class="joinContent">
+					<label for="password">비밀번호</label> <input type="password"
+						id="password" name="userPw"><br>
 				</div>
-				<div class="myprofile-">
-					<p class="profiletag">ID</p>
-					<p class="profilecont">${user.userId }</p>
+				<div class="joinContent">
+					<label for="password">비밀번호 확인</label> <input type="password"
+						id="passwordCheck"><br>
 				</div>
-					<p id="rvs"><button type="button" value="개인정보수정" id="rvsButton">개인정보수정</button></p>
-			</div>
-			<div id="mystatus">
-				<div class="myprofile-">
-					<p class="profiletag">진행 중인 챌린지</p>
-					<p class="profilecont">
-						<c:forEach items="${challenges}" var="challenge">
-							<c:if test="${challenge.challengeEnabled eq 'N' }">
-								<c:set var="enabled_N" value="${enabled_N+1 }"></c:set>
-							</c:if>
-						</c:forEach>
-						<c:choose>
-							<c:when test="${empty enabled_N}">
-								0개
-							</c:when>
-							<c:otherwise>
-								<c:out value="${enabled_N }"></c:out>개
-							</c:otherwise>
-						</c:choose>
-					</p>
-				</div>
-				<div class="myprofile-">
-					<p class="profiletag">대기 중인 챌린지</p>
-					<p class="profilecont">
-						<c:forEach items="${challenges}" var="challenge">
-							<c:if test="${challenge.challengeEnabled eq 'Y' }">
-								<c:set var="enabled_Y" value="${enabled_Y+1 }"></c:set>
-							</c:if>
-						</c:forEach>
-						<c:choose>
-							<c:when test="${empty enabled_Y}">
-								0개
-							</c:when>
-							<c:otherwise>
-								<c:out value="${enabled_Y }"></c:out>개
-							</c:otherwise>
-						</c:choose>
-					</p>
-				</div>
-				<div class="myprofile-">
-					<p class="profiletag">완료된 챌린지</p>
-					<p class="profilecont">
-						<c:forEach items="${challenges}" var="challenge">
-							<c:if test="${challenge.challengeEnabled eq 'I' }">
-								<c:set var="enabled_I" value="${enabled_I+1 }"></c:set>
-							</c:if>
-						</c:forEach>
-						<c:choose>
-							<c:when test="${empty enabled_I}">
-								0개
-							</c:when>
-							<c:otherwise>
-								<c:out value="${enabled_I }"></c:out>개
-							</c:otherwise>
-						</c:choose>
-					</p>
-				</div>
-			</div>
+				<button onclick="return checkPw()">확인하기</button>
+				<button type="submit" name="pwChangeSubmitBtn" onclick="alert('비밀번호가 변경되었습니다.')" disabled>변경하기</button>
+			</form>
 		</div>
 	</div>
+	<script type="text/javascript">
+		function checkPw() {
+			const password = document.getElementById("password");
+			const passwordCheck = document.getElementById("passwordCheck");
 
-	<!-- 챌린지들 볼 수 있는 부분 -->
-	<div class="mychallenges">
-		<ul class="nav nav-tabs justify-content-center" id="myTab"
-			role="tablist">
-			<li class="nav-item" role="presentation">
-				<button class="nav-link active" id="home-tab" data-bs-toggle="tab"
-					data-bs-target="#home-tab-pane" type="button" role="tab"
-					aria-controls="home-tab-pane" aria-selected="true">진행중인
-					챌린지</button>
-			</li>
-			<li class="nav-item" role="presentation">
-				<button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab"
-					data-bs-target="#nav-contact" type="button" role="tab"
-					aria-controls="nav-contact" aria-selected="false">대기 중인
-					챌린지</button>
-			</li>
-			<li class="nav-item" role="presentation">
-				<button class="nav-link" id="profile-tab" data-bs-toggle="tab"
-					data-bs-target="#profile-tab-pane" type="button" role="tab"
-					aria-controls="profile-tab-pane" aria-selected="false">완료된
-					챌린지</button>
-			</li>
-		</ul>
-		<div class="tab-content">
-			<div class="tab-pane active" id="home-tab-pane">
-				<ul class="each-category">
-					<c:choose>
-						<c:when test="${empty challenges }">
-							<h3>-----등록된 챌린지가 없습니다-----</h3>
-						</c:when>
-						<c:otherwise>
-							<c:forEach items="${challenges}" var="challenge">
-								<c:if test="${challenge.challengeEnabled eq 'N' }">
-									<li class="item">
-										<div class="cont">
-											<strong id="c_name">${challenge.challengeName }</strong>
-											<p id="c_info">${challenge.challengeInfo }</p>
-											<p id="c_maxmember">${challenge.challengeMaxMember }명(인원
-												표기 필요할까)</p>
-											<p id="c_duration">${challenge.challengeDuration }주코스</p>
-										</div>
-									</li>
-								</c:if>
-							</c:forEach>
-						</c:otherwise>
-					</c:choose>
-				</ul>
-				<section class="pt-4" id="comment">
-					<div class="container px-lg-5">
-						<div class="p-4 p-lg-5 bg-light rounded-3 row">
-							<select name="challengeComment" id="challengeComment">
-								<!--
-                         <c:forEach var="list" items="${result}">
-                              <option value="${list.beverage}">${list.beverage}</option>
-                          </c:forEach> 
-                         -->
-								<%
-								for (int i = 0; i < 10; i++) {
-								%>
-								<option value="<%=i%>">챌린지명<%=i + 1%></option>
-								<%
-								}
-								%>
-							</select>
-							<div>
-								<p>댓글 뿌리는 곳</p>
-							</div>
-						</div>
-					</div>
-				</section>
-			</div>
-			<div class="tab-pane fade" id="nav-contact">
-				<ul class="each-category">
-					<c:choose>
-						<c:when test="${empty challenges }">
-							<h3>-----등록된 챌린지가 없습니다-----</h3>
-						</c:when>
-						<c:otherwise>
-							<c:forEach items="${challenges}" var="challenge">
-								<c:if test="${challenge.challengeEnabled eq 'Y' }">
-									<li class="item">
-										<div class="cont">
-											<strong id="c_name">${challenge.challengeName }</strong>
-											<p id="c_info">${challenge.challengeInfo }</p>
-											<p id="c_maxmember">${challenge.challengeMaxMember }명(인원
-												표기 필요할까)</p>
-											<p id="c_duration">${challenge.challengeDuration }주코스</p>
-										</div>
-									</li>
-								</c:if>
-							</c:forEach>
-						</c:otherwise>
-					</c:choose>
-				</ul>
-			</div>
-
-			<div class="tab-pane fade" id="profile-tab-pane">
-				<ul class="each-category">
-					<c:choose>
-						<c:when test="${empty challenges }">
-							<h3>-----등록된 챌린지가 없습니다-----</h3>
-						</c:when>
-						<c:otherwise>
-							<c:forEach items="${challenges}" var="challenge">
-								<c:if test="${challenge.challengeEnabled eq 'I' }">
-									<li class="item">
-										<div class="cont">
-											<strong id="c_name">${challenge.challengeName }</strong>
-											<p id="c_info">${challenge.challengeInfo }</p>
-											<p id="c_maxmember">${challenge.challengeMaxMember }명(인원
-												표기 필요할까)</p>
-											<p id="c_duration">${challenge.challengeDuration }주코스</p>
-										</div>
-									</li>
-								</c:if>
-							</c:forEach>
-						</c:otherwise>
-					</c:choose>
-				</ul>
-			</div>
-		</div>
-	</div>
-
+			if (password.value !== passwordCheck.value) {
+				alert("비밀번호가 일치하지 않습니다.");
+				password.value = "";
+				passwordCheck.value = ""
+				return false;
+			} else {
+				alert("비밀번호가 일치합니다.");
+				document.querySelector("button[name='pwChangeSubmitBtn']").disabled = false;
+				return false;
+			}
+		}
+	</script>
 </body>
 </html>

@@ -203,7 +203,6 @@
 	font-size: 14px;
 }
 a {
-	letter-spacing: -1px;
 	text-decoration: none;
 	width: 100%;
 	height: 100%;
@@ -263,9 +262,7 @@ a:hover {
 					<p class="profiletag">ID</p>
 					<p class="profilecont">${user.userId }</p>
 				</div>
-				<p id="rvs">
-					<button type="button" value="개인정보수정" id="rvsButton">개인정보수정</button>
-				</p>
+				<p id="rvs"><button type="button" value="개인정보수정" id="rvsButton" onclick="location.href='/mypage/gotopwchange'">개인정보수정</button></p>
 			</div>
 			<div id="mystatus">
 				<div class="myprofile-">
@@ -375,29 +372,6 @@ a:hover {
 						</c:otherwise>
 					</c:choose>
 				</ul>
-				<section class="pt-4" id="comment">
-					<div class="container px-lg-5">
-						<div class="p-4 p-lg-5 bg-light rounded-3 row">
-							<select name="challengeComment" id="challengeComment">
-								<!--
-	                         <c:forEach var="list" items="${result}">
-	                             <option value="${list.beverage}">${list.beverage}</option>
-	                         </c:forEach> 
-                         		-->
-								<%
-								for (int i = 0; i < 10; i++) {
-								%>
-								<option value="<%=i%>">챌린지명<%=i + 1%></option>
-								<%
-								}
-								%>
-							</select>
-							<div>
-								<p>댓글 뿌리는 곳</p>
-							</div>
-						</div>
-					</div>
-				</section>
 			</div>
 			<div class="tab-pane fade" id="nav-contact">
 				<ul class="each-category">
@@ -413,9 +387,6 @@ a:hover {
 											<strong id="c_name">${challenge.challengeName }</strong>
 											<p id="c_info">${challenge.challengeInfo }</p>
 											<p id="c_maxmember">${challenge.challengeMaxMember }명 참여 중</p>
-											<div id="c_detail">
-												<a href="../challenge/detail?$">상세보기</a>
-											</div>
 											<div id="c_delete">
 												<a href="#" onclick="deleteRegist('${challenge.seq}', '${user.id}', this)">포기하기</a>
 											</div>
