@@ -363,7 +363,7 @@ a:hover {
 											<p id="c_info">${challenge.challengeInfo }</p>
 											<p id="c_maxmember">${challenge.challengeMaxMember }명 참여 중</p>
 											<div id="c_detail">
-												<a href="../challenge/detail?$">상세보기</a>
+												<a href="/challenge/detail?challengeName=${challenge.challengeName }">상세보기</a>
 											</div>
 											<div id="c_delete">
 												<a href="#" onclick="deleteRegist('${challenge.seq}', '${user.id}', this)">포기하기</a>

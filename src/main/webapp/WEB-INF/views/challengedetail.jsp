@@ -278,11 +278,23 @@
         display: inline-block;
         position: relative;
     }
+    .profile_other{
+        box-sizing: border-box;
+        width: 100%;
+        height: 30%;
+        display: inline-block;
+        position: relative;
+    }
     #profile_img {
         border-radius: 100%;
         width: 40px;
     }
     #profile_nick {
+        display: inline-block;
+        box-sizing: border-box;
+        padding: 5px;
+    }
+    #other_nick {
         display: inline-block;
         box-sizing: border-box;
         padding: 5px;
@@ -301,6 +313,15 @@
         position: relative;
     }
     #comment {
+        width: 100%;
+        resize: none;
+        vertical-align: middle;
+        margin: 5px 0;
+        overflow: visible;
+        border: 1px solid grey;
+        color: rgb(90, 90, 90);
+    }
+    #other_comment{
         width: 100%;
         resize: none;
         vertical-align: middle;
@@ -340,6 +361,7 @@
     }
 
 </style>
+
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript">
 	var cnt = 1;
@@ -359,13 +381,11 @@
     }
     
     function goToCommentDate(seq, id, commentDate){
-    	console.log("durlsms");
 		let commentVal = {
 			"seq" : seq,
 			"id" : id,
 			"commentDate" : commentDate
 		};
-		
 		
 		$.ajax({
 				type:"post",
@@ -374,25 +394,32 @@
 				contentType:"application/json",
 				dataType:"json",
 				success:function(res){
-					console.log(res);
-					console.log(res.comment);
-					console.log(res.list);
 					 
-					if(res.comment == null){
+					if(res.comment.comment == null || res.list == null){
 						$("#today").html(commentDate);
+						$("#comment").attr("readonly",true);
+						$(".comment_my").hide();
+						$(".comment_others").hide();
 					}else{
-						console.log(res);
-						console.log(res.list[0].id);
-						console.log(res.comment.comment.isDone);
 						$("#today").html(res.comment.comment.commentDate);
 						$("#comment").html(res.comment.comment.comment);
-						$("#profile_check").html(res.comment.comment.isDone);
-						$("#profile_nick").html(res.list[0].id);
-						$(".comment_others #profile_nick").html(res.list[1].id);
 						
-						/* for(let i=0 i<res.list.length() i++){
-							$("#profile_nick").html(res.list[i].id);
-						}   */
+						$(".profile_other").empty();
+						for(let i=0; i<res.list.length; i++){
+							if(res.list[i].id!=${user.id}){
+								$(".profile_other").append('<div id="other_nick">' + res.list[i].id + '</div>');
+								$(".profile_other").append('<div id="other_comment">' + res.list[i].comment + '</div>');
+							}
+						} 
+						
+						if(res.comment.comment.isDone=="Y") {
+							$("#checksign").attr('src','../resources/img/letter-o.png');
+						}else if(res.comment.comment.isDone=="N"){
+							$("#checksign").attr('src',"../resources/img/letter-x.png");
+							
+						}
+						$(".comment_my").show();
+						$(".comment_others").show();
 					
 					} 
 					
@@ -485,7 +512,6 @@
                 <div id="record_title">My status</div>
                 <div class="comment_each">
                     <div class="profile">
-                        <img id="profile_img" src="./imgs/aaa.jpg" alt="img">
                         <div id="profile_nick">${user.userId}</div>
                         <div id="profile_check"><input type="button" name="didornot" value="Check!" onclick="checking();" class="buttonDesign" id="checkbtn">&nbsp;<img id="checksign" src="../resources/img/letter-x.png"></div>
                     </div>
@@ -499,12 +525,9 @@
              <div class="comment_others">
                 <div id="record_title">Others</div>
                 <div class="comment_each">
-                    <div class="profile">
-                        <img id="profile_img" src="./imgs/aaa.jpg" alt="img">
-                        <div id="profile_nick">nickname</div>
-                        <div id="profile_check"><img id="checksign" src="../resources/img/letter-x.png"></div>
+                    <div class="profile_other">
+                        
                     </div>
-                    <textarea id="comment" name="comment" readonly="readonly">오늘은 진짜 일찍 일어나기 너무 힘들었는데 그래도 알람 한 번만에 일어났다 뿌듯하다ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ</textarea>
                 </div>
                 
             </div>
