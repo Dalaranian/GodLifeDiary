@@ -118,6 +118,15 @@ public class ChallengeController {
 		return "challengedetail";
 	}
 
+	@GetMapping("/detail_frommain")
+	public String moveToDetailFromMain(Model model, String challengeName) {
+		ChallengeDto challenge = challengeBiz.selectOne(challengeName);
+
+		model.addAttribute("challenge", challenge);
+
+		return "challengedetail_frommain";
+	}
+	
 	@GetMapping("/insert")
 	public String insert() {
 		return "challengeinsert";

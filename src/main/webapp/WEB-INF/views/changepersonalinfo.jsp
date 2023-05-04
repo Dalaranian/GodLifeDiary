@@ -281,12 +281,10 @@ button[type="submit"] {
 			<form action="/mypage/changepw" method="post">
 				<input type="hidden" name="userId" value="${user.userId }">
 				<div class="joinContent">
-					<label for="password">비밀번호</label> <input type="password"
-						id="password" name="userPw"><br>
+					<label for="password">비밀번호</label> <input type="password" id="password" name="userPw"><br>
 				</div>
 				<div class="joinContent">
-					<label for="password">비밀번호 확인</label> <input type="password"
-						id="passwordCheck"><br>
+					<label for="password">비밀번호 확인</label> <input type="password" id="passwordCheck"><br>
 				</div>
 				<button onclick="return checkPw()">확인하기</button>
 				<button type="submit" name="pwChangeSubmitBtn" onclick="alert('비밀번호가 변경되었습니다.')" disabled>변경하기</button>
