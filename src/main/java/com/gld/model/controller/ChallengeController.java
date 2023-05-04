@@ -106,9 +106,9 @@ public class ChallengeController {
 		return "challengeinsert_res";
 	}
 	
-	 @PostMapping("/ajaxComment")
-	   @ResponseBody
-	   public Map<String, Object> commentDate(@RequestBody CommentId commentid) {
+	@PostMapping("/ajaxComment")
+	@ResponseBody
+	public Map<String, Object> commentDate(@RequestBody CommentId commentid) {
 		   System.out.println(commentid.getSeq()+" " +commentid.getId()+" "+commentid.getCommentDate());
 		   Map<String, Object> res = new HashMap<>();
 		   
@@ -116,20 +116,25 @@ public class ChallengeController {
 		   CommentDto comment = commentBiz.selectComment(commentid.getSeq(), commentid.getId(), commentid.getCommentDate());
 		   List<CommentDto> list = commentBiz.selectComments(commentid.getSeq(), commentid.getCommentDate());
 		   //System.out.println(comment.getId());
-		   System.out.println(list.get(2).getComment());
+		   //System.out.println(list.get(2).getComment());
 		   Map<String, CommentDto> map = new HashMap<>();
 		   
+		   System.out.println(list);
 		   if(comment != null) {
 			   map.put("comment", comment);
 		   }else {
 			   map.put("comment", null);
 		   }
-		   
 		   res.put("comment", map);
-		   res.put("list",list);
 		   
-		   return res;
-	   }
+		   if(list.size() != 0) {
+			   res.put("list", list);
+		   }else {
+			   res.put("list", null);
+		   }
+		   
+	   return res;
+	  }
 
 	// 참여하기 버튼 눌렀을때 로직
 	@RequestMapping(value = "/joinuser", method = RequestMethod.POST)
