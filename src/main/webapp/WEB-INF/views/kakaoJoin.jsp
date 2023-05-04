@@ -7,7 +7,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>회원가입</title>
-<link href="../resources/css/styles.css" rel="stylesheet" />
 <link href="../resources/css/font.css" rel="stylesheet" />
 <style>
 @font-face {
@@ -72,10 +71,12 @@ button[type="submit"] {
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
-	font-size: 7px;
+	font-size: 14px;
 	cursor: pointer;
 	border-radius: 5px;
 	width: 24%;
+	margin: 0;
+	vertical-align: middle;
 }
 
 .joinContent {
@@ -100,6 +101,9 @@ button[type="submit"] {
 #phone {
 	width: 43%;
 }
+#passwordConfirm {
+	width: 43%;
+}
 </style>
 </head>
 <body>
@@ -120,7 +124,7 @@ button[type="submit"] {
 				<div class="joinContent">
 					<label for="passwordConfirm">비밀번호 확인</label> <input type="password"
 						id="passwordConfirm" name="userPwConfirm">
-					<button type="button" onclick="return checkPw()">비밀번호 확인</button>
+					<button type="button"  id="get_verification_code" onclick="return checkPw()">비밀번호 확인</button>
 					<br>
 				</div>
 
