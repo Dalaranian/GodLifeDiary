@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gld.model.biz.ChallengeBiz;
 import com.gld.model.biz.CommentBiz;
@@ -26,6 +28,7 @@ import com.gld.model.biz.RegisteredBiz;
 import com.gld.model.dto.ChallengeDto;
 import com.gld.model.dto.CommentDto;
 import com.gld.model.dto.CommentId;
+import com.gld.model.dto.RegisteredMemberDto;
 import com.gld.model.dto.UserDto;
 
 @Controller
@@ -33,17 +36,16 @@ import com.gld.model.dto.UserDto;
 public class ChallengeController {
 
 	@Autowired
+	private LoginBiz loginBiz;
+
+	@Autowired
 	private ChallengeBiz challengeBiz;
 
 	@Autowired
 	private RegisteredBiz registeredBiz;
-
-	@Autowired
-	private LoginBiz loginBiz;
 	
 	@Autowired
 	private CommentBiz commentBiz;
-
 
 	@GetMapping("/main")
 	public String getAllChallenges(Model model) {
@@ -51,6 +53,12 @@ public class ChallengeController {
 		List<ChallengeDto> challenges = challengeBiz.selectAll();
 		// 조회된 엔티티들을 모델에 담아서 뷰로 전달
 		model.addAttribute("challenges", challenges);
+		model.addAttribute("cate", "전체"); //어떤 카테고리인지 띄우려고
+
+		//REGISTERED_MEMBER 전체 보내기
+		List<RegisteredMemberDto> rmTotal = registeredBiz.selectAll();
+		model.addAttribute("rmTotal", rmTotal);
+		
 		return "main";
 
 	}
@@ -59,32 +67,39 @@ public class ChallengeController {
 
 	@GetMapping("/main_study")
 	public String getStudyChallenges(Model model) {
-		List<ChallengeDto> challenges = challengeBiz.findbyCate("공부");
+		String category = "공부";
+		List<ChallengeDto> challenges = challengeBiz.findbyCate(category);
 		model.addAttribute("challenges", challenges);
+		model.addAttribute("cate", category);
 		return "main";
 	} 
 
-
 	@GetMapping("/main_habit")
 	public String getHabitChallenges(Model model) {
-		List<ChallengeDto> challenges = challengeBiz.findbyCate("습관");
+		String category = "습관";
+		List<ChallengeDto> challenges = challengeBiz.findbyCate(category);
 		model.addAttribute("challenges", challenges);
+		model.addAttribute("cate", category);
 		return "main";
-}
+	}
 
 	@GetMapping("/main_hobby")
 	public String getHobbyChallenges(Model model) {
-		List<ChallengeDto> challenges = challengeBiz.findbyCate("취미");
+		String category = "취미";
+		List<ChallengeDto> challenges = challengeBiz.findbyCate(category);
 		model.addAttribute("challenges", challenges);
+		model.addAttribute("cate", category);
 		return "main";
-}
+	}
 
 	@GetMapping("/main_workout")
 	public String getWorkoutChallenges(Model model) {
-		List<ChallengeDto> challenges = challengeBiz.findbyCate("운동");
+		String category = "운동";
+		List<ChallengeDto> challenges = challengeBiz.findbyCate(category);
 		model.addAttribute("challenges", challenges);
+		model.addAttribute("cate", category);
 		return "main";
-}
+	}
 
 	@GetMapping("/detail")
 	public String moveToDetail(Model model, String challengeName) {
@@ -180,4 +195,49 @@ public class ChallengeController {
 		}
 		return "error 발생";
 	}
+		
+	// 포기하기 delete 
+	@RequestMapping(value = "/deleteregist", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Boolean> deleteregist(@RequestBody String json) {
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Boolean> res = new HashMap<String, Boolean>();
+		
+		try {
+			// JSON 문자열을 Java 객체로 변환
+			Map<String, Object> map = mapper.readValue(json, new TypeReference<Map<String, Object>>() {
+			});
+			
+			// Java 객체에서 값을 추출하여 변수에 할당
+			String challengeSeq = map.get("challengeSeq").toString();
+			String userId = map.get("userId").toString();
+			// 필요한 DTO, 첼린지별 사람 준비
+			ChallengeDto currentChallenge = challengeBiz.selectOneBySeq(challengeSeq);
+			UserDto currentUser = loginBiz.findByUserId(userId);
+			
+			System.out.println("필요한 정보 로딩 완료");
+			
+			
+			
+			// 디비에 지우기 
+			if (currentChallenge.getChallengeEnabled().equals("Y")) {
+				int delRes = registeredBiz.delete(challengeSeq, Long.parseLong(userId));
+				System.out.println("controller del res: " + delRes);
+				if(delRes > 0) {
+					res.put("res", true);
+					return res;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.put("res", false);
+			return res;
+		}
+		
+		res.put("res", false);
+		return res;	}
+		
+		
+		
 }
+
+
