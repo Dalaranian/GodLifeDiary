@@ -194,12 +194,12 @@ public class ChallengeController {
 				}
 				
 				if (res > 0) {
-					return currentChallenge.getChallengeName() + " 에 참여하였습니다. ";
+					return currentChallenge.getChallengeName() + "에 참여하였습니다. ";
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "참여에 실패하였습니다. 다시 시도해주세요 ";// 클라이언트로 반환할 데이터
+			return "이미 참여 중인 챌린지입니다.";// 클라이언트로 반환할 데이터
 		}
 		return "error 발생";
 	}

@@ -10,7 +10,6 @@
 <link href="../resources/css/font.css" rel="stylesheet" />
 </head>
 <body>
-<button onclick="location.href='challenge/detail?challengeName=매일 30분 걷기 챌린지'">challengedetail</button>
 <!-- Responsive navbar-->
 <nav class="navbar navbar-expand-sm navbar-dark cOrange">
 	<ul class="navbar-nav me-auto mb-2 mb-sm-0" id="nav-total">
@@ -54,11 +53,6 @@
 	</div>
 	</h1>
 </div>
-<br>
-<br>
-<br>
-<br>
-<br>
 <br>
 <br>
 <br>

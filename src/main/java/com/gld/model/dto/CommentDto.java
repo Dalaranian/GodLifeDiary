@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 
@@ -12,6 +14,7 @@ import javax.persistence.IdClass;
 public class CommentDto {
 	@Id
 	@Column(name="SEQ")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer seq;
 	
 	@Id
