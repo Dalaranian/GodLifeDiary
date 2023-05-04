@@ -5,14 +5,15 @@
 
 <%@ page import="java.time.LocalDate" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Detail</title>
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="../resources/css/styles.css" rel="stylesheet" />
-<link href="../resources/css/font.css" rel="stylesheet" />
+<link href="/resources/css/styles.css" rel="stylesheet" />
+<link href="/resources/css/font.css" rel="stylesheet" />
 <style type="text/css">
 /*---------------------------beginning-------------------------------*/
     .section {
@@ -326,7 +327,7 @@
         width: 120px;
         position: absolute;
         right: 0;
-        bottom: -5px;
+        bottom: -30px;
     }
     .buttonDesign {
         width: 80px;
@@ -389,14 +390,26 @@
 					 
 					if(res.comment.comment == null || res.list == null){
 						$("#today").html(commentDate);
-						$("#comment").attr("readonly",true);
-						$(".comment_my").hide();
-						$(".comment_others").hide();
+						
+						if(res.comment.comment.commentDate == today){ // 오늘 날짜를 클릭 했을 때 
+							$("#comment").empty();
+							$("#comment").attr("readonly",false);
+							$("#comment_button").show();
+							//$("#comment").val('');
+						}else{
+							$("#comment").attr("readonly",true);
+							$(".comment_my").hide();
+							$(".comment_others").hide();
+						}
 					}else{
 						$("#today").html(res.comment.comment.commentDate);
 						$("#comment").html(res.comment.comment.comment);
 						
 						$(".profile_other").empty();
+						<c:set var="user" value="${sessionScope.user}" />
+						//$(".profile_other").append('<div id="other_nick">' + ${user.userId} + '</div>');
+						//$(".profile_other").append('<div id="other_comment">' + res.comment.comment.comment + '</div>');
+						
 						for(let i=0; i<res.list.length; i++){
 							if(res.list[i].id!=${user.id}){
 								$(".profile_other").append('<div id="other_nick">' + res.list[i].id + '</div>');
@@ -425,6 +438,10 @@
 	
 	
 		}
+    
+    function addShow(ele){
+    	$(ele).next().addClass("show");
+    }
   </script>
 
 </head>
@@ -433,7 +450,7 @@
 		<ul class="navbar-nav me-auto mb-2 mb-sm-0" id="nav-total">
 			<li><a class="navbar-brand" id="nav-title" href="../">갓생일지</a></li>
 			<li id="nav-category"><a class="nav-link dropdown-toggle"
-				href="#" data-bs-toggle="dropdown" aria-expanded="false">챌린지 보기</a>
+				href="#" data-bs-toggle="dropdown" aria-expanded="false" onclick="addShow(this);">챌린지 보기</a>
 				<ul class="dropdown-menu">
 					<li><a class="dropdown-item" href="../challenge/main">All</a></li>
 					<li><a class="dropdown-item" href="../challenge/main_study">공부
@@ -542,17 +559,23 @@
                 <a id="next_day">▶</a>
             </div>
             <div class="comment_my">
-                <div id="record_title">My status</div>
+                <div id="record_title">Comment I</div>
+                <form action="/challenge/commentinsert" method="post" class="insertform">
                 <div class="comment_each">
                     <div class="profile">
                         <div id="profile_nick">${user.userId}</div>
-                        <div id="profile_check"><input type="button" name="didornot" value="Check!" onclick="checking();" class="buttonDesign" id="checkbtn">&nbsp;<img id="checksign" src="../resources/img/letter-x.png"></div>
+                        <div id="profile_check"><input type="button" name="isdone" value="Check!" onclick="checking();" class="buttonDesign" id="checkbtn">&nbsp;<img id="checksign" src="../resources/img/letter-x.png"></div>
                     </div>
                     <div id="commentContainer">
                         <textarea id="comment" name="comment"></textarea>
                         <input type="submit" value="코멘트 등록" id="comment_button" class="buttonDesign">
+                        <input type="hidden" name="seq" value="전달할 데이터">
+                        <input type="hidden" name="id" value="${user.userId}">
+                        <input type="hidden" name="commentDate" value="">
+                        <input type="hidden" name="challengeName" value="${user.userId}">
                     </div>
                 </div>
+                </form>
             </div>
 
              <div class="comment_others">

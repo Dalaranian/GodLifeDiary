@@ -9,9 +9,11 @@ import org.springframework.stereotype.Repository;
 import com.gld.model.dto.ChallengeDto;
 import com.gld.model.dto.CommentDto;
 import com.gld.model.dto.CommentId;
+import com.gld.model.dto.RegisteredMemberDto;
 
 @Repository
 public interface CommentRepository extends JpaRepository<CommentDto,CommentId>{
 	CommentDto findOneBySeqAndIdAndCommentDate(Integer seq, Integer id, LocalDate commentDate);
 	List<CommentDto> findBySeqAndCommentDate(Integer seq, LocalDate commentDate);
+	List<CommentDto> findAll();
 }
