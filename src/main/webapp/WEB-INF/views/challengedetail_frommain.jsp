@@ -502,7 +502,7 @@ to {
 	<div class="section">
 		<div id="challenge_title">
 			<h1>${challenge.challengeName }</h1>
-			<p id="member_number">${challenge.challengeMaxMember }명참여 중</p>
+			<p id="member_number">${challenge.challengeMaxMember }명 참여 중</p>
 		</div>
 		<div class="left_part">
 			<div class="left_first">

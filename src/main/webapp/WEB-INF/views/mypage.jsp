@@ -393,7 +393,7 @@ a:hover {
 											</p>
 											<p id="c_maxmember">/ ${challenge.challengeMaxMember }명</p>
 											<div id="c_delete">
-												<a href="#" onclick="deleteRegist('${challenge.seq}', '${user.id}', this)">포기하기</a>
+												<a href="#" onclick="deleteRegist('${challenge.seq}', '${user.id}', this, '${challenge.challengeName }')">포기하기</a>
 											</div>
 										</div>
 									</li>
@@ -431,14 +431,13 @@ a:hover {
 <!--jquery -->
 	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript">
-	  function deleteRegist(seq, id, ele) {
+	  function deleteRegist(seq, id, ele, name) {
 		
 		 let regist = {
 	      challengeSeq: seq,
 	      userId: id
 	    };
 	    const deleteRegistMember = JSON.stringify(regist);
-	    alert(deleteRegistMember);
 	    $.ajax({
 	      url: '/challenge/deleteregist',
 	      type : 'post',
@@ -448,7 +447,7 @@ a:hover {
 	      success: function(res) {
 /* 	        console.log(res);
  */	        if(res){
-	        	alert("삭제");
+	        	alert(name+" 챌린지를 포기하였습니다.");
 	        	$(ele).parents("li").remove();
 	        }
 	      },

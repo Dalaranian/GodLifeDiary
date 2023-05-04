@@ -174,15 +174,15 @@ a {
 
 /* --------------------------------------- footer ----------------------------------------*/
 footer{
-  padding-top: 5rem !important;
+  padding-top: 8rem !important;
   background-color: #626262;
   text-align: !important;
   --bs-text-opacity: 1;
   color: rgba(var(--bs-white-rgb), var(--bs-text-opacity)) !important;
-  width:100%;
-  height: 250px;
+  width: 100%;
+  height: 200px;
   vertical-align: middle;
-  
+  padding-left: 1rem;
 }
 /*
 /* --------------------------------------- 부트스트랩 코드는 안쓰는걸 ----------------------------------------*/
