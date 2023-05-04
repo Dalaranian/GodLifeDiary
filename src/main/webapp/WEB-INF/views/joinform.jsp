@@ -101,6 +101,9 @@ button[type="submit"] {
 #phone {
 	width: 43%;
 }
+#passwordConfirm {
+	width: 43%;
+}
 </style>
 </head>
 <body>
@@ -123,7 +126,7 @@ button[type="submit"] {
 				<div class="joinContent">
 					<label for="passwordConfirm">비밀번호 확인</label> <input type="password"
 						id="passwordConfirm" name="userPwConfirm">
-					<button type="button" onclick="return checkPw()">비밀번호 확인</button>
+					<button type="button"  id="get_verification_code" onclick="return checkPw()">비밀번호 확인</button>
 					<br>
 				</div>
 

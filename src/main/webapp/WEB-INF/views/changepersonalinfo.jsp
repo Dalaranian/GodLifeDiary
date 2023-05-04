@@ -193,16 +193,13 @@ body {
 /* 중앙에 위치한 박스 스타일 */
 .center-box {
 	width: 500px;
-	height: 500px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	border: 2px solid black;
 	border-radius: 0.8rem;
-	padding-bottom: 50px;
-	padding-left: 50px;
-	padding-right: 50px;
+	padding: 40px;
 }
 
 h1 {
@@ -231,16 +228,37 @@ button[type="submit"] {
 
 .joinContent {
 	width: 100%;
-	margin-bottom: 15px;
+	margin: 15px 0;
+}
+
+.joinContent>label {
+	width: 90px;
 }
 
 .joinContent>input {
-	width: 68%;
+	width: 210px;
 	height: 40px;
 	box-sizing: border-box;
 	display: inline-block;
 	border: 0.7px solid rgb(185, 184, 184);
 	border-radius: 0.5rem;
+}
+#get_verification_code {
+	margin-top: 10px;
+	background-color: #F7570B;
+	border: none;
+	color: white;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	cursor: pointer;
+	border-radius: 0.5rem;
+	width: 105px;
+	margin: 0;
+	vertical-align: middle;
+	display: inline-block;
 }
 </style>
 </head>
@@ -276,7 +294,7 @@ button[type="submit"] {
 	<br>
 	<br>
 	<div class="center-box">
-		<h1>비밀번호 변경</h1>
+		<h1 style="margin:0;">비밀번호 변경</h1>
 		<div class="joinForm">
 			<form action="/mypage/changepw" method="post">
 				<input type="hidden" name="userId" value="${user.userId }">
@@ -284,9 +302,9 @@ button[type="submit"] {
 					<label for="password">비밀번호</label> <input type="password" id="password" name="userPw"><br>
 				</div>
 				<div class="joinContent">
-					<label for="password">비밀번호 확인</label> <input type="password" id="passwordCheck"><br>
+					<label for="password">비밀번호 확인</label> <input type="password" id="passwordCheck">
+					<button onclick="return checkPw()" id="get_verification_code">확인하기</button>
 				</div>
-				<button onclick="return checkPw()">확인하기</button>
 				<button type="submit" name="pwChangeSubmitBtn" onclick="alert('비밀번호가 변경되었습니다.')" disabled>변경하기</button>
 			</form>
 		</div>
