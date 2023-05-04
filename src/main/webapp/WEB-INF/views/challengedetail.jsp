@@ -377,22 +377,55 @@
 					console.log(res);
 					console.log(res.comment);
 					console.log(res.list);
-					 
-					if(res.comment == null){
+
+			
+					
+					var today = new Date();
+					today = today.getFullYear()+"-"+("0"+(today.getMonth()+1)).slice(-2)+"-"+("0"+today.getDate()).slice(-2);
+					
+					
+					if(res.comment.comment == null || res.list == null){ // 날짜를 선택해주세요 상태일 때 
 						$("#today").html(commentDate);
-					}else{
-						console.log(res);
-						console.log(res.list[0].id);
-						console.log(res.comment.comment.isDone);
+						$("#comment").attr("readonly",false);
+						console.log("이게오늘날짜라고?");
+						$("#comment").val('');
+					}
+					else if(res.comment.comment.commentDate == today){ // 오늘 날짜를 클릭 했을 때 
 						$("#today").html(res.comment.comment.commentDate);
 						$("#comment").html(res.comment.comment.comment);
-						$("#profile_check").html(res.comment.comment.isDone);
-						$("#profile_nick").html(res.list[0].id);
-						$(".comment_others #profile_nick").html(res.list[1].id);
+						$("#checksign").html(res.comment.comment.isDone);
+						$(".comment_each #profile_nick").html(res.list[0].userId);
+						$("#profile_nick").html(res.list[1].userId);
 						
-						/* for(let i=0 i<res.list.length() i++){
-							$("#profile_nick").html(res.list[i].id);
-						}   */
+						$("#comment").attr("readonly",false);
+
+						
+						$(".comment_my").show();
+						$(".comment_others").show();
+						$("#checkbtn").show();
+
+					}
+					else{	// 오늘 날짜 제외, 다른 날짜 선택했을 때
+						$("#comment").attr("readonly",true);
+
+						console.log("날짜가 입력이 댄 상태군요  ");
+						$("#today").html(res.comment.comment.commentDate);
+						$("#comment").html(res.comment.comment.comment);
+						$("#checksign").html(res.comment.comment.isDone);
+						$(".comment_each #profile_nick").html(res.list[0].userId);
+						$("#profile_nick").html(res.list[1].userId);
+						 
+					
+						if(res.comment.comment.isDone=="Y") {
+							$("#checksign").attr('src','../resources/img/letter-o.png');
+						}else if(res.comment.comment.isDone=="N"){
+							$("#checksign").attr('src',"../resources/img/letter-x.png");
+							
+						}
+						$(".comment_my").show();
+						$(".comment_others").show();
+						$("#checkbtn").hide();
+						console.log(today);
 					
 					} 
 					
@@ -428,7 +461,7 @@
 					<!-- 챌린지 끝나는 날짜 -->
 					<c:set var="forProgress" value="${timestamp.toLocalDateTime().toLocalDate()}" />  
 					
-					<!-- 오늘 날짜  -->
+					<!-- 진행률 -->
 					<jsp:useBean id="now" class="java.util.Date" />
 					<fmt:parseNumber value="${now.time / (1000*60*60*24)}" integerOnly="true" var="nowfmtTime" scope="request"/>
 					<fmt:parseNumber value="${challenge.challengeStartedDate.time / (1000*60*60*24)}" integerOnly="true" var="dbDtParse" scope="request"/>
@@ -437,7 +470,6 @@
 					<c:set var="percentage" value="${PassDayCnt *100}"/>
 					<fmt:parseNumber var="percent" value="${percentage}" integerOnly="true"/>
 
-					<!--  퍼센테이지 계산 -->
 			
                 </div>
             </div>
@@ -492,6 +524,7 @@
                     <div id="commentContainer">
                         <textarea id="comment" name="comment"></textarea>
                         <input type="submit" value="코멘트 등록" id="comment_button" class="buttonDesign">
+                       
                     </div>
                 </div>
             </div>
