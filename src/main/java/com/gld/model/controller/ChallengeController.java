@@ -1,6 +1,7 @@
 package com.gld.model.controller;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -129,6 +130,12 @@ public class ChallengeController {
 		return "challengeinsert_res";
 	}
 	
+	@PostMapping("/commentinsert")
+	public String commentInsert(CommentDto dto,String challangeName) {
+		commentBiz.insert(dto);
+		return "redirect:/challenge/detail?challengeName="+challangeName;
+	}
+	
 	 @PostMapping("/ajaxComment")
 	 @ResponseBody
 	 public Map<String, Object> commentDate(@RequestBody CommentId commentid) {
@@ -138,9 +145,27 @@ public class ChallengeController {
 		   
 		   CommentDto comment = commentBiz.selectComment(commentid.getSeq(), commentid.getId(), commentid.getCommentDate());
 		   List<CommentDto> list = commentBiz.selectComments(commentid.getSeq(), commentid.getCommentDate());
+		   //list.get(0).getId() -> userid
+		   
+//		   Map<Integer, String> user = new HashMap<>();
+//		   
+//		   List<RegisteredMemberDto> rms = userDto.getList(); //1. 해당 user의 REGISTERED_MEMBER에 SEQ값들을 List로 가져옴
+//			List<ChallengeDto> chals = new ArrayList<>(); //2. 1에서 가져온 숫자를, G_CHALLENGE랑 join해서 챌린지 객체 List로 가져옴
+//			for(RegisteredMemberDto rmDto : rms) {
+//				chals.add(rmDto.getChallengeDto());
+//			}
+		   
+//		   for(int i=0; i<list.size(); i++) {
+//			   CommentDto commentDto = list.get(i);
+//			   List<UserDto> rms = commentDto.getList();
+//			   user.put(commentDto.getId(), rms.get(0).getUserId());
+//		   }
+//		   System.out.println(user.get(1));
+		   
 		   //System.out.println(comment.getId());
 		   //System.out.println(list.get(2).getComment());
 		   Map<String, CommentDto> map = new HashMap<>();
+		   
 		   
 		   System.out.println(list);
 		   if(comment != null) {

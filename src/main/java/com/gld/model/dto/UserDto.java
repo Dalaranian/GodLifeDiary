@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,13 +26,19 @@ public class UserDto {
 
 	@Id
 	@Column(name = "ID",nullable = false, unique = true)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
 	// table join (G_USER 일대다 REGISTERED_MEMBER)
 	@OneToMany(mappedBy = "userDto", fetch = FetchType.LAZY)
 	private List<RegisteredMemberDto> list = new ArrayList<>();
-	//
+	
+	//table join (G_USER 일대다 COMMENT_DATE)
+//	@OneToMany(mappedBy = "userDto")
+//	private List<CommentDto> list2 = new ArrayList<>();
+	
+	@ManyToOne
+	@JoinColumn(name = "ID", insertable = false, updatable = false)
+	private UserDto commentDto;
 
 	@Column(name = "USER_ID", nullable = false, unique = true)
 	private String userId;
@@ -157,5 +165,8 @@ public class UserDto {
 	public void setList(List<RegisteredMemberDto> list) {
 		this.list = list;
 	}
+
+	
+	
 
 }
