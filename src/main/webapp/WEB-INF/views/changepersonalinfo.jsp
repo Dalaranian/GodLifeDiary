@@ -302,6 +302,7 @@ button[type="submit"] {
 				alert("비밀번호가 일치하지 않습니다.");
 				password.value = "";
 				passwordCheck.value = ""
+				document.querySelector("button[name='pwChangeSubmitBtn']").disabled = true;
 				return false;
 			} else {
 				alert("비밀번호가 일치합니다.");
