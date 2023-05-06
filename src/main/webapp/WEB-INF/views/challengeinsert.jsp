@@ -68,19 +68,22 @@
 <body>
 	<nav class="navbar navbar-expand-sm navbar-dark cOrange">
 		<ul class="navbar-nav me-auto mb-2 mb-sm-0" id="nav-total">
-			<li>
-				<a class="navbar-brand" id="nav-title" href="../">갓생일지</a>
-			</li>
-			<li id="nav-category"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">챌린지 보기</a>
+			<li><a class="navbar-brand" id="nav-title" href="../">갓생일지</a></li>
+			<li id="nav-category"><a class="nav-link dropdown-toggle"
+				href="#" data-bs-toggle="dropdown" aria-expanded="false">챌린지 보기</a>
 				<ul class="dropdown-menu">
-					<li><a class="dropdown-item" href="#">All</a></li>
-					<li><a class="dropdown-item" href="#">공부 </a></li>
-					<li><a class="dropdown-item" href="#">습관 </a></li>
-					<li><a class="dropdown-item" href="#">운동 </a></li>
-					<li><a class="dropdown-item" href="#">취미 </a></li>
-				</ul>
-			</li>
-			<li id="nav-insertChallenge"><a class="nav-link" href="../challenge/insert">새 챌린지 만들기</a></li>
+					<li><a class="dropdown-item" href="../challenge/main">All</a></li>
+					<li><a class="dropdown-item" href="../challenge/main_study">공부
+					</a></li>
+					<li><a class="dropdown-item" href="../challenge/main_habit">습관
+					</a></li>
+					<li><a class="dropdown-item" href="../challenge/main_workout">운동
+					</a></li>
+					<li><a class="dropdown-item" href="../challenge/main_hobby">취미
+					</a></li>
+				</ul></li>
+			<li id="nav-insertChallenge"><a class="nav-link"
+				href="../challenge/insert">새 챌린지 만들기</a></li>
 			<li id="nav-search">
 				<form role="search">
 					<input class="form-control" type="search" placeholder="Search">

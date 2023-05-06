@@ -212,24 +212,16 @@
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${challenges}" var="challenge">
-							<c:if test="${challenge.challengeEnabled eq 'N'}">
+							<c:if test="${challenge.challengeEnabled eq 'N' || challenge.challengeEnabled eq 'I'}">
 								<li class="item">
 									<div class="cont">
 										<strong id="c_name">${challenge.challengeName }</strong>
 										<p id="c_info">${challenge.challengeInfo }</p>
-										<p id="c_members">
-											<c:forEach items="${rmTotal}" var="rm">
-												<c:if test="${challenge.seq eq rm.seq }">
-													<c:set var="cnt" value="${cnt+1 }"></c:set>
-												</c:if>
-											</c:forEach>
-											<c:out value="${cnt }"></c:out>
-											<c:set var="cnt" value="0"></c:set>
-										</p>
-										<p id="c_maxmember">/ ${challenge.challengeMaxMember }명</p>
-										<p id="c_duration">${challenge.challengeDuration }주코스</p>
+										<p id="c_members">${challenge.challengeMaxMember }</p>
+										<p id="c_maxmember">명</p>
+										<p id="c_duration">${challenge.challengeDuration }주 코스</p>
 										<div id="c_joinBtn">
-											<a href="../challenge/detail?$">진행상황 보기</a>
+											<a href="/challenge/detail_frommain?challengeName=${challenge.challengeName }">상세보기</a>
 										</div>
 									</div>
 								</li>
@@ -257,7 +249,8 @@
 	      userId: id
 	    };
 	    const registJson = JSON.stringify(regist);
-/* 	    alert(registJson); */
+/*	    alert(registJson); */
+
 	    $.ajax({
 	      url: '/challenge/joinuser',
 	      type : 'post',

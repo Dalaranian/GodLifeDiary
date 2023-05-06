@@ -12,14 +12,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
 	crossorigin="anonymous"></script>
 <link href="../resources/css/styles.css" rel="stylesheet" />
@@ -28,7 +24,7 @@
 <style type="text/css">
 .mypage-total {
 	box-sizing: border-box;
-	width: 70%;
+	width: 50%;
 	position: relative;
 	left: 50%;
 	transform: translate(-50%, 0%);
@@ -203,7 +199,6 @@
 	font-size: 14px;
 }
 a {
-	letter-spacing: -1px;
 	text-decoration: none;
 	width: 100%;
 	height: 100%;
@@ -263,9 +258,7 @@ a:hover {
 					<p class="profiletag">ID</p>
 					<p class="profilecont">${user.userId }</p>
 				</div>
-				<p id="rvs">
-					<button type="button" value="개인정보수정" id="rvsButton">개인정보수정</button>
-				</p>
+				<p id="rvs"><button type="button" value="개인정보수정" id="rvsButton" onclick="location.href='/mypage/gotopwchange'">개인정보수정</button></p>
 			</div>
 			<div id="mystatus">
 				<div class="myprofile-">
@@ -363,7 +356,7 @@ a:hover {
 											<p id="c_info">${challenge.challengeInfo }</p>
 											<p id="c_maxmember">${challenge.challengeMaxMember }명 참여 중</p>
 											<div id="c_detail">
-												<a href="../challenge/detail?$">상세보기</a>
+												<a href="/challenge/detail?challengeName=${challenge.challengeName }">상세보기</a>
 											</div>
 											<div id="c_delete">
 												<a href="#" onclick="deleteRegist('${challenge.seq}', '${user.id}', this)">포기하기</a>
@@ -375,29 +368,6 @@ a:hover {
 						</c:otherwise>
 					</c:choose>
 				</ul>
-				<section class="pt-4" id="comment">
-					<div class="container px-lg-5">
-						<div class="p-4 p-lg-5 bg-light rounded-3 row">
-							<select name="challengeComment" id="challengeComment">
-								<!--
-	                         <c:forEach var="list" items="${result}">
-	                             <option value="${list.beverage}">${list.beverage}</option>
-	                         </c:forEach> 
-                         		-->
-								<%
-								for (int i = 0; i < 10; i++) {
-								%>
-								<option value="<%=i%>">챌린지명<%=i + 1%></option>
-								<%
-								}
-								%>
-							</select>
-							<div>
-								<p>댓글 뿌리는 곳</p>
-							</div>
-						</div>
-					</div>
-				</section>
 			</div>
 			<div class="tab-pane fade" id="nav-contact">
 				<ul class="each-category">
@@ -412,12 +382,18 @@ a:hover {
 										<div class="cont">
 											<strong id="c_name">${challenge.challengeName }</strong>
 											<p id="c_info">${challenge.challengeInfo }</p>
-											<p id="c_maxmember">${challenge.challengeMaxMember }명 참여 중</p>
-											<div id="c_detail">
-												<a href="../challenge/detail?$">상세보기</a>
-											</div>
+											<p id="c_members">
+												<c:set var="cnt" value="0"></c:set>
+												<c:forEach items="${rmTotal}" var="rm">
+													<c:if test="${challenge.seq eq rm.seq }">
+														<c:set var="cnt" value="${cnt+1 }"></c:set>
+													</c:if>
+												</c:forEach>
+												<c:out value="${cnt }"></c:out>
+											</p>
+											<p id="c_maxmember">/ ${challenge.challengeMaxMember }명</p>
 											<div id="c_delete">
-												<a href="#" onclick="deleteRegist('${challenge.seq}', '${user.id}', this)">포기하기</a>
+												<a href="#" onclick="deleteRegist('${challenge.seq}', '${user.id}', this, '${challenge.challengeName }')">포기하기</a>
 											</div>
 										</div>
 									</li>
@@ -441,8 +417,7 @@ a:hover {
 										<div class="cont">
 											<strong id="c_name">${challenge.challengeName }</strong>
 											<p id="c_info">${challenge.challengeInfo }</p>
-											<p id="c_maxmember">${challenge.challengeMaxMember }명 참여 중</p>
-											<p id="c_duration">${challenge.challengeDuration }주코스</p>
+											<p id="c_maxmember">${challenge.challengeMaxMember }명 참여 완료</p>
 										</div>
 									</li>
 								</c:if>
@@ -456,14 +431,13 @@ a:hover {
 <!--jquery -->
 	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript">
-	  function deleteRegist(seq, id, ele) {
+	  function deleteRegist(seq, id, ele, name) {
 		
 		 let regist = {
 	      challengeSeq: seq,
 	      userId: id
 	    };
 	    const deleteRegistMember = JSON.stringify(regist);
-	    alert(deleteRegistMember);
 	    $.ajax({
 	      url: '/challenge/deleteregist',
 	      type : 'post',
@@ -473,7 +447,7 @@ a:hover {
 	      success: function(res) {
 /* 	        console.log(res);
  */	        if(res){
-	        	alert("삭제");
+	        	alert(name+" 챌린지를 포기하였습니다.");
 	        	$(ele).parents("li").remove();
 	        }
 	      },

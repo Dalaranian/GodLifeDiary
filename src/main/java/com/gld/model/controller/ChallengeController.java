@@ -1,6 +1,7 @@
 package com.gld.model.controller;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,48 +59,56 @@ public class ChallengeController {
 		//REGISTERED_MEMBER 전체 보내기
 		List<RegisteredMemberDto> rmTotal = registeredBiz.selectAll();
 		model.addAttribute("rmTotal", rmTotal);
-		
-		return "main";
-
-	}
-
-
-
-	@GetMapping("/main_study")
-	public String getStudyChallenges(Model model) {
-		String category = "공부";
-		List<ChallengeDto> challenges = challengeBiz.findbyCate(category);
-		model.addAttribute("challenges", challenges);
-		model.addAttribute("cate", category);
-		return "main";
-	} 
-
-	@GetMapping("/main_habit")
-	public String getHabitChallenges(Model model) {
-		String category = "습관";
-		List<ChallengeDto> challenges = challengeBiz.findbyCate(category);
-		model.addAttribute("challenges", challenges);
-		model.addAttribute("cate", category);
 		return "main";
 	}
 
-	@GetMapping("/main_hobby")
-	public String getHobbyChallenges(Model model) {
-		String category = "취미";
-		List<ChallengeDto> challenges = challengeBiz.findbyCate(category);
-		model.addAttribute("challenges", challenges);
-		model.addAttribute("cate", category);
-		return "main";
-	}
+	   @GetMapping("/main_study")
+	   public String getStudyChallenges(Model model) {
+	      String category = "공부";
+	      List<ChallengeDto> challenges = challengeBiz.findbyCate(category);
+	      model.addAttribute("challenges", challenges);
+	      model.addAttribute("cate", category);
+	      //REGISTERED_MEMBER 전체 보내기
+	      List<RegisteredMemberDto> rmTotal = registeredBiz.selectAll();
+	      model.addAttribute("rmTotal", rmTotal);
+	      return "main";
+	   } 
 
-	@GetMapping("/main_workout")
-	public String getWorkoutChallenges(Model model) {
-		String category = "운동";
-		List<ChallengeDto> challenges = challengeBiz.findbyCate(category);
-		model.addAttribute("challenges", challenges);
-		model.addAttribute("cate", category);
-		return "main";
-	}
+	   @GetMapping("/main_habit")
+	   public String getHabitChallenges(Model model) {
+	      String category = "습관";
+	      List<ChallengeDto> challenges = challengeBiz.findbyCate(category);
+	      model.addAttribute("challenges", challenges);
+	      model.addAttribute("cate", category);
+	      //REGISTERED_MEMBER 전체 보내기
+	      List<RegisteredMemberDto> rmTotal = registeredBiz.selectAll();
+	      model.addAttribute("rmTotal", rmTotal);
+	      return "main";
+	   }
+
+	   @GetMapping("/main_hobby")
+	   public String getHobbyChallenges(Model model) {
+	      String category = "취미";
+	      List<ChallengeDto> challenges = challengeBiz.findbyCate(category);
+	      model.addAttribute("challenges", challenges);
+	      model.addAttribute("cate", category);
+	      //REGISTERED_MEMBER 전체 보내기
+	      List<RegisteredMemberDto> rmTotal = registeredBiz.selectAll();
+	      model.addAttribute("rmTotal", rmTotal);
+	      return "main";
+	   }
+
+	   @GetMapping("/main_workout")
+	   public String getWorkoutChallenges(Model model) {
+	      String category = "운동";
+	      List<ChallengeDto> challenges = challengeBiz.findbyCate(category);
+	      model.addAttribute("challenges", challenges);
+	      model.addAttribute("cate", category);
+	      //REGISTERED_MEMBER 전체 보내기
+	      List<RegisteredMemberDto> rmTotal = registeredBiz.selectAll();
+	      model.addAttribute("rmTotal", rmTotal);
+	      return "main";
+	   }
 
 	@GetMapping("/detail")
 	public String moveToDetail(Model model, String challengeName) {
@@ -110,6 +119,15 @@ public class ChallengeController {
 		return "challengedetail";
 	}
 
+	@GetMapping("/detail_frommain")
+	public String moveToDetailFromMain(Model model, String challengeName) {
+		ChallengeDto challenge = challengeBiz.selectOne(challengeName);
+
+		model.addAttribute("challenge", challenge);
+
+		return "challengedetail_frommain";
+	}
+	
 	@GetMapping("/insert")
 	public String insert() {
 		return "challengeinsert";
@@ -121,18 +139,42 @@ public class ChallengeController {
 		return "challengeinsert_res";
 	}
 	
-	@PostMapping("/ajaxComment")
-	@ResponseBody
-	public Map<String, Object> commentDate(@RequestBody CommentId commentid) {
+	@PostMapping("/commentinsert")
+	public String commentInsert(CommentDto dto,String challangeName) {
+		commentBiz.insert(dto);
+		return "redirect:/challenge/detail?challengeName="+challangeName;
+	}
+	
+	 @PostMapping("/ajaxComment")
+	 @ResponseBody
+	 public Map<String, Object> commentDate(@RequestBody CommentId commentid) {
 		   System.out.println(commentid.getSeq()+" " +commentid.getId()+" "+commentid.getCommentDate());
 		   Map<String, Object> res = new HashMap<>();
 		   
 		   
 		   CommentDto comment = commentBiz.selectComment(commentid.getSeq(), commentid.getId(), commentid.getCommentDate());
 		   List<CommentDto> list = commentBiz.selectComments(commentid.getSeq(), commentid.getCommentDate());
+		   //list.get(0).getId() -> userid
+		   
+//		   Map<Integer, String> user = new HashMap<>();
+//		   
+//		   List<RegisteredMemberDto> rms = userDto.getList(); //1. 해당 user의 REGISTERED_MEMBER에 SEQ값들을 List로 가져옴
+//			List<ChallengeDto> chals = new ArrayList<>(); //2. 1에서 가져온 숫자를, G_CHALLENGE랑 join해서 챌린지 객체 List로 가져옴
+//			for(RegisteredMemberDto rmDto : rms) {
+//				chals.add(rmDto.getChallengeDto());
+//			}
+		   
+//		   for(int i=0; i<list.size(); i++) {
+//			   CommentDto commentDto = list.get(i);
+//			   List<UserDto> rms = commentDto.getList();
+//			   user.put(commentDto.getId(), rms.get(0).getUserId());
+//		   }
+//		   System.out.println(user.get(1));
+		   
 		   //System.out.println(comment.getId());
 		   //System.out.println(list.get(2).getComment());
 		   Map<String, CommentDto> map = new HashMap<>();
+		   
 		   
 		   System.out.println(list);
 		   if(comment != null) {
@@ -148,8 +190,8 @@ public class ChallengeController {
 			   res.put("list", null);
 		   }
 		   
-	   return res;
-	  }
+		   return res;
+	   }
 
 	// 참여하기 버튼 눌렀을때 로직
 	@RequestMapping(value = "/joinuser", method = RequestMethod.POST)
@@ -186,12 +228,12 @@ public class ChallengeController {
 				}
 				
 				if (res > 0) {
-					return currentChallenge.getChallengeName() + " 에 참여하였습니다. ";
+					return currentChallenge.getChallengeName() + "에 참여하였습니다. ";
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "참여에 실패하였습니다. 다시 시도해주세요 ";// 클라이언트로 반환할 데이터
+			return "이미 참여 중인 챌린지입니다.";// 클라이언트로 반환할 데이터
 		}
 		return "error 발생";
 	}

@@ -4,14 +4,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <title>작은 도전이 큰 변화로, 갓생일지</title>
 <link href="../resources/css/styles.css" rel="stylesheet" />
 <link href="../resources/css/font.css" rel="stylesheet" />
 </head>
 <body>
-<button onclick="location.href='challenge/detail?challengeName=매일 30분 걷기 챌린지'">challengedetail</button>
 <!-- Responsive navbar-->
 <nav class="navbar navbar-expand-sm navbar-dark cOrange">
 	<ul class="navbar-nav me-auto mb-2 mb-sm-0" id="nav-total">
@@ -55,11 +53,6 @@
 	</div>
 	</h1>
 </div>
-<br>
-<br>
-<br>
-<br>
-<br>
 <br>
 <br>
 <br>

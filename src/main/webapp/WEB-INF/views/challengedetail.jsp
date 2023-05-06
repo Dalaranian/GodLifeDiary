@@ -5,25 +5,16 @@
 
 <%@ page import="java.time.LocalDate" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Detail</title>
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="../resources/css/styles.css" rel="stylesheet" />
+<link href="/resources/css/styles.css" rel="stylesheet" />
+<link href="/resources/css/font.css" rel="stylesheet" />
 <style type="text/css">
-    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@200&display=swap');
-    @font-face {
-        font-family: 'LINESeedKR-Bd';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
-        font-weight: 700;
-        font-style: normal;
-    }
-    body {
-        font-family: 'LINESeedKR-Bd';
-    }
-
 /*---------------------------beginning-------------------------------*/
     .section {
         box-sizing: border-box;
@@ -33,14 +24,42 @@
         left: 50%;
         transform: translate(-50%, 0%);
     }
+    #challenge_title {
+    	padding: 10px 30px;
+    	margin: 20px;
+    	margin-bottom: 30px;
+    	border-bottom: 1px solid lightgrey;
+    	position: relative;
+    	height: 70px;
+    }
+    #challenge_title>h1 {
+    	display: inline-block;
+    	position: absolute;
+    }
+    
+    #member_number {
+		display: inline-block;
+		width: 120px;
+		height: 32px;
+		border: 2px solid #F7570B;
+		border-radius: 1rem;
+		padding: 5px;
+		color: #F7570B;
+		font-weight: bold;
+		text-align: center;
+		background-color: white;
+		fong-size: 14px;
+    	position: absolute;
+    	right: 30px;
+    	bottom: 0;
+    }
+
 /*left---------------------------------------------------------*/
     .left_part {
         box-sizing: border-box;
         width: 45%;
-        height: 100%;
         position: absolute;
         left: 0;
-        margin-top: 30px;
     }
     .left_part>div {
         width: 100%;
@@ -48,15 +67,9 @@
     }
 /*left_first---------------------------------------------------------*/
     .left_first {
-        height: 40%;
         padding-left: 20px;
         padding-right: 20px;
         padding-bottom: 20px;
-    }
-    #challenge_title {
-        width: 100%;
-        height: 20%;
-        padding: 10px;
     }
     .challenge_dscr {
         width: 100%;
@@ -88,7 +101,7 @@
 
     }
     th {
-        width: 38px;
+        width: 50px;
         height: 20px;
         font-size: 10pt;
         vertical-align: bottom;
@@ -158,29 +171,10 @@
         border: 1px solid lightgrey;
         border-radius: 0.5rem;
         padding: 20px;
+        position: relative;
     }
-    .progress {
-        height: 20px;
-        margin: 20px 0; 
-        overflow: hidden; 
-        background-color: #f5f5f5; 
-        border-radius: 1rem; 
-        -webkit-box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%); 
-        box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
-    }
-    .prog-bar {
-        float: left; width: 0%; height: 100%; 
-        font-size: 12px; line-height: 20px; 
-        color: #fff; text-align: center; 
-        vertical-align: middle;
-        background-color: #337ab7; 
-        -webkit-box-shadow: inset 0 -1px 0 rgb(0 0 0 / 15%); 
-        box-shadow: inset 0 -1px 0 rgb(0 0 0 / 15%); 
-        -webkit-transition: width .6s ease; /* keyframe 사용으로 Animation 효과도 줄 수 있다. */
-        -o-transition: width .6s ease;
-    } 
-    .col_success {
-        background-color: #F95001;
+    #progressbar {
+    	margin-top: 40px;
     }
     /*------------------------*/
     .skill-bar {
@@ -234,7 +228,6 @@
         width: 55%;
         position: absolute;
         right: 0;
-        margin-top: 50px;
         padding: 20px;
     }
     .show_date {
@@ -278,11 +271,23 @@
         display: inline-block;
         position: relative;
     }
+    .profile_other{
+        box-sizing: border-box;
+        width: 100%;
+        height: 30%;
+        display: inline-block;
+        position: relative;
+    }
     #profile_img {
         border-radius: 100%;
         width: 40px;
     }
     #profile_nick {
+        display: inline-block;
+        box-sizing: border-box;
+        padding: 5px;
+    }
+    #other_nick {
         display: inline-block;
         box-sizing: border-box;
         padding: 5px;
@@ -309,11 +314,20 @@
         border: 1px solid grey;
         color: rgb(90, 90, 90);
     }
+    #other_comment{
+        width: 100%;
+        resize: none;
+        vertical-align: middle;
+        margin: 5px 0;
+        overflow: visible;
+        border: 1px solid grey;
+        color: rgb(90, 90, 90);
+    }
     #comment_button {
         width: 120px;
         position: absolute;
         right: 0;
-        bottom: -5px;
+        bottom: -30px;
     }
     .buttonDesign {
         width: 80px;
@@ -340,6 +354,7 @@
     }
 
 </style>
+
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript">
 	var cnt = 1;
@@ -359,13 +374,11 @@
     }
     
     function goToCommentDate(seq, id, commentDate){
-    	console.log("durlsms");
 		let commentVal = {
 			"seq" : seq,
 			"id" : id,
 			"commentDate" : commentDate
 		};
-		
 		
 		$.ajax({
 				type:"post",
@@ -374,48 +387,36 @@
 				contentType:"application/json",
 				dataType:"json",
 				success:function(res){
-					console.log(res);
-					console.log(res.comment);
-					console.log(res.list);
-
-			
-					
-					var today = new Date();
-					today = today.getFullYear()+"-"+("0"+(today.getMonth()+1)).slice(-2)+"-"+("0"+today.getDate()).slice(-2);
-					
-					
-					if(res.comment.comment == null || res.list == null){ // 날짜를 선택해주세요 상태일 때 
+					 
+					if(res.comment.comment == null || res.list == null){
 						$("#today").html(commentDate);
-						$("#comment").attr("readonly",false);
-						console.log("이게오늘날짜라고?");
-						$("#comment").val('');
-					}
-					else if(res.comment.comment.commentDate == today){ // 오늘 날짜를 클릭 했을 때 
+						
+						if(res.comment.comment.commentDate == today){ // 오늘 날짜를 클릭 했을 때 
+							$("#comment").empty();
+							$("#comment").attr("readonly",false);
+							$("#comment_button").show();
+							//$("#comment").val('');
+						}else{
+							$("#comment").attr("readonly",true);
+							$(".comment_my").hide();
+							$(".comment_others").hide();
+						}
+					}else{
 						$("#today").html(res.comment.comment.commentDate);
 						$("#comment").html(res.comment.comment.comment);
-						$("#checksign").html(res.comment.comment.isDone);
-						$(".comment_each #profile_nick").html(res.list[0].userId);
-						$("#profile_nick").html(res.list[1].userId);
 						
-						$("#comment").attr("readonly",false);
-
+						$(".profile_other").empty();
+						<c:set var="user" value="${sessionScope.user}" />
+						//$(".profile_other").append('<div id="other_nick">' + ${user.userId} + '</div>');
+						//$(".profile_other").append('<div id="other_comment">' + res.comment.comment.comment + '</div>');
 						
-						$(".comment_my").show();
-						$(".comment_others").show();
-						$("#checkbtn").show();
-
-					}
-					else{	// 오늘 날짜 제외, 다른 날짜 선택했을 때
-						$("#comment").attr("readonly",true);
-
-						console.log("날짜가 입력이 댄 상태군요  ");
-						$("#today").html(res.comment.comment.commentDate);
-						$("#comment").html(res.comment.comment.comment);
-						$("#checksign").html(res.comment.comment.isDone);
-						$(".comment_each #profile_nick").html(res.list[0].userId);
-						$("#profile_nick").html(res.list[1].userId);
-						 
-					
+						for(let i=0; i<res.list.length; i++){
+							if(res.list[i].id!=${user.id}){
+								$(".profile_other").append('<div id="other_nick">' + res.list[i].id + '</div>');
+								$(".profile_other").append('<div id="other_comment">' + res.list[i].comment + '</div>');
+							}
+						} 
+						
 						if(res.comment.comment.isDone=="Y") {
 							$("#checksign").attr('src','../resources/img/letter-o.png');
 						}else if(res.comment.comment.isDone=="N"){
@@ -424,8 +425,6 @@
 						}
 						$(".comment_my").show();
 						$(".comment_others").show();
-						$("#checkbtn").hide();
-						console.log(today);
 					
 					} 
 					
@@ -439,19 +438,59 @@
 	
 	
 		}
+    
+    function addShow(ele){
+    	$(ele).next().addClass("show");
+    }
   </script>
 
 </head>
 <body>
+	<nav class="navbar navbar-expand-sm navbar-dark cOrange">
+		<ul class="navbar-nav me-auto mb-2 mb-sm-0" id="nav-total">
+			<li><a class="navbar-brand" id="nav-title" href="../">갓생일지</a></li>
+			<li id="nav-category"><a class="nav-link dropdown-toggle"
+				href="#" data-bs-toggle="dropdown" aria-expanded="false" onclick="addShow(this);">챌린지 보기</a>
+				<ul class="dropdown-menu">
+					<li><a class="dropdown-item" href="../challenge/main">All</a></li>
+					<li><a class="dropdown-item" href="../challenge/main_study">공부
+					</a></li>
+					<li><a class="dropdown-item" href="../challenge/main_habit">습관
+					</a></li>
+					<li><a class="dropdown-item" href="../challenge/main_workout">운동
+					</a></li>
+					<li><a class="dropdown-item" href="../challenge/main_hobby">취미
+					</a></li>
+				</ul></li>
+			<li id="nav-insertChallenge"><a class="nav-link"
+				href="../challenge/insert">새 챌린지 만들기</a></li>
+			<li id="nav-search">
+				<form role="search">
+					<input class="form-control" type="search" placeholder="Search">
+				</form>
+			</li>
+			<li id="nav-mypage"><a class="nav-link" href="../mypage/mypage">마이페이지</a></li>
+			<c:choose>
+				<c:when test="${empty user }">
+					<li id="nav-logout"><a class="nav-link" href="../login/login">login</a></li>
+				</c:when>
+				<c:otherwise>
+					<li id="nav-logout"><a class="nav-link" href="../login/logout">logout</a></li>
+				</c:otherwise>
+			</c:choose>
+		</ul>
+	</nav>
     <!-- Header -->
     <div class="section">
-        <div class="left_part">
+    	<div id="challenge_title">
+	    	<h1>${challenge.challengeName }</h1>
+        	<p id="member_number">${challenge.challengeMaxMember }명 참여 중</p>
+    	</div>
+    	<div class="left_part">
             <div class="left_first">
-                <h2 id="challenge_title">${challenge.challengeName }</h2>
                 <div class="challenge_dscr">
-                    <p>${challenge.challengeDuration } </p>
-                    <p>${challenge.challengeMaxMember }명 </p>
-                    <textarea readonly="readonly">${challenge.challengeInfo }</textarea>
+                    <p>${challenge.challengeInfo }</p>
+                    <p>${challenge.challengeHashtag }</p>
                     
                     <c:set var="timestamp" value="${challenge.challengeStartedDate}" />
 					<c:set var="startDate" value="${timestamp.toLocalDateTime().toLocalDate()}" />
@@ -461,7 +500,7 @@
 					<!-- 챌린지 끝나는 날짜 -->
 					<c:set var="forProgress" value="${timestamp.toLocalDateTime().toLocalDate()}" />  
 					
-					<!-- 진행률 -->
+					<!-- 오늘 날짜  -->
 					<jsp:useBean id="now" class="java.util.Date" />
 					<fmt:parseNumber value="${now.time / (1000*60*60*24)}" integerOnly="true" var="nowfmtTime" scope="request"/>
 					<fmt:parseNumber value="${challenge.challengeStartedDate.time / (1000*60*60*24)}" integerOnly="true" var="dbDtParse" scope="request"/>
@@ -470,11 +509,11 @@
 					<c:set var="percentage" value="${PassDayCnt *100}"/>
 					<fmt:parseNumber var="percent" value="${percentage}" integerOnly="true"/>
 
+					<!--  퍼센테이지 계산 -->
 			
                 </div>
             </div>
             	<c:set var="user" value="${sessionScope.user}" />
-            	
             <div class="left_second">
                 <div class="challenge_status">
                     <h4>진행현황</h4>
@@ -490,19 +529,25 @@
 							    	<c:if test="${date % 7 eq 6}">
 								        </tr>
 								    </c:if>
-							    
 							</c:forEach>
-                            
                     </table>
                 </div>
             </div>
             <div class="left_third">
                 <div class="challenge_progress">
                     <h4>챌린지 만료까지</h4>
-
-                    <div class="skill-bar">
-                        <div class="skill-percentage" per="${percent }%" style="max-width:${percent }%"></div>
-                    </div>
+					<div id="progressbar">
+	                    <div class="skill-bar">
+							<c:choose>
+								<c:when test="${percent > 100}">
+			                        <div class="skill-percentage" per="100%" style="max-width:100%"></div>
+								</c:when>
+								<c:otherwise>
+			                        <div class="skill-percentage" per="${percent }%" style="max-width:${percent }%"></div>
+								</c:otherwise>
+							</c:choose>
+	                    </div>
+					</div>
                 </div>
             </div>
         </div>
@@ -514,30 +559,31 @@
                 <a id="next_day">▶</a>
             </div>
             <div class="comment_my">
-                <div id="record_title">My status</div>
+                <div id="record_title">Comment I</div>
+                <form action="/challenge/commentinsert" method="post" class="insertform">
                 <div class="comment_each">
                     <div class="profile">
-                        <img id="profile_img" src="./imgs/aaa.jpg" alt="img">
                         <div id="profile_nick">${user.userId}</div>
-                        <div id="profile_check"><input type="button" name="didornot" value="Check!" onclick="checking();" class="buttonDesign" id="checkbtn">&nbsp;<img id="checksign" src="../resources/img/letter-x.png"></div>
+                        <div id="profile_check"><input type="button" name="isdone" value="Check!" onclick="checking();" class="buttonDesign" id="checkbtn">&nbsp;<img id="checksign" src="../resources/img/letter-x.png"></div>
                     </div>
                     <div id="commentContainer">
                         <textarea id="comment" name="comment"></textarea>
                         <input type="submit" value="코멘트 등록" id="comment_button" class="buttonDesign">
-                       
+                        <input type="hidden" name="seq" value="전달할 데이터">
+                        <input type="hidden" name="id" value="${user.userId}">
+                        <input type="hidden" name="commentDate" value="">
+                        <input type="hidden" name="challengeName" value="${user.userId}">
                     </div>
                 </div>
+                </form>
             </div>
 
              <div class="comment_others">
                 <div id="record_title">Others</div>
                 <div class="comment_each">
-                    <div class="profile">
-                        <img id="profile_img" src="./imgs/aaa.jpg" alt="img">
-                        <div id="profile_nick">nickname</div>
-                        <div id="profile_check"><img id="checksign" src="../resources/img/letter-x.png"></div>
+                    <div class="profile_other">
+                        
                     </div>
-                    <textarea id="comment" name="comment" readonly="readonly">오늘은 진짜 일찍 일어나기 너무 힘들었는데 그래도 알람 한 번만에 일어났다 뿌듯하다ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ</textarea>
                 </div>
                 
             </div>

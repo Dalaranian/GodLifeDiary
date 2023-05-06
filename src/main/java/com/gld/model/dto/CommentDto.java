@@ -1,17 +1,26 @@
 package com.gld.model.dto;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity(name="G_COMMENT")
 @IdClass(CommentId.class)
 public class CommentDto {
 	@Id
 	@Column(name="SEQ")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer seq;
 	
 	@Id
@@ -27,7 +36,14 @@ public class CommentDto {
 	
 	@Column(name="ISDONE")
 	private String isDone;
-
+	
+	//private UserDto userDto;
+	
+	
+	// table join (G_USER 일대다 REGISTERED_MEMBER)
+//	@OneToMany(mappedBy = "commentDto", fetch = FetchType.LAZY)
+//	private List<UserDto> list = new ArrayList<>();
+	
 	public CommentDto() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -82,7 +98,13 @@ public class CommentDto {
 		this.isDone = isDone;
 	}
 
-	
+//	public List<UserDto> getList() {
+//		return list;
+//	}
+//
+//	public void setList(List<UserDto> list) {
+//		this.list = list;
+//	}
 	
 	
 	
