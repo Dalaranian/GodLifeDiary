@@ -32,9 +32,9 @@ public class UserDto {
 	@OneToMany(mappedBy = "userDto", fetch = FetchType.LAZY)
 	private List<RegisteredMemberDto> list = new ArrayList<>();
 	
-	//table join (G_USER 일대다 COMMENT_DATE)
-//	@OneToMany(mappedBy = "userDto")
-//	private List<CommentDto> list2 = new ArrayList<>();
+	//table join 
+	@OneToMany(mappedBy = "userDto")
+	private List<CommentDto> list2 = new ArrayList<>();
 	
 	@ManyToOne
 	@JoinColumn(name = "ID", insertable = false, updatable = false)

@@ -395,20 +395,19 @@
 							$("#comment").empty();
 							$("#comment").attr("readonly",false);
 							$("#comment_button").show();
-							//$("#comment").val('');
+							
 						}else{
 							$("#comment").attr("readonly",true);
 							$(".comment_my").hide();
 							$(".comment_others").hide();
 						}
 					}else{
+						console.log(res.comment.comment.commentDate);
 						$("#today").html(res.comment.comment.commentDate);
 						$("#comment").html(res.comment.comment.comment);
 						
-						$(".profile_other").empty();
-						<c:set var="user" value="${sessionScope.user}" />
-						//$(".profile_other").append('<div id="other_nick">' + ${user.userId} + '</div>');
-						//$(".profile_other").append('<div id="other_comment">' + res.comment.comment.comment + '</div>');
+						//$(".profile_other").empty();
+		
 						
 						for(let i=0; i<res.list.length; i++){
 							if(res.list[i].id!=${user.id}){
@@ -560,7 +559,7 @@
             </div>
             <div class="comment_my">
                 <div id="record_title">Comment I</div>
-                <form action="/challenge/commentinsert" method="post" class="insertform">
+                <form class="insertform">
                 <div class="comment_each">
                     <div class="profile">
                         <div id="profile_nick">${user.userId}</div>
@@ -569,10 +568,6 @@
                     <div id="commentContainer">
                         <textarea id="comment" name="comment"></textarea>
                         <input type="submit" value="코멘트 등록" id="comment_button" class="buttonDesign">
-                        <input type="hidden" name="seq" value="전달할 데이터">
-                        <input type="hidden" name="id" value="${user.userId}">
-                        <input type="hidden" name="commentDate" value="">
-                        <input type="hidden" name="challengeName" value="${user.userId}">
                     </div>
                 </div>
                 </form>

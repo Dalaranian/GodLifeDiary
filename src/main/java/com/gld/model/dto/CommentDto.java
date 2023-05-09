@@ -37,16 +37,22 @@ public class CommentDto {
 	@Column(name="ISDONE")
 	private String isDone;
 	
-	//private UserDto userDto;
-	
-	
-	// table join (G_USER 일대다 REGISTERED_MEMBER)
-//	@OneToMany(mappedBy = "commentDto", fetch = FetchType.LAZY)
-//	private List<UserDto> list = new ArrayList<>();
+	// table join (G_USER 일대다 G_COMMENT)
+	@ManyToOne
+	@JoinColumn(name = "ID", insertable = false, updatable = false)
+	private UserDto userDto;
 	
 	public CommentDto() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public UserDto getUserDto() {
+		return userDto;
+	}
+
+	public void setUserDto(UserDto userDto) {
+		this.userDto = userDto;
 	}
 
 	public CommentDto(Integer seq, Integer id, LocalDate commentDate, String comment, String isDone) {
