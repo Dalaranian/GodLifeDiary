@@ -3,7 +3,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
 ![header](https://capsule-render.vercel.app/api?type=waving&color=random&height=150&section=header&text=갓생%20일지&fontSize=70)<br>
-## Using Stack
+## 갓생 일지<br>
+좋은 습관을 혼자 꾸준히 지속하기 힘든 사람들을 위한 웹 서비스!<br> 여러 사람들과 함께 장,단기 목표를 잡고 함께 달려나가는 서비스로, <br>동기부여 및 정보 공유를 통해 지루하고 반복적인 일과를 포기하지 않고 끝까지 즐길 수 있도록 도와주는 것이 목표입니다.
+## Using Stack<br>
 ![Spring Boot](https://img.shields.io/badge/SpringBoot-6DB33F.svg?&style=for-the-badge&logo=SpringBoot&logoColor=white)
 ![Maven](https://img.shields.io/badge/Maven-C71A36.svg?&style=for-the-badge&logo=Maven&logoColor=white)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26.svg?&style=for-the-badge&logo=HTML5&logoColor=white)
