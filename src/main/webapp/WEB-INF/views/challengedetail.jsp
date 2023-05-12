@@ -115,6 +115,7 @@
     #did {
         background-color: #F95001;
     }
+    
     #didnt {
         background-color: grey;
     }
@@ -158,6 +159,7 @@
         margin-left: -5px;
         transform: translate(0,0px); 
     }
+
 
 
 /*left_third---------------------------------------------------------*/
@@ -357,6 +359,8 @@
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript">
+
+	let currentDate;
 	var cnt = 1;
     function checking() {
         if(cnt%2==1)	{
@@ -380,6 +384,7 @@
 			"commentDate" : commentDate
 		};
 		
+	    console.log(commentVal);
 		$.ajax({
 				type:"post",
 				url:"/challenge/ajaxComment",
@@ -387,31 +392,46 @@
 				contentType:"application/json",
 				dataType:"json",
 				success:function(res){
-					 
+					var today = new Date();
+					var year = today.getFullYear();
+					var month = (today.getMonth() + 1).toString().padStart(2, '0'); // 월은 0부터 시작하므로 1을 더해줌
+					var date = today.getDate();
+					var formattedToday = year + '-' + month + '-' + date;
+					currentDate = commentDate;
+					
 					if(res.comment.comment == null || res.list == null){
 						$("#today").html(commentDate);
 						
-						if(res.comment.comment.commentDate == today){ // 오늘 날짜를 클릭 했을 때 
+						if(commentDate == formattedToday){ // 오늘 날짜를 클릭 했을 때 
+							$(".comment_my").show();
+							$(".comment_others").show();
 							$("#comment").empty();
 							$("#comment").attr("readonly",false);
 							$("#comment_button").show();
-							
+							//$("#comment").val('');
 						}else{
 							$("#comment").attr("readonly",true);
 							$(".comment_my").hide();
 							$(".comment_others").hide();
 						}
-					}else{
-						console.log(res.comment.comment.commentDate);
-						$("#today").html(res.comment.comment.commentDate);
-						$("#comment").html(res.comment.comment.comment);
 						
-						//$(".profile_other").empty();
-		
+					}else{
+						$(".comment_my").show();
+						$(".comment_others").show();
+						console.log("들어옴 ");
+						console.log(res.comment.comment.comment);
+						$("#today").html(res.comment.comment.commentDate);
+						$("#comment").val(res.comment.comment.comment);
+						$("#comment").attr("readonly",true);
+						$(".profile_other").empty();
+						//<c:set var="user" value="${sessionScope.user}" />
+						//let ttt = ${user};
+						//$(".profile_other").append('<div id="other_nick">' + ${user.userId} + '</div>');
+						//$(".profile_other").append('<div id="other_comment">' + res.comment.comment.comment + '</div>');
 						
 						for(let i=0; i<res.list.length; i++){
 							if(res.list[i].id!=${user.id}){
-								$(".profile_other").append('<div id="other_nick">' + res.list[i].id + '</div>');
+								$(".profile_other").append('<div id="other_nick">' + res.users[i] + '</div>');
 								$(".profile_other").append('<div id="other_comment">' + res.list[i].comment + '</div>');
 							}
 						} 
@@ -437,6 +457,38 @@
 	
 	
 		}
+    function goToCommentInsert(seq, id) {
+    	  var comment = $("#comment").val();
+    	  var isdone;
+    	  if(cnt%2==1){
+    		  isdone="N";
+    	  }else{
+    		  isdone="Y";
+    	  }
+    	  let commentInsertVal = {
+    				"seq" : seq,
+    				"id" : id,
+    				"commentDate" : currentDate,
+    				"comment" : comment,
+    				"isDone" : isdone
+    			};
+    	  
+    	  console.log(commentInsertVal);
+    	  $.ajax({
+    		  type:"post",
+    		  url:"/challenge/commentinsert",
+    		  data:JSON.stringify(commentInsertVal),
+    		  contentType:"application/json",
+			  dataType:"json",
+			  success:function(map){
+				  alert(map.msg);
+			  },
+			  error:function(){
+					alert("통신 실패 ");
+				}
+    	  });
+    	  
+    }
     
     function addShow(ele){
     	$(ele).next().addClass("show");
@@ -503,6 +555,7 @@
 					<jsp:useBean id="now" class="java.util.Date" />
 					<fmt:parseNumber value="${now.time / (1000*60*60*24)}" integerOnly="true" var="nowfmtTime" scope="request"/>
 					<fmt:parseNumber value="${challenge.challengeStartedDate.time / (1000*60*60*24)}" integerOnly="true" var="dbDtParse" scope="request"/>
+					
 					<c:set var="temp" value="${nowfmtTime - dbDtParse }" />
 					<c:set var="PassDayCnt" value="${temp/duration }"/>
 					<c:set var="percentage" value="${PassDayCnt *100}"/>
@@ -523,7 +576,14 @@
 								       <th><fmt:parseNumber value="${date / 7 + 1}" integerOnly="true"/>주차</th>
 								    </c:if>
 								    <td id="did"><div class="date-tooltip" data-tooltip="${startDate } " onclick="goToCommentDate(${challenge.seq}, ${user.id}, '${startDate}')"></div></td>
-								    
+								   <%--  <c:set var="today" value="<%= new java.util.Date() %>"/>
+
+									<c:if test="${startDate.after(today)}">
+								    	 <td id="didnt"><div class="date-tooltip" data-tooltip="${startDate } " onclick="goToCommentDate(${challenge.seq}, ${user.id}, '${startDate}')"></div></td>
+								    </c:if>
+								    <c:otherwise>
+								    	 <td id="did"><div class="date-tooltip" data-tooltip="${startDate } " onclick="goToCommentDate(${challenge.seq}, ${user.id}, '${startDate}')"></div></td>
+								    </c:otherwise> --%>
 								    <c:set var="startDate" value="${startDate.plusDays(1)}" />
 							    	<c:if test="${date % 7 eq 6}">
 								        </tr>
@@ -558,8 +618,8 @@
                 <a id="next_day">▶</a>
             </div>
             <div class="comment_my">
-                <div id="record_title">Comment I</div>
-                <form class="insertform">
+                <div id="record_title">Comment</div>
+                <form action="/challenge/commentinsert" method="post" class="insertform">
                 <div class="comment_each">
                     <div class="profile">
                         <div id="profile_nick">${user.userId}</div>
@@ -567,7 +627,8 @@
                     </div>
                     <div id="commentContainer">
                         <textarea id="comment" name="comment"></textarea>
-                        <input type="submit" value="코멘트 등록" id="comment_button" class="buttonDesign">
+                        <input type="button" value="코멘트 등록" id="comment_button" class="buttonDesign" onclick="goToCommentInsert(${challenge.seq}, ${user.id})">
+                        
                     </div>
                 </div>
                 </form>
