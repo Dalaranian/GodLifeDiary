@@ -149,12 +149,10 @@ public class ChallengeController {
 		
 		return map;
 	}
-
 	
 	 @PostMapping("/ajaxComment")
 	 @ResponseBody
 	 public Map<String, Object> commentDate(@RequestBody CommentId commentid) {
-
 		 
 		   System.out.println(commentid.getSeq()+" " +commentid.getId()+" "+commentid.getCommentDate());
 		   Map<String, Object> res = new HashMap<>();
@@ -162,19 +160,16 @@ public class ChallengeController {
 		   
 		  CommentDto comment = commentBiz.selectComment(commentid.getSeq(), commentid.getId(), commentid.getCommentDate());
 		  List<CommentDto> list = commentBiz.selectComments(commentid.getSeq(), commentid.getCommentDate());
-		   
-		   Map<String, CommentDto> map = new HashMap<>();
-		   
-		   System.out.println("hi");
-		   System.out.println(commentid.getSeq()+" " +commentid.getId()+" "+commentid.getCommentDate());
-		   
-		   int i=0;
-		   List<UserDto> users = new ArrayList<>();
+		  
+		  int i=0;
+		   List<String> users = new ArrayList<>();
 		   for(CommentDto rmDto : list) {
-			   users.add(rmDto.getUserDto());
+			   users.add(rmDto.getUserDto().getUserId());
 			   System.out.println(users.get(i));
 			   i++;
 		   }
+		   
+		   Map<String, CommentDto> map = new HashMap<>();
 		   
 		   if(comment != null) {
 			   map.put("comment", comment);
@@ -188,17 +183,14 @@ public class ChallengeController {
 		   }else {
 			   res.put("list", null);
 		   }
-
 		   if(users.size() != 0) {
 			   res.put("users", users);
 		   }else {
 			   res.put("users", null);
-
 		   }
 		   
 		   
 		   System.out.println(res);
-
 		   return res;
 	   }
 
@@ -285,12 +277,9 @@ public class ChallengeController {
 		}
 		
 		res.put("res", false);
-		return res;	
-		}
-
+		return res;	}
 		
 		
 		
 }
-
 
