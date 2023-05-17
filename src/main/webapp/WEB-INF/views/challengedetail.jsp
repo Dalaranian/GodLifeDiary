@@ -418,7 +418,8 @@
 					}else{
 						$(".comment_my").show();
 						$(".comment_others").show();
-						
+						console.log("들어옴 ");
+						console.log(res.comment.comment.comment);
 						$("#today").html(res.comment.comment.commentDate);
 						$("#comment").val(res.comment.comment.comment);
 						$("#comment").attr("readonly",true);
