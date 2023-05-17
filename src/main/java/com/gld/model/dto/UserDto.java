@@ -36,12 +36,8 @@ public class UserDto {
 	
 	//table join 
 	
-	@OneToMany(mappedBy = "userDto")
+	@OneToMany(mappedBy = "userDto", fetch = FetchType.LAZY)
 	private List<CommentDto> list2 = new ArrayList<>();
-	
-	@ManyToOne
-	@JoinColumn(name = "ID", insertable = false, updatable = false)
-	private UserDto commentDto;
 
 	@Column(name = "USER_ID", nullable = false, unique = true)
 	private String userId;

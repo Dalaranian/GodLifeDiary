@@ -41,7 +41,7 @@ public class CommentDto {
 	
 	// table join (G_USER 일대다 G_COMMENT)
 	@JsonIgnore
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID", insertable = false, updatable = false)
 	private UserDto userDto;
 	
@@ -113,13 +113,7 @@ public class CommentDto {
 				+ ", isDone=" + isDone + ", userDto=" + userDto + "]";
 	}
 
-//	public List<UserDto> getList() {
-//		return list;
-//	}
-//
-//	public void setList(List<UserDto> list) {
-//		this.list = list;
-//	}
+
 	
 	
 	
