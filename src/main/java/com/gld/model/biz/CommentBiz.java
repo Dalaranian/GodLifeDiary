@@ -17,11 +17,11 @@ public class CommentBiz {
 	@Autowired
 	private CommentRepository commentRepository;
 	
-	public CommentDto selectComment(Integer seq, Integer id, LocalDate commentDate) {
+	public CommentDto selectComment(Long seq, Integer id, LocalDate commentDate) {
 		return commentRepository.findOneBySeqAndIdAndCommentDate(seq, id, commentDate);
 	}
 	
-	public List<CommentDto> selectComments(Integer seq, LocalDate commentDate) {
+	public List<CommentDto> selectComments(Long seq, LocalDate commentDate) {
 		return commentRepository.findBySeqAndCommentDate(seq, commentDate);
 	}
 	

@@ -140,43 +140,37 @@ public class ChallengeController {
 	}
 	
 	@PostMapping("/commentinsert")
-	public String commentInsert(CommentDto dto,String challangeName) {
+	@ResponseBody
+	public Map<String,String> commentInsert(@RequestBody CommentDto dto) {
+		System.out.println(dto.getSeq()+" " +dto.getId()+" "+dto.getCommentDate()+" "+dto.getComment()+" "+dto.getIsDone());
 		commentBiz.insert(dto);
-		return "redirect:/challenge/detail?challengeName="+challangeName;
+		Map<String,String> map=new HashMap<>();
+		map.put("msg", "등록되었습니다.");
+		
+		return map;
 	}
 	
 	 @PostMapping("/ajaxComment")
 	 @ResponseBody
 	 public Map<String, Object> commentDate(@RequestBody CommentId commentid) {
+		 
 		   System.out.println(commentid.getSeq()+" " +commentid.getId()+" "+commentid.getCommentDate());
 		   Map<String, Object> res = new HashMap<>();
 		   
 		   
-		   CommentDto comment = commentBiz.selectComment(commentid.getSeq(), commentid.getId(), commentid.getCommentDate());
-		   List<CommentDto> list = commentBiz.selectComments(commentid.getSeq(), commentid.getCommentDate());
-		   //list.get(0).getId() -> userid
+		  CommentDto comment = commentBiz.selectComment(commentid.getSeq(), commentid.getId(), commentid.getCommentDate());
+		  List<CommentDto> list = commentBiz.selectComments(commentid.getSeq(), commentid.getCommentDate());
+		  
+		  int i=0;
+		   List<String> users = new ArrayList<>();
+		   for(CommentDto rmDto : list) {
+			   users.add(rmDto.getUserDto().getUserId());
+			   System.out.println(users.get(i));
+			   i++;
+		   }
 		   
-//		   Map<Integer, String> user = new HashMap<>();
-//		   
-//		   List<RegisteredMemberDto> rms = userDto.getList(); //1. 해당 user의 REGISTERED_MEMBER에 SEQ값들을 List로 가져옴
-//			List<ChallengeDto> chals = new ArrayList<>(); //2. 1에서 가져온 숫자를, G_CHALLENGE랑 join해서 챌린지 객체 List로 가져옴
-//			for(RegisteredMemberDto rmDto : rms) {
-//				chals.add(rmDto.getChallengeDto());
-//			}
-		   
-//		   for(int i=0; i<list.size(); i++) {
-//			   CommentDto commentDto = list.get(i);
-//			   List<UserDto> rms = commentDto.getList();
-//			   user.put(commentDto.getId(), rms.get(0).getUserId());
-//		   }
-//		   System.out.println(user.get(1));
-		   
-		   //System.out.println(comment.getId());
-		   //System.out.println(list.get(2).getComment());
 		   Map<String, CommentDto> map = new HashMap<>();
 		   
-		   
-		   System.out.println(list);
 		   if(comment != null) {
 			   map.put("comment", comment);
 		   }else {
@@ -189,7 +183,14 @@ public class ChallengeController {
 		   }else {
 			   res.put("list", null);
 		   }
+		   if(users.size() != 0) {
+			   res.put("users", users);
+		   }else {
+			   res.put("users", null);
+		   }
 		   
+		   
+		   System.out.println(res);
 		   return res;
 	   }
 
@@ -281,5 +282,4 @@ public class ChallengeController {
 		
 		
 }
-
 

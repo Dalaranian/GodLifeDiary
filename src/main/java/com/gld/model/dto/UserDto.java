@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gld.model.repository.RegisteredMemberRepository;
 
 @Entity
@@ -29,12 +30,14 @@ public class UserDto {
     private Long id;
 
 	// table join (G_USER 일대다 REGISTERED_MEMBER)
+	
 	@OneToMany(mappedBy = "userDto", fetch = FetchType.LAZY)
 	private List<RegisteredMemberDto> list = new ArrayList<>();
 	
-	//table join (G_USER 일대다 COMMENT_DATE)
-//	@OneToMany(mappedBy = "userDto")
-//	private List<CommentDto> list2 = new ArrayList<>();
+	//table join 
+	
+	@OneToMany(mappedBy = "userDto")
+	private List<CommentDto> list2 = new ArrayList<>();
 	
 	@ManyToOne
 	@JoinColumn(name = "ID", insertable = false, updatable = false)
@@ -164,6 +167,14 @@ public class UserDto {
 
 	public void setList(List<RegisteredMemberDto> list) {
 		this.list = list;
+	}
+
+	@Override
+	public String toString() {
+		return "UserDto [userId="
+				+ userId + ", userPw=" + userPw + ", userName=" + userName + ", completedChallenge="
+				+ completedChallenge + ", onOffNoty=" + onOffNoty + ", userLoginType=" + userLoginType + ", userPhone="
+				+ userPhone + ", userBirth=" + userBirth + "]";
 	}
 
 	

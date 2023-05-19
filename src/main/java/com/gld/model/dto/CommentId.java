@@ -3,24 +3,29 @@ package com.gld.model.dto;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+
 public class CommentId implements Serializable{
-	private Integer seq;
+	@Column(name="SEQ")
+	private Long seq;
+	@Column(name="ID")
 	private Integer id;
+	@Column(name="COMMENT_DATE")
 	private LocalDate commentDate;
 	public CommentId() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public CommentId(Integer seq, Integer id, LocalDate commentDate) {
+	public CommentId(Long seq, Integer id, LocalDate commentDate) {
 		super();
 		this.seq = seq;
 		this.id = id;
 		this.commentDate = commentDate;
 	}
-	public Integer getSeq() {
+	public Long getSeq() {
 		return seq;
 	}
-	public void setSeq(Integer seq) {
+	public void setSeq(Long seq) {
 		this.seq = seq;
 	}
 	public Integer getId() {

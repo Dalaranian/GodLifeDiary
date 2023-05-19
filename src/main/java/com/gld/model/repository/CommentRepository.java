@@ -13,7 +13,7 @@ import com.gld.model.dto.RegisteredMemberDto;
 
 @Repository
 public interface CommentRepository extends JpaRepository<CommentDto,CommentId>{
-	CommentDto findOneBySeqAndIdAndCommentDate(Integer seq, Integer id, LocalDate commentDate);
-	List<CommentDto> findBySeqAndCommentDate(Integer seq, LocalDate commentDate);
+	CommentDto findOneBySeqAndIdAndCommentDate(Long seq, Integer id, LocalDate commentDate);
+	List<CommentDto> findBySeqAndCommentDate(Long seq, LocalDate commentDate);
 	List<CommentDto> findAll();
 }

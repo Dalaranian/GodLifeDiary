@@ -15,13 +15,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity(name="G_COMMENT")
 @IdClass(CommentId.class)
 public class CommentDto {
 	@Id
 	@Column(name="SEQ")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer seq;
+	private Long seq;
 	
 	@Id
 	@Column(name="ID")
@@ -37,19 +39,26 @@ public class CommentDto {
 	@Column(name="ISDONE")
 	private String isDone;
 	
-	//private UserDto userDto;
-	
-	
-	// table join (G_USER 일대다 REGISTERED_MEMBER)
-//	@OneToMany(mappedBy = "commentDto", fetch = FetchType.LAZY)
-//	private List<UserDto> list = new ArrayList<>();
+	// table join (G_USER 일대다 G_COMMENT)
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "ID", insertable = false, updatable = false)
+	private UserDto userDto;
 	
 	public CommentDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	public UserDto getUserDto() {
+		return userDto;
+	}
 
-	public CommentDto(Integer seq, Integer id, LocalDate commentDate, String comment, String isDone) {
+	public void setUserDto(UserDto userDto) {
+		this.userDto = userDto;
+	}
+
+	public CommentDto(Long seq, Integer id, LocalDate commentDate, String comment, String isDone) {
 		super();
 		this.seq = seq;
 		this.id = id;
@@ -58,11 +67,11 @@ public class CommentDto {
 		this.isDone = isDone;
 	}
 
-	public Integer getSeq() {
+	public Long getSeq() {
 		return seq;
 	}
 
-	public void setSeq(Integer seq) {
+	public void setSeq(Long seq) {
 		this.seq = seq;
 	}
 
@@ -96,6 +105,12 @@ public class CommentDto {
 
 	public void setIsDone(String isDone) {
 		this.isDone = isDone;
+	}
+
+	@Override
+	public String toString() {
+		return "CommentDto [seq=" + seq + ", id=" + id + ", commentDate=" + commentDate + ", comment=" + comment
+				+ ", isDone=" + isDone + ", userDto=" + userDto + "]";
 	}
 
 //	public List<UserDto> getList() {
