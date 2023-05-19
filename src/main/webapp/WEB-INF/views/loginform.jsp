@@ -135,11 +135,11 @@ li {
 				<form method="post" action="/login/logincheck">
 					<div class="loginForm">
 						<label for="floatingId">ID</label> <input type="text"
-							id="floatingId" name="userId" value="user1">
+							id="floatingId" name="userId" >
 					</div>
 					<div class="loginForm">
 						<label for="floatingPw">Password</label> <input type="password"
-							id="floatingPw" name="userPw" value="password1">
+							id="floatingPw" name="userPw">
 					</div>
 					<button id="submitButton" type="submit">로그인하기</button>
 					<%
