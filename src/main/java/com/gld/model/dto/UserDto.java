@@ -27,6 +27,7 @@ public class UserDto {
 
 	@Id
 	@Column(name = "ID",nullable = false, unique = true)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
 	// table join (G_USER 일대다 REGISTERED_MEMBER)
